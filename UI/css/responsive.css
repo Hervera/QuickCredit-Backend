@@ -1,0 +1,45 @@
+@media(max-width: 1000px){
+	.card {
+		width: 55%;
+	}
+}
+
+@media(max-width: 700px){
+	.card {
+		width: 75%;
+	}
+}
+
+@media(max-width: 560px){
+	.card {
+		width: 90%;
+	}
+
+	.logo {
+	    width: 100%;
+	}
+	.logo h2, .menu {
+	    text-align: center;
+	}
+	.menu {
+	    width: 100%;
+	}
+	.menu ul {
+    	float: none;
+    	padding-left: 0px;
+    }
+
+    .main {
+	    margin: 8rem 1rem;
+	}
+}
+
+@media(max-width: 240px){
+	.main {
+	    margin: 12rem 0.1rem;
+	}
+
+	.menu ul li{
+		padding: 0.8em;
+	}
+}
