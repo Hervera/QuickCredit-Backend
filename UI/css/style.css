@@ -209,8 +209,6 @@ footer p {
 	border-right: 5px solid #138970;
 }
 
-
-
 .tree-bars {
   display: inline-block;
   cursor: pointer;
@@ -339,7 +337,7 @@ hr{
 
 .content {
 	width: calc(100% - 232px);;
-	margin: 2em 1em;
+	margin: 0em 1em;
 }
 
 .toggle-aside {
@@ -347,7 +345,7 @@ hr{
 }
 
 .toggle-content{
-	width: 90%;
+	width: 97.7%;
 }
 
 .demo-login{
@@ -355,3 +353,68 @@ hr{
 	font-size: 12px;
 	text-align: center;
 }
+
+/*Accout*/
+.current-page {
+    background: #fff;
+    color: #333;
+    border-radius: 0;
+    padding: 8px 15px;
+    list-style: none;
+}
+
+.back-card{
+    background: #fff;
+    margin: 0em auto;
+    padding: 2em;
+    border-radius: 4px;
+}
+
+.float-right{
+	float: right;
+}
+
+.table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    padding: 8px 0px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+	font-weight: 400;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.yellow-label {
+  background: #f9c125;
+}
+
+.green-label {
+  background: #05b993;
+}
+
+.blue-label {
+  background: #00a0f0;
+}
+
+.red-label {
+  background: #f52852;
+}
+

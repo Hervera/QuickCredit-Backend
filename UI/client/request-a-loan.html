@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Client Account</title>
+    <title>Quick Credit | Request A Loan</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
@@ -38,43 +38,42 @@
     <div class="main-content">
         <div class="aside" id="aside">
             <ul onclick="myFunction(event)">
-                <li><a href="account.html" class="active">My Account</a></li>
-                <li><a href="request-a-loan.html">Request a Loan</a></li>
+                <li><a href="account.html">My Account</a></li>
+                <li><a href="request-a-loan.html" class="active">Request a Loan</a></li>
                 <li><a href="requested-loans.html">All requested loans</a></li>
                 <li><a href="repayment-history.html">Repayment history</a></li>
             </ul>
         </div>
         <div class="content" id="content">
             <div id="client">
-              <div id="current-pages">
-                <ul class="current-page">
-                  <li class="active"> <b>My account | Client ID: #45645678</b>
-                    <label class="label green-label">verified</label>
-                  </li>
-                </ul>
-              </div>
-              <div class="back-card">
-                    <ul>
-                        <li>
-                            <p><b>Full Name :</b>  <span>Herve Nkurikiyimfura</span></p>
-                        </li>
-                        <li>
-                            <p><b>Email :</b> <span>herveralive@gmail.com</span></p>
-                        </li>
-                        <li>
-                          <p><b>Address:</b> KN Nyamirambo ST 400<p>
-                        </li>
-                        <li>
-                            <p><b>Current Loan:</b> $345.00</p>
-                        </li>
-                        <li>
-                            <p><b>Payed Loan :</b> $300.00</p>
-                        </li>
-                        <li>
-                            <p><b>Remain :</b> $45.00</p>
-                        </li>
-                  </ul>
-              </div>
+                <div id="current-pages">
+                    <ul class="current-page">
+                      <li class="active"> <b>Request A Loan
+                      </li>
+                    </ul>
+                </div>
+                <div class="back-card">
+                    <form method="POST">
+                        <div class="each-input">
+                            <label>First Name</label>
+                            <input type="text" name="name" class="input-form">
+                        </div>
+                        <div class="each-input">
+                            <label>Last Name</label>
+                            <input type="text" name="name" class="input-form">
+                        </div>
+                        <div class="each-input">
+                            <label>Amount in ($) for a loan </label>
+                            <input type="number" name="number" class="input-form">
+                        </div>
+                        <div class="each-input">
+                            <label>Address</label>
+                            <input type="text" name="address" class="input-form">
+                        </div>
+                       
+                        <button class="btn blue-btn" type="submit">Request A Loan</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
