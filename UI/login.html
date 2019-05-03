@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Sign up</title>
+    <title>Quick Credit | Sign in</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -25,36 +25,33 @@
 		<section>
 			<div class="card">
 				<div class="card-heading">
-					<h3>Register Now</h3>
+					<h3>Login Form</h3>
 				</div>
 				<div class="card-body">
-					<form action="login.html" method="POST">
-						<div class="each-input">
-							<label>First Name</label>
-							<input type="text" name="name" class="input-form">
-						</div>
-						<div class="each-input">
-							<label>Last Name</label>
-							<input type="text" name="name" class="input-form">
-						</div>
+					<form method="POST" id="loginForm">
 						<div class="each-input">
 							<label>Email Address</label>
-							<input type="email" name="email" class="input-form">
-						</div>
-						<div class="each-input">
-							<label>Address</label>
-							<input type="text" name="address" class="input-form">
+							<input type="email" name="email" class="input-form" id="email" required>
 						</div>
 						<div class="each-input">
 							<label>Password</label>
-							<input type="password" name="password" class="input-form">
+							<input type="password" name="password" class="input-form" id="password" required>
 						</div>
-						<div class="each-input">
-							<label>Confirm Password</label>
-							<input type="password" name="confirm-password" class="input-form">
-						</div>
-						<button class="btn blue-btn" type="submit">Sign up</button>
+						<button class="btn green-btn" type="submit">Login</button>
 					</form>
+					
+					<div class="demo-login">
+						<p>Copy & paste these credentials to go to admin pages, else
+							use any other credentials you want to go to client pages.<p>
+						<ul>
+							<li>
+								<b>Email:</b> admin@quickcredit.com
+							</li>
+							<li>
+								<b>password:</b> secret
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -64,5 +61,6 @@
 			 <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
 		</div>
 	</footer>
+	 <script src="js/script.js"></script>
 </body>
 </html>

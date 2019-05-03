@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+    <title>Quick Credit | All Clients</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="navigation">
+        <div class="header">
+            <div class="logo with-bars">
+                <h2><a href="login.html">Quick Credit</a></h2>
+                <div class="tree-bars" onclick="toggleLeftMenu()">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a class="account-link" onclick="toggleRightMenu()">
+                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
+                        <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span> 
+                        </a>
+                        <ul class="drop-content" id="right-menu">
+                            <li><a href="profile.html">My Profile</a></li>
+                            <hr>
+                            <li><a href="../login.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="aside" id="aside">
+            <ul onclick="myFunction(event)">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="all-clients.html" class="active">All Clients</a></li>
+                <li><a href="all-loans.html">All Loans</a></li>
+                <li><a href="#">Approved Loans</a></li>
+                <li><a href="#">Rejected Loans</a></li>
+                <li><a href="#">Current Loans</a></li>
+                <li><a href="#">Repaid Loans</a></li>
+                <li><a href="#">Post repayment</a></li>
+            </ul>
+        </div>
+        <div class="content" id="content">
+            <div class="admin">
+                <div id="current-pages">
+                    <ul class="current-page">
+                      <li class="active"> <b>All Clients
+                      </li>
+                    </ul>
+                </div>
+
+                <div class="back-card">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                              <th class="">Full Name</th>
+                              <th>Email</th>
+                              <th>Address</th>
+                              <th>Created at</th>
+                              <th>Status</th>
+                          </tr>
+                        </thead>
+                  
+                        <tbody>
+                          <tr>
+                            <td>Deo Safari</td>
+                            <td>safari@gmail.com</td>
+                            <td>Kacyiru</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                          <tr>
+                            <td>Leo Fidele</td>
+                            <td>Leo@gmail.com</td>
+                            <td>Kimironko</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                          <tr>
+                            <td>Deo Rugoga</td>
+                            <td>rugoga@gmail.com</td>
+                            <td>RDC</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label yellow-label">unverified</label></td>
+                          </tr>
+                  
+                          <tr>
+                            <td>John</td>
+                            <td>john@gmail.com</td>
+                            <td>Kimironko</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                  
+                          <tr>
+                            <td>Omari Deniro</td>
+                            <td>omari@gmail.com</td>
+                            <td>Kimironko</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                  
+                          <tr>
+                            <td>Kagabo Teric</td>
+                            <td>keneth@gmail.com</td>
+                            <td>Kimicanga</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label yellow-label">unverified</label></td>
+                          </tr>
+                           <tr>
+                              <td>John Gateja</td>
+                              <td>jogn@gmail.com</td>
+                              <td>Gasabo</td>
+                              <td>01-03-2019</td>
+                              <td><label class="label green-label">verified</label></td>
+                            </tr>
+                            <tr>
+                              <td>Kevin Nkusi</td>
+                              <td>Kevin@gmail.com</td>
+                              <td>Kagugu</td>
+                              <td>01-03-2019</td>
+                              <td><label class="label green-label">verified</label></td>
+                            </tr>
+                        </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+             <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

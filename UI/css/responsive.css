@@ -5,6 +5,10 @@
 }
 
 @media(max-width: 700px){
+	.main {
+	    margin: 7rem 1rem;
+	}
+
 	.card {
 		width: 75%;
 	}
@@ -20,19 +24,42 @@
 	}
 	.logo h2, .menu {
 	    text-align: center;
-	}
-	.menu {
 	    width: 100%;
 	}
+
 	.menu ul {
     	float: none;
     	padding-left: 0px;
     }
 
+    .logo.with-bars {
+	    width: 66%;
+	}
+
+	.logo.with-bars h2{
+	    text-align: left;
+	    padding: 5px;
+	    width: 70%;
+	}
+
+    .navigation .menu {
+	    width: 30%;
+	}
+
+    .navigation .menu ul {
+	    float: right;
+	}
+
     .main {
 	    margin: 8rem 1rem;
 	}
+
+	.navigation .usernm{
+		display: none;
+	}
 }
+
+
 
 @media(max-width: 240px){
 	.main {
@@ -41,5 +68,51 @@
 
 	.menu ul li{
 		padding: 0.8em;
+	}
+
+	.navigation .menu {
+	    width: 100%;
+	    background: #fff;
+	}
+
+	.logo.with-bars {
+	    width: 100%;
+	}
+
+	.logo.with-bars h2 {
+	    width: 100%;
+	    text-align: center;
+	}
+
+	.logo h2, .tree-bars {
+    	display: block;
+	}
+
+	.tree-bars {
+		text-align: center;
+	}
+
+	.navigation .menu ul{
+	    float: none;
+	}
+
+	.navigation .menu ul li {
+	    padding: 1em 0 0;
+	}
+
+	.tree-bars {
+    	text-align: center;
+    	float: none;
+    	position: absolute; 
+    	width: 100%;
+    	margin: 0 auto;
+    	left: 40%;
+		right: 40%;
+	}
+}
+
+@media(max-width: 220px){
+	.main {
+    	margin: 14rem 0.1rem;
 	}
 }

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+    <title>Quick Credit | Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="navigation">
+        <div class="header">
+            <div class="logo with-bars">
+                <h2><a href="login.html">Quick Credit</a></h2>
+                <div class="tree-bars" onclick="toggleLeftMenu()">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a class="account-link" onclick="toggleRightMenu()">
+                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
+                        <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span> 
+                        </a>
+                        <ul class="drop-content" id="right-menu">
+                            <li><a href="profile.html">My Profile</a></li>
+                            <hr>
+                            <li><a href="../login.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="aside" id="aside">
+            <ul onclick="myFunction(event)">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="all-clients.html">All Clients</a></li>
+                <li><a href="all-loans.html">All Loans</a></li>
+                <li><a href="#">Approved Loans</a></li>
+                <li><a href="#">Rejected Loans</a></li>
+                <li><a href="#">Current Loans</a></li>
+                <li><a href="#">Repaid Loans</a></li>
+                <li><a href="#">Post repayment</a></li>
+            </ul>
+        </div>
+        <div class="content" id="content">
+            <div class="">
+                <div class="total-card">
+                    <h3 class="padding-1">Total clients</h3>
+                    <h1 class="total-txt">120</h1>
+                </div>
+                <div class="total-card">
+                    <h3 class="padding-1">Total Loans</h3>
+                    <h1 class="total-txt">500</h1>
+                </div>
+                <div class="total-card">
+                    <h3 class="padding-1">Approved Loans</h3>
+                    <h1 class="total-txt">400</h1>
+                </div>
+                <div class="total-card">
+                    <h3 class="padding-1">Rejected Loans</h3>
+                    <h1 class="total-txt">100</h1>
+                </div>
+            </div>
+            <div>
+                <div class="back-card dash-table">
+                    <h3>Latest Registered Clients</h3>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                              <th class="">Full Name</th>
+                              <th>Address</th>
+                              <th>Created at</th>
+                              <th>Status</th>
+                          </tr>
+                        </thead>
+                  
+                        <tbody>
+                          <tr>
+                            <td>Deo Safari</td>
+                            <td>Kacyiru</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                          <tr>
+                            <td>Leo Fidele</td>
+                            <td>Kimironko</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                          <tr>
+                            <td>Deo Rugoga</td>
+                            <td>RDC</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label yellow-label">unverified</label></td>
+                          </tr>
+                  
+                          <tr>
+                            <td>John</td>
+                            <td>Kimironko</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+                  
+                          <tr>
+                            <td>Omari Deniro</td>
+                            <td>Kimironko</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label green-label">verified</label></td>
+                          </tr>
+
+                          <tr>
+                            <td>Kagabo Teric</td>
+                            <td>Kimicanga</td>
+                            <td>01-03-2019</td>
+                            <td><label class="label yellow-label">unverified</label></td>
+                          </tr>
+                        </tbody>
+                  </table>
+                </div>
+                <div class="back-card dash-table">
+                    <h3>Latest Requested Loans</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Loan amount</th>
+                                <th>Date of issue</th>
+                                <th>status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aime Ndanyuzwe</td>
+                                <td>$120000</td>
+                                <td>23-01-2019</td>
+                                <td>
+                                    <label class="label yellow-label">pending</label>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td>John Gateja</td>
+                                <td>$66000</td>
+                                <td>23-03-2018</td>
+                                <td>
+                                    <label class="label green-label">repaid</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Aline Kayitesi</td>
+                                <td>$48300</td>
+                                <td>23-01-2017</td>
+                                <td>
+                                    <label class="label red-label">rejected</label>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td>Herve Nkurikiyimfura</td>
+                                <td>$22900</td>
+                                <td>23-02-2016</td>
+                                <td>
+                                    <label class="label yellow-label">pending</label>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td>Eric Ngabo</td>
+                                <td>$12000</td>
+                                <td>23-02-2015</td>
+                                <td>
+                                    <label class="label red-label">rejected</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Johnathan Sagna</td>
+                                <td>$10000</td>
+                                <td>23-01-2014</td>
+                                <td>
+                                    <label class="label green-label">repaid</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+             <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

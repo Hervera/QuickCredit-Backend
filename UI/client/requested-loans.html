@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+    <title>Quick Credit | Requested loans</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="navigation">
+        <div class="header">
+            <div class="logo with-bars">
+                <h2><a href="login.html">Quick Credit</a></h2>
+                <div class="tree-bars" onclick="toggleLeftMenu()">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a class="account-link" onclick="toggleRightMenu()">
+                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
+                        <span class="username"><span class="usernm">N.Herve</span> <i class="caret">&#9660;</i></span> 
+                        </a>
+                        <ul class="drop-content" id="right-menu">
+                            <li><a href="profile.html">My Profile</a></li>
+                            <hr>
+                            <li><a href="../login.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="aside" id="aside">
+            <ul onclick="myFunction(event)">
+                <li><a href="account.html">My Account</a></li>
+                <li><a href="request-a-loan.html">Request a Loan</a></li>
+                <li><a href="requested-loans.html" class="active">All requested loans</a></li>
+                <li><a href="repayment-history.html">Repayment history</a></li>
+            </ul>
+        </div>
+        <div class="content" id="content">
+            <div id="client">
+                <div id="current-pages">
+                    <ul class="current-page">
+                      <li class="active"> <b>Requested loans
+                      </li>
+                    </ul>
+                </div>
+                <div class="back-card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="">Loan ID</th>
+                                <th>Loan amount</th>
+                                <th>Date of issue</th>
+                                <th>status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#12345676</td>
+                                <td>$120000</td>
+                                <td>23-01-2019</td>
+                                <td>
+                                    <label class="label yellow-label">pending</label>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td>#12345675</td>
+                                <td>$66000</td>
+                                <td>23-03-2018</td>
+                                <td>
+                                    <label class="label green-label">repaid</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12345674</td>
+                                <td>$48300</td>
+                                <td>23-01-2017</td>
+                                <td>
+                                    <label class="label red-label">rejected</label>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td>#12345673</td>
+                                <td>$22900</td>
+                                <td>23-02-2016</td>
+                                <td>
+                                    <label class="label green-label">repaid</label>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td>#12345672</td>
+                                <td>$12000</td>
+                                <td>23-02-2015</td>
+                                <td>
+                                    <label class="label red-label">rejected</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12345671</td>
+                                <td>$10000</td>
+                                <td>23-01-2014</td>
+                                <td>
+                                    <label class="label green-label">repaid</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+             <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

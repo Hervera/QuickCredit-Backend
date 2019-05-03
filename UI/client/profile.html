@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+    <title>Quick Credit | Client Profile</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="navigation">
+        <div class="header">
+            <div class="logo with-bars">
+                <h2><a href="login.html">Quick Credit</a></h2>
+                <div class="tree-bars" onclick="toggleLeftMenu()">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a class="account-link" onclick="toggleRightMenu()">
+                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
+                        <span class="username"><span class="usernm">N.Herve</span> <i class="caret">&#9660;</i></span> 
+                        </a>
+                        <ul class="drop-content" id="right-menu">
+                            <li><a href="profile.html" class="active">My Profile</a></li>
+                            <hr>
+                            <li><a href="../login.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="aside" id="aside">
+            <ul>
+                <li><a href="account.html">My Account</a></li>
+                <li><a href="request-a-loan.html">Request a Loan</a></li>
+                <li><a href="requested-loans.html">All requested loans</a></li>
+                <li><a href="repayment-history.html">Repayment history</a></li>
+            </ul>
+        </div>
+        <div class="content" id="content">
+            <div id="client">
+                <div id="current-pages">
+                    <ul class="current-page">
+                      <li class="active"> <b>Client Profile
+                      </li>
+                    </ul>
+                </div>
+                <div class="back-card">
+                    <div class="profile-card">
+                      <img src="../images/default-avatar.png" alt="John" style="width:100%">
+                      <h1>Herve Nkurikiyimfura</h1>
+                      <p class="title">KN St 400, Nyarugenge</p>
+                      <p>herveralive@gmail.com</p>
+                      <p><button>Client ID: #45645678</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+             <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>
