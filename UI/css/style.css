@@ -117,6 +117,7 @@ ul li{
 	margin: 0em auto;
 	padding: 2em;
 	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-heading {
@@ -198,10 +199,15 @@ footer p {
   display: block;
   text-align: left;
   margin: 0px;
+}
+
+.menu .drop-content li a{
+  display: block;
   padding: 0.5em 1em;
 }
 
-.menu .drop-content li:hover{
+.menu .drop-content li a:hover,
+.menu .drop-content li a.active {
 	background: #05b993;
 	color: #fff;
 	cursor: pointer;
@@ -416,5 +422,36 @@ td {
 
 .red-label {
   background: #f52852;
+}
+
+/*Profile*/
+.profile-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
 }
 
