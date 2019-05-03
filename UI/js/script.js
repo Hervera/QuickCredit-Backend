@@ -19,7 +19,7 @@ loginForm.addEventListener('submit', function(e) {
 		window.location.href = "admin/dashboard.html";
 	}
 	else{
-		window.location.href = "client/home.html";
+		window.location.href = "client/account.html";
 	}
 
 	e.preventDefault();
