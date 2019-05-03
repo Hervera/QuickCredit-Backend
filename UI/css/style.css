@@ -451,7 +451,30 @@ button {
   font-size: 18px;
 }
 
-button:hover, a:hover {
-  opacity: 0.7;
+.total-card {
+    width: 10rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background: #fff;
+    padding: 1em;
+    display: inline-block;
+    vertical-align: top;
+    width: 16.3em;
+    height: 100px;
+    text-align: center;
+    margin-right: 0.6em;
+    margin-top: 1em;
 }
 
+.dash-table {
+    width: 48%;
+    float: left;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1em;
+}
+
+.dash-table h3 {
+	padding-bottom: 2.5em;
+}
