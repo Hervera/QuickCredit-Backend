@@ -23,7 +23,7 @@
                     <li>
                         <a class="account-link" onclick="toggleRightMenu()">
                         <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
-                        <span class="username"><span class="usernm">Username</span> <i class="caret">&#9660;</i></span> 
+                        <span class="username"><span class="usernm">N.Herve</span> <i class="caret">&#9660;</i></span> 
                         </a>
                         <ul class="drop-content" id="right-menu">
                             <li><a href="profile.html">My Profile</a></li>
@@ -38,15 +38,44 @@
     <div class="main-content">
         <div class="aside" id="aside">
             <ul onclick="myFunction(event)">
-                <li><a href="#" class="active">My Account</a></li>
-                <li><a href="#">Apply for Loan</a></li>
+                <li><a href="account.html" class="active">My Account</a></li>
+                <li><a href="request-a-loan.html">Request a Loan</a></li>
                 <li><a href="#">All requested Loans</a></li>
                 <li><a href="#">Repayment history</a></li>
             </ul>
         </div>
         <div class="content" id="content">
-            <h2>Contents</h2>
-          <p>This is where the contents will be</p>
+            <div id="client">
+              <div id="current-pages">
+                <ul class="current-page">
+                  <li class="active"> <b>My account | ID: #12345678</b>
+                    <button class="btn green-btn">verified</button>
+                  </li>
+                </ul>
+              </div>
+              <div class="back-card">
+                    <ul>
+                        <li>
+                            <p><b>Full Name :</b>  <span>Herve Nkurikiyimfura</span></p>
+                        </li>
+                        <li>
+                            <p><b>Email :</b> <span>herveralive@gmail.com</span></p>
+                        </li>
+                        <li>
+                          <p><b>Address:</b> KN Nyamirambo ST 400<p>
+                        </li>
+                        <li>
+                            <p><b>Current Loan:</b> $345.00</p>
+                        </li>
+                        <li>
+                            <p><b>Payed Loan :</b> $300.00</p>
+                        </li>
+                        <li>
+                            <p><b>Remain :</b> $45.00</p>
+                        </li>
+                  </ul>
+              </div>
+            </div>
         </div>
     </div>
     <footer>
