@@ -345,7 +345,7 @@ hr{
 }
 
 .toggle-content{
-	width: 90%;
+	width: 97.7%;
 }
 
 .demo-login{
@@ -373,3 +373,48 @@ hr{
 .float-right{
 	float: right;
 }
+
+.table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    padding: 8px 0px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+	font-weight: 400;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.yellow-label {
+  background: #f9c125;
+}
+
+.green-label {
+  background: #05b993;
+}
+
+.blue-label {
+  background: #00a0f0;
+}
+
+.red-label {
+  background: #f52852;
+}
+
