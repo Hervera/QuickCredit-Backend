@@ -11,7 +11,7 @@ body {
 }
 
 a {
-    color: #007bff;
+    color: #705ed7;
     text-decoration: none;
     background-color: transparent;
 }
@@ -25,6 +25,14 @@ header{
 	position: fixed;
 	width: 100%;
 	top: 0;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+ul li{
+	list-style-type: none;
 }
 
 .nav {
@@ -61,12 +69,11 @@ header{
 .menu ul li {
 	display: inline-block;
 	vertical-align: top;
-	list-style-type: none;
 	margin: 0 14px;
 }
 
-.menu ul li::after {
-	margin: 0;
+.menu ul.auth-list li:last-child {
+  margin: 0px;
 }
 
 .menu ul li a {
@@ -98,11 +105,12 @@ header{
 	background: #05b993;
 }*/
 
-
 .main {
 	margin: 5rem 1rem;
 }
 
+
+/*login and registration*/
 .card {
 	background: #fff;
 	width: 40%;
@@ -124,7 +132,6 @@ header{
 .card-body label{
 	font-size: 15px;
 	color: #666;
-	/*letter-spacing: 0px;*/
 	margin-bottom: .3rem;
 	font-family: 'Cabin', sans-serif;
 	font-weight: 600;
@@ -161,5 +168,190 @@ footer{
 	width: 100%;
 }
 
+footer p {
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+/*dashboard*/
+.navigation {
+	background: #fff;
+}
+
+.logo.with-bars {
+    width: 50%;
+}
+
+.navigation .menu {
+    width: 48%;
+	float: right;
+}
+
+.menu ul li a.account-link{
+	color: #333;
+	cursor: pointer;
+}
+
+.menu .drop-content li {
+  display: block;
+  text-align: left;
+  margin: 0px;
+  padding: 0.5em 1em;
+}
+
+.menu .drop-content li:hover{
+	background: #05b993;
+	color: #fff;
+	cursor: pointer;
+	border-left: 5px solid #138970;
+	border-right: 5px solid #138970;
+}
 
 
+
+.tree-bars {
+  display: inline-block;
+  cursor: pointer;
+  margin-top: .6em;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 25px;
+  height: 4px;
+  background-color: #05b993;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.with-bars {
+  margin-top: 10px;
+}
+
+.logo h2, .tree-bars{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.caret{
+	font-size: 10px;
+	color: #05b993;
+	padding: 0 4px;
+}
+
+.down {
+    border: solid #05b993;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.header {
+	box-shadow: 0 0 0.2rem 0 #aba4d0;
+}
+
+.username, .profile-pic {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.username{
+	padding-top: 5px; 
+}
+
+.profile-pic {
+	width: 32px;
+	height: 32px;
+	border-radius: 100px;
+	border: 2px solid #05b993;
+}
+
+.drop-content {
+    overflow: hidden;
+    background-color: #705ed7;
+    position: absolute;
+    padding: 1.5rem 0;
+    margin-top: 0.6rem;
+    margin-left: 0rem;
+    right: 5px;
+    display: none;
+}
+
+hr{
+	color: #fff;
+	width: 100%;
+	margin: 0 1em 0.5em;
+}
+
+#right-menu {
+    min-width: 150px;
+}
+
+.toggle-class {
+  display: block;
+}
+
+.aside {
+	background: #fff;
+	width: 190px;
+	font-size: 15px;
+	height: calc(100vh - 3rem);
+	box-shadow: 0 0 0.2rem 0 #aba4d0;
+	background: #705ecf;
+	color: #fff;
+	float: left;
+}
+
+.aside ul {
+	padding: 0px;
+	background: #705ecf;
+	margin: 0px;
+	padding: 1.5rem 0;
+	width: 100%;
+}
+
+.aside ul li {
+    display: block;
+}
+
+.aside ul li a:hover,
+.aside ul li a.active {
+    background: #05b993;
+    color: #fff;
+    cursor: pointer;
+    border-left: 5px solid #138970;
+    border-right: 5px solid #138970;
+}
+
+.aside ul li a{
+	display: block;
+	padding: .9em 2em;
+	color: #fff;
+}	
+
+.aside, .content {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.content {
+	width: calc(100% - 232px);;
+	margin: 2em 1em;
+}
+
+.toggle-aside {
+	display: none;
+}
+
+.toggle-content{
+	width: 90%;
+}
+
+.demo-login{
+	margin-top: 4em; 
+	font-size: 12px;
+	text-align: center;
+}
