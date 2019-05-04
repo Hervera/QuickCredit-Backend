@@ -90,9 +90,10 @@ ul li{
     border-radius: 0;
     font-weight: 600;
     cursor: pointer;
+    width: auto;
 }
 
-.green-btn {
+.green-btn, .green-label{
     background: #05b993;
 }
 
@@ -100,15 +101,48 @@ ul li{
 	background: #705ecf;
 }
 
-/*.btn:hover{
-    border: 2px solid #05b993;
-	background: #05b993;
-}*/
+.blue-label, .p-blue-btn{
+  background: #00a0f0;
+}
+
+.yellow-btn, .yellow-label{
+  background: #f9c125;
+}
+
+.red-btn, .red-label  {
+  background: #f52852;
+}
+
+.sm-btn {
+    padding: 2px 8px;
+	font-size: 12px;
+}
+
+.btn a{
+	color: #fff;
+}
+
+.click-btn:hover{
+	transform: scale(1.1);
+}
+
+.label, .click-btn {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    width: auto;
+}
 
 .main {
 	margin: 5rem 1rem;
 }
-
 
 /*login and registration*/
 .card {
@@ -395,34 +429,7 @@ td {
 	font-weight: 400;
 }
 
-.label {
-    display: inline;
-    padding: .2em .6em .3em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
-}
 
-.yellow-label {
-  background: #f9c125;
-}
-
-.green-label {
-  background: #05b993;
-}
-
-.blue-label {
-  background: #00a0f0;
-}
-
-.red-label {
-  background: #f52852;
-}
 
 /*Profile*/
 .profile-card {
@@ -478,3 +485,4 @@ button {
 .dash-table h3 {
 	padding-bottom: 2.5em;
 }
+
