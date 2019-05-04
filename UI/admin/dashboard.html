@@ -49,148 +49,173 @@
             </ul>
         </div>
         <div class="content" id="content">
-            <div class="">
-                <div class="total-card">
-                    <h3 class="padding-1">Total clients</h3>
-                    <h1 class="total-txt">120</h1>
-                </div>
-                <div class="total-card">
-                    <h3 class="padding-1">Total Loans</h3>
-                    <h1 class="total-txt">500</h1>
-                </div>
-                <div class="total-card">
-                    <h3 class="padding-1">Pending Loans</h3>
-                    <h1 class="total-txt">400</h1>
-                </div>
-                <div class="total-card">
-                    <h3 class="padding-1">Rejected Loans</h3>
-                    <h1 class="total-txt">100</h1>
-                </div>
+            <div id="current-pages">
+                <ul class="current-page">
+                  <li class="active"> <b>Overview</b></li>
+                </ul>
             </div>
-            <div>
-                <div class="back-card dash-table">
-                    <h3>Latest Registered Clients</h3>
-                    <table class="table">
-                        <thead>
-                          <tr>
-                              <th class="">Full Name</th>
-                              <th>Address</th>
-                              <th>Created at</th>
-                              <th>Status</th>
-                          </tr>
-                        </thead>
-                  
-                        <tbody>
-                          <tr>
-                            <td>Deo Safari</td>
-                            <td>Kacyiru</td>
-                            <td>01-03-2019</td>
-                            <td><button class="btn green-btn click-btn">verified</button></td>
-                          </tr>
-                          <tr>
-                            <td>Leo Fidele</td>
-                            <td>Kimironko</td>
-                            <td>01-03-2019</td>
-                            <td><button class="btn green-btn click-btn">verified</button></td>
-                          </tr>
-                          <tr>
-                            <td>Deo Rugoga</td>
-                            <td>RDC</td>
-                            <td>01-03-2019</td>
-                            <td><button class="btn yellow-btn click-btn">unverified</button></td>
-                          </tr>
-                  
-                          <tr>
-                            <td>John</td>
-                            <td>Kimironko</td>
-                            <td>01-03-2019</td>
-                            <td><button class="btn green-btn click-btn">verified</button></td>
-                          </tr>
-                  
-                          <tr>
-                            <td>Omari Deniro</td>
-                            <td>Kimironko</td>
-                            <td>01-03-2019</td>
-                            <td><button class="btn green-btn click-btn">verified</button></td>
-                          </tr>
-
-                          <tr>
-                            <td>Kagabo Teric</td>
-                            <td>Kimicanga</td>
-                            <td>01-03-2019</td>
-                            <td><button class="btn yellow-btn click-btn">unverified</button></td>
-                          </tr>
-                        </tbody>
-                  </table>
+            <div class="back-card">
+                <div class="total-cards">
+                    <div class="total-card">
+                        <h3 class="padding-1">Total clients</h3>
+                        <h1 class="total-txt">120</h1>
+                    </div>
+                    <div class="total-card">
+                        <h3 class="padding-1">Current Loans</h3>
+                        <h1 class="total-txt">300</h1>
+                    </div>
+                    <div class="total-card">
+                        <h3 class="padding-1">Pending Loans</h3>
+                        <h1 class="total-txt">400</h1>
+                    </div>
+                    <div class="total-card">
+                        <h3 class="padding-1">Rejected Loans</h3>
+                        <h1 class="total-txt">100</h1>
+                    </div>
+                    <div class="total-card">
+                        <h3 class="padding-1">Repaid Loans</h3>
+                        <h1 class="total-txt">200</h1>
+                    </div>
                 </div>
-                <div class="back-card dash-table">
-                    <h3>Latest Requested Loans</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Loan amount</th>
-                                <th>Date of issue</th>
-                                <th>status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Aime Ndanyuzwe</td>
-                                <td>$120000</td>
-                                <td>23-01-2019</td>
-                                <td>
-                                    <button class="btn yellow-btn click-btn">pending</button>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td>John Gateja</td>
-                                <td>$66000</td>
-                                <td>23-03-2018</td>
-                                <td>
-                                    <button class="btn green-btn click-btn">repaid</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Aline Kayitesi</td>
-                                <td>$48300</td>
-                                <td>23-01-2017</td>
-                                <td>
-                                    <button class="btn p-blue-btn click-btn">current</button>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td>Herve Nkurikiyimfura</td>
-                                <td>$22900</td>
-                                <td>23-02-2016</td>
-                                <td>
-                                    <button class="btn yellow-btn click-btn">pending</button>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td>Eric Ngabo</td>
-                                <td>$12000</td>
-                                <td>23-02-2015</td>
-                                <td>
-                                    <button class="btn red-btn click-btn">rejected</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Johnathan Sagna</td>
-                                <td>$10000</td>
-                                <td>23-01-2014</td>
-                                <td>
-                                    <button class="btn green-btn click-btn">repaid</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <div class="view-tables">
+                    <div class="dash-table">
+                        <h3>New Registered Clients</h3>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Client Name</th>
+                                <th>Address</th>
+                                 <th>Created at</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                      
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Deo Safari</td>
+                                <td>Kacyiru</td>
+                                <td>07-03-2019</td>
+                                <td><button class="btn yellow-btn click-btn">unverified</button></td>
+                              </tr>
 
+                              <tr>
+                                <td>2</td>
+                                <td>Leo Fidele</td>
+                                <td>Kimironko</td>
+                                <td>05-03-2019</td>
+                                <td><button class="btn yellow-btn click-btn">unverified</button></td>
+                              </tr>
+
+                              <tr>
+                                <td>3</td>
+                                <td>Deo Rugoga</td>
+                                <td>RDC</td>
+                                <td>04-03-2019</td>
+                                <td><button class="btn green-btn click-btn">verified</button></td>
+                              </tr>
+                      
+                              <tr>
+                                <td>4</td>
+                                <td>John</td>
+                                <td>Kimironko</td>
+                                <td>01-03-2019</td>
+                                <td><button class="btn green-btn click-btn">verified</button></td>
+                              </tr>
+                      
+                              <tr>
+                                <td>5</td>
+                                <td>Omari Deniro</td>
+                                <td>Kimironko</td>
+                                <td>01-03-2019</td>
+                                <td><button class="btn green-btn click-btn">verified</button></td>
+                              </tr>
+
+                              <tr>
+                                <td>6</td>
+                                <td>Kagabo Teric</td>
+                                <td>Kimicanga</td>
+                                <td>01-03-2019</td>
+                                <td><button class="btn green-btn click-btn">verified</button></td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dash-table">
+                        <h3>New Requested Loans</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Client Name</th>
+                                    <th>Loan amount</th>
+                                    <th>Date of issue</th>
+                                    <th>status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Aime Ndanyuzwe</td>
+                                    <td>$120000</td>
+                                    <td>23-01-2019</td>
+                                    <td>
+                                        <button class="btn yellow-btn click-btn">pending</button>
+                                    </td>
+                                </tr>
+                
+                                <tr>
+                                    <td>2</td>
+                                    <td>John Gateja</td>
+                                    <td>$66000</td>
+                                    <td>23-03-2018</td>
+                                    <td>
+                                        <button class="btn green-btn click-btn">repaid</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Aline Kayitesi</td>
+                                    <td>$48300</td>
+                                    <td>23-01-2017</td>
+                                    <td>
+                                        <button class="btn p-blue-btn click-btn">current</button>
+                                    </td>
+                                </tr>
+                
+                                <tr>
+                                    <td>4</td>
+                                    <td>Herve Nkurikiyimfura</td>
+                                    <td>$22900</td>
+                                    <td>23-02-2016</td>
+                                    <td>
+                                        <button class="btn yellow-btn click-btn">pending</button>
+                                    </td>
+                                </tr>
+                
+                                <tr>
+                                    <td>5</td>
+                                    <td>Eric Ngabo</td>
+                                    <td>$12000</td>
+                                    <td>23-02-2015</td>
+                                    <td>
+                                        <button class="btn red-btn click-btn">rejected</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Johnathan Sagna</td>
+                                    <td>$10000</td>
+                                    <td>23-01-2014</td>
+                                    <td>
+                                        <button class="btn green-btn click-btn">repaid</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

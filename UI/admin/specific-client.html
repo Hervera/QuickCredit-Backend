@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Post Loan Repayment</title>
+    <title>Quick Credit | Specific Client</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
@@ -45,48 +45,49 @@
                 <li><a href="rejected-loans.html">Rejected Loans</a></li>
                 <li><a href="not-fully-repaid-loans.html">Current Loans</a></li>
                 <li><a href="repaid-loans.html">Repaid Loans</a></li>
-                <li><a href="post-loan-repayment.html" class="active">Post repayment</a></li>
+                <li><a href="post-loan-repayment.html">Post repayment</a></li>
             </ul>
         </div>
         <div class="content" id="content">
-            <div id="current-pages">
-                <ul class="current-page">
-                  <li class="active"> <b>Post Loan Repayment Transaction In Favour Of A Client</b></li>
-                </ul>
-            </div>
-            <div class="back-card">
-                <form method="POST">
-                    <div class="each-input">
-                        <label>Loan ID</label>
-                        <input type="text" name="name" class="input-form">
-                    </div>
-                    <div class="each-input">
-                        <label>Client's Fullname</label>
-                        <input type="text" name="name" class="input-form">
-                    </div>
-                    <div class="each-input">
-                        <label>Amount in ($) to pay</label>
-                        <input type="number" name="amount" class="input-form">
-                    </div>
-                    <div class="each-input">
-                        <label>Tenor</label>
-                        <input type="text" name="tenor" class="input-form">
-                    </div>
-                    <div class="each-input">
-                        <label>Payment Installment</label>
-                        <input type="text" name="amount" class="input-form">
-                    </div>
-                     <div class="each-input">
-                        <label>Interest</label>
-                        <input type="text" name="interest" class="input-form">
-                    </div>
-                    <div class="each-input">
-                        <label>Balance</label>
-                        <input type="number" name="balance" class="input-form">
-                    </div>
-                   
-                    <button class="btn blue-btn" type="submit">Repay</button>
-                </form>
+            <div class="admin">
+                <div id="current-pages">
+                    <ul class="current-page">
+                      <li class="active"> <b>Specific Client | Client ID: #45645678</b>
+                        <label class="label green-label">verified</label>
+                      </li>
+                    </ul>
+                </div>
+
+                <div class="back-card">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><b>Full Name</b></td>
+                                <td> <span>Herve Nkurikiyimfura</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                                <td><span>herveralive@gmail.com</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Address</b></td>
+                                <td>KN Nyamirambo ST 400</td>
+                            </tr>
+                            <tr>
+                                <td><b>Current Loan</b></td>
+                                <td>$345.00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Payed Loan</b></td>
+                                <td>$300.00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Remain</b></td>
+                                <td>$45.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
