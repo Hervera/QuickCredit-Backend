@@ -41,9 +41,9 @@
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="all-clients.html">All Clients</a></li>
                 <li><a href="all-loans.html" class="active">All Loans</a></li>
-                <li><a href="#">Approved Loans</a></li>
+                <li><a href="#">Pending Loans</a></li>
                 <li><a href="#">Rejected Loans</a></li>
-                <li><a href="#">Current Loans</a></li>
+                <li><a href="not-fully-repaid-loans.html">Current Loans</a></li>
                 <li><a href="repaid-loans.html">Repaid Loans</a></li>
                 <li><a href="#">Post repayment</a></li>
             </ul>
@@ -67,6 +67,7 @@
                             <th>PaymentInstallment</th>
                             <th>Date of issue</th>
                             <th>status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,7 +80,13 @@
                             <td>$60000</td>
                             <td>23-01-2019</td>
                             <td>
-                                <label class="label yellow-label">pending</label>
+                                <button class="btn yellow-btn click-btn">pending</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="#">View</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
                             </td>
                         </tr>
         
@@ -92,7 +99,13 @@
                             <td>$60000</td>
                             <td>23-03-2018</td>
                             <td>
-                                <label class="label green-label">repaid</label>
+                                <button class="btn green-btn click-btn">repaid</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="#">View</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
                             </td>
                         </tr>
                         <tr>
@@ -104,7 +117,13 @@
                             <td>$60000</td>
                             <td>23-01-2017</td>
                             <td>
-                                <label class="label red-label">rejected</label>
+                                <button class="btn p-blue-btn click-btn">current</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="#">View</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
                             </td>
                         </tr>
         
@@ -117,7 +136,13 @@
                             <td>$60000</td>
                             <td>23-02-2016</td>
                             <td>
-                                <label class="label yellow-label">pending</label>
+                                <button class="btn yellow-btn click-btn">pending</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="#">View</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
                             </td>
                         </tr>
         
@@ -130,7 +155,13 @@
                             <td>$60000</td>
                             <td>23-02-2015</td>
                             <td>
-                                <label class="label red-label">rejected</label>
+                                <button class="btn red-btn click-btn">rejected</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="#">View</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
                             </td>
                         </tr>
                         <tr>
@@ -142,7 +173,13 @@
                             <td>$60000</td>
                             <td>23-01-2014</td>
                             <td>
-                                <label class="label green-label">repaid</label>
+                                <button class="btn green-btn click-btn">repaid</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="#">View</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
                             </td>
                         </tr>
                     </tbody>
