@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Current Loans</title>
+    <title>Quick Credit | Post Loan Repayment</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
@@ -43,54 +43,51 @@
                 <li><a href="all-loans.html">All Loans</a></li>
                 <li><a href="pending-loans.html">Pending Loans</a></li>
                 <li><a href="rejected-loans.html">Rejected Loans</a></li>
-                <li><a href="not-fully-repaid-loans.html" class="active">Current Loans</a></li>
+                <li><a href="not-fully-repaid-loans.html">Current Loans</a></li>
                 <li><a href="repaid-loans.html">Repaid Loans</a></li>
-                <li><a href="post-loan-repayment.html">Post repayment</a></li>
+                <li><a href="post-loan-repayment.html" class="active">Post repayment</a></li>
             </ul>
         </div>
         <div class="content" id="content">
             <div id="current-pages">
                 <ul class="current-page">
-                  <li class="active"> <b>Current Loans - Not Fully Repaid Loans
+                  <li class="active"> <b>Post Loan Repayment Transaction In Favour Of A Client
                   </li>
                 </ul>
             </div>
             <div class="back-card">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Loan ID</th>
-                            <th>Loan amount</th>
-                            <th>Interest</th>
-                            <th>Tenor</th>
-                            <th>PaymentInstallment</th>
-                            <th>Date of issue</th>
-                            <th>status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Aline Kayitesi</td>
-                            <td>#12345674</td>
-                            <td>$48300</td>
-                            <td>15%</td>
-                            <td>4 months</td>
-                            <td>$60000</td>
-                            <td>23-01-2017</td>
-                            <td>
-                                <button class="btn p-blue-btn click-btn">current</button>
-                            </td>
-                            <td>
-                                <button class="btn p-blue-btn sm-btn">
-                                    <a href="#">View</a>
-                                </button>
-                                <button class="btn red-btn sm-btn">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <form method="POST">
+                    <div class="each-input">
+                        <label>Loan ID</label>
+                        <input type="text" name="name" class="input-form">
+                    </div>
+                    <div class="each-input">
+                        <label>Client's Fullname</label>
+                        <input type="text" name="name" class="input-form">
+                    </div>
+                    <div class="each-input">
+                        <label>Amount in ($) to pay</label>
+                        <input type="number" name="amount" class="input-form">
+                    </div>
+                    <div class="each-input">
+                        <label>Tenor</label>
+                        <input type="text" name="tenor" class="input-form">
+                    </div>
+                    <div class="each-input">
+                        <label>Payment Installment</label>
+                        <input type="text" name="amount" class="input-form">
+                    </div>
+                     <div class="each-input">
+                        <label>Interest</label>
+                        <input type="text" name="interest" class="input-form">
+                    </div>
+                    <div class="each-input">
+                        <label>Balance</label>
+                        <input type="number" name="balance" class="input-form">
+                    </div>
+                   
+                    <button class="btn blue-btn" type="submit">Repay</button>
+                </form>
             </div>
         </div>
     </div>
