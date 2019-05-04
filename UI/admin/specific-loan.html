@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Client Account</title>
+    <title>Quick Credit | Specific Loan</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
@@ -23,7 +23,7 @@
                     <li>
                         <a class="account-link" onclick="toggleRightMenu()">
                         <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
-                        <span class="username"><span class="usernm">N.Herve</span> <i class="caret">&#9660;</i></span> 
+                        <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span> 
                         </a>
                         <ul class="drop-content" id="right-menu">
                             <li><a href="profile.html">My Profile</a></li>
@@ -38,50 +38,73 @@
     <div class="main-content">
         <div class="aside" id="aside">
             <ul onclick="myFunction(event)">
-                <li><a href="account.html" class="active">My account</a></li>
-                <li><a href="request-a-loan.html">Request a Loan</a></li>
-                <li><a href="requested-loans.html">All requested loans</a></li>
-                <li><a href="repayment-history.html">Repayment history</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="all-clients.html">All Clients</a></li>
+                <li><a href="all-loans.html">All Loans</a></li>
+                <li><a href="pending-loans.html">Pending Loans</a></li>
+                <li><a href="rejected-loans.html">Rejected Loans</a></li>
+                <li><a href="not-fully-repaid-loans.html">Current Loans</a></li>
+                <li><a href="repaid-loans.html">Repaid Loans</a></li>
+                <li><a href="post-loan-repayment.html">Post repayment</a></li>
             </ul>
         </div>
         <div class="content" id="content">
-            <div id="client">
+            <div class="admin">
                 <div id="current-pages">
                     <ul class="current-page">
-                      <li class="active"> <b>My account | Client ID: #45645678</b>
-                        <label class="label green-label">verified</label>
+                      <li class="active"> <b>Specific Loan |
+                        Loan ID: #12345676 </b> <button class="label green-label">Current</button>
                       </li>
                     </ul>
                 </div>
                 <div class="back-card">
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <td><b>Full Name</b></td>
-                                <td> <span>Herve Nkurikiyimfura</span></td>
+                             <tr>
+                                <td><b>Client Names</b></td>
+                                <td> 
+                                    <span class="padding-x-3">Herve Nkurikiyimfura</span>
+                                </td>
                             </tr>
                             <tr>
-                                <td><b>Email</b></td>
-                                <td><span>herveralive@gmail.com</span></td>
+                                <td><b>Client Email</b></td>
+                                <td> 
+                                    <span class="padding-x-3">herveralive@gmail.com</span>
+                                </td>
                             </tr>
                             <tr>
-                                <td><b>Address</b></td>
-                                <td>KN Nyamirambo ST 400</td>
+                                <td><b>Loan Amount</b></td>
+                                <td>$200 000</td>
                             </tr>
                             <tr>
-                                <td><b>Current Loan</b></td>
-                                <td>$345.00</td>
+                                <td><b>Tenor</b></td>
+                                <td>1 year</td>
                             </tr>
                             <tr>
-                                <td><b>Payed Loan</b></td>
-                                <td>$300.00</td>
+                                <td><b>Payment Installment</b></td>
+                                <td>$50</td>
                             </tr>
                             <tr>
-                                <td><b>Remain</b></td>
-                                <td>$45.00</td>
+                                <td><b>Balance</b></td>
+                                <td>$345</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interest</strong></td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td><b>Created At</b></td>
+                                <td>26-04-2019 12:00pm</td>
                             </tr>
                         </tbody>
+
                     </table>
+                    <div class="admin-decision">
+                        <div class="float-right">
+                            <button class="btn blue-btn click-btn">Approve</button>
+                            <button class="btn red-btn click-btn">Reject</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
