@@ -8,6 +8,11 @@ function toggleLeftMenu() {
   document.getElementById("content").classList.toggle("toggle-content");
 }
 
+if(screen.width < 1026) {//get the screen width
+  document.getElementById("aside").classList.toggle("toggle-aside");
+  document.getElementById("content").classList.toggle("toggle-content");
+}
+
 
 var loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', function(e) {

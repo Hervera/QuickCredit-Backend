@@ -1,12 +1,51 @@
+@media(max-width: 1200px){
+	.dash-table h3 {
+		padding: 1.5em 0 0.5em;
+	}
+
+	.dash-table {
+		width: 100%;
+	}
+}
 @media(max-width: 1000px){
 	.card {
 		width: 55%;
 	}
+
+	.total-card {
+		width: 32.3%;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		border: 1px solid #ddd;
+	}
+
+	th, td {
+		text-align: left;
+		padding: 8px;
+	}
+
+	tr:nth-child(even){background-color: #f2f2f2}
 }
 
 @media(max-width: 700px){
 	.main {
 	    margin: 7rem 1rem;
+	}
+
+	.content {
+		margin: 0em 0.5em;
+	}
+
+	.toggle-content{
+		width: calc(100% - 1em);
+	}
+
+	.total-card {
+		width: 47%;
 	}
 
 	.card {

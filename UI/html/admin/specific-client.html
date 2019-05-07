@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Client Account</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <title>Quick Credit | Specific Client</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
 </head>
 <body>
     <div class="navigation">
@@ -22,8 +22,8 @@
                 <ul>
                     <li>
                         <a class="account-link" onclick="toggleRightMenu()">
-                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
-                        <span class="username"><span class="usernm">N.Herve</span> <i class="caret">&#9660;</i></span> 
+                        <img class="circle profile-pic" src="../../images/default-avatar.png" alt="user">
+                        <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span> 
                         </a>
                         <ul class="drop-content" id="right-menu">
                             <li><a href="profile.html">My Profile</a></li>
@@ -38,21 +38,26 @@
     <div class="main-content">
         <div class="aside" id="aside">
             <ul onclick="myFunction(event)">
-                <li><a href="account.html" class="active">My account</a></li>
-                <li><a href="request-a-loan.html">Request a Loan</a></li>
-                <li><a href="requested-loans.html">All requested loans</a></li>
-                <li><a href="repayment-history.html">Repayment history</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="all-clients.html">All Clients</a></li>
+                <li><a href="all-loans.html">All Loans</a></li>
+                <li><a href="pending-loans.html">Pending Loans</a></li>
+                <li><a href="rejected-loans.html">Rejected Loans</a></li>
+                <li><a href="not-fully-repaid-loans.html">Current Loans</a></li>
+                <li><a href="repaid-loans.html">Repaid Loans</a></li>
+                <li><a href="post-loan-repayment.html">Post repayment</a></li>
             </ul>
         </div>
         <div class="content" id="content">
-            <div id="client">
+            <div class="admin">
                 <div id="current-pages">
                     <ul class="current-page">
-                      <li class="active"> <b>My account | Client ID: #45645678</b>
+                      <li class="active"> <b>Specific Client | Client ID: #45645678</b>
                         <label class="label green-label">verified</label>
                       </li>
                     </ul>
                 </div>
+
                 <div class="back-card">
                     <table class="table">
                         <tbody>
@@ -82,6 +87,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="admin-decision">
+                        <div class="float-right">
+                            <button class="btn blue-btn click-btn">Verified</button>
+                            <button class="btn red-btn click-btn">Unverified</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,6 +102,6 @@
              <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
         </div>
     </footer>
-    <script src="../js/script.js"></script>
+    <script src="../../js/script.js"></script>
 </body>
 </html>
