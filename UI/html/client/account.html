@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Request A Loan</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <title>Quick Credit | Client Account</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
 </head>
 <body>
     <div class="navigation">
@@ -22,7 +22,7 @@
                 <ul>
                     <li>
                         <a class="account-link" onclick="toggleRightMenu()">
-                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
+                        <img class="circle profile-pic" src="../../images/default-avatar.png" alt="user">
                         <span class="username"><span class="usernm">N.Herve</span> <i class="caret">&#9660;</i></span> 
                         </a>
                         <ul class="drop-content" id="right-menu">
@@ -38,8 +38,8 @@
     <div class="main-content">
         <div class="aside" id="aside">
             <ul onclick="myFunction(event)">
-                <li><a href="account.html">My account</a></li>
-                <li><a href="request-a-loan.html" class="active">Request a Loan</a></li>
+                <li><a href="account.html" class="active">My account</a></li>
+                <li><a href="request-a-loan.html">Request a Loan</a></li>
                 <li><a href="requested-loans.html">All requested loans</a></li>
                 <li><a href="repayment-history.html">Repayment history</a></li>
             </ul>
@@ -48,31 +48,40 @@
             <div id="client">
                 <div id="current-pages">
                     <ul class="current-page">
-                      <li class="active"> <b>Request A Loan
+                      <li class="active"> <b>My account | Client ID: #45645678</b>
+                        <label class="label green-label">verified</label>
                       </li>
                     </ul>
                 </div>
                 <div class="back-card">
-                    <form method="POST">
-                        <div class="each-input">
-                            <label>First Name</label>
-                            <input type="text" name="name" class="input-form">
-                        </div>
-                        <div class="each-input">
-                            <label>Last Name</label>
-                            <input type="text" name="name" class="input-form">
-                        </div>
-                        <div class="each-input">
-                            <label>Amount in ($) for a loan </label>
-                            <input type="number" name="number" class="input-form">
-                        </div>
-                        <div class="each-input">
-                            <label>Address</label>
-                            <input type="text" name="address" class="input-form">
-                        </div>
-                       
-                        <button class="btn blue-btn" type="submit">Request A Loan</button>
-                    </form>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><b>Full Name</b></td>
+                                <td> <span>Herve Nkurikiyimfura</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                                <td><span>herveralive@gmail.com</span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Address</b></td>
+                                <td>KN Nyamirambo ST 400</td>
+                            </tr>
+                            <tr>
+                                <td><b>Current Loan</b></td>
+                                <td>$345.00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Payed Loan</b></td>
+                                <td>$300.00</td>
+                            </tr>
+                            <tr>
+                                <td><b>Remain</b></td>
+                                <td>$45.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -82,6 +91,6 @@
              <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
         </div>
     </footer>
-    <script src="../js/script.js"></script>
+    <script src="../../js/script.js"></script>
 </body>
 </html>

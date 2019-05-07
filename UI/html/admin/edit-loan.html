@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-    <title>Quick Credit | Specific Loan</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <title>Quick Credit | Edit Loan</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
 </head>
+
 <body>
     <div class="navigation">
         <div class="header">
             <div class="logo with-bars">
                 <h2><a href="login.html">Quick Credit</a></h2>
                 <div class="tree-bars" onclick="toggleLeftMenu()">
-                  <div class="bar1"></div>
-                  <div class="bar2"></div>
-                  <div class="bar3"></div>
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
                 </div>
             </div>
             <div class="menu">
                 <ul>
                     <li>
                         <a class="account-link" onclick="toggleRightMenu()">
-                        <img class="circle profile-pic" src="../images/default-avatar.png" alt="user">
-                        <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span> 
+                            <img class="circle profile-pic" src="../../images/default-avatar.png" alt="user">
+                            <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span>
                         </a>
                         <ul class="drop-content" id="right-menu">
                             <li><a href="profile.html">My Profile</a></li>
@@ -52,49 +54,49 @@
             <div class="admin">
                 <div id="current-pages">
                     <ul class="current-page">
-                      <li class="active"> <b>Specific Loan |
-                        Loan ID: #12345676 </b> <button class="label green-label">Current</button>
-                      </li>
+                        <li class="active"> <b>Edit Loan |
+                                Loan ID: #12345676 </b> <button class="label green-label">Current</button>
+                        </li>
                     </ul>
                 </div>
                 <div class="back-card">
                     <table class="table">
                         <tbody>
-                             <tr>
+                            <tr>
                                 <td><b>Client Names</b></td>
-                                <td> 
-                                    <span class="padding-x-3">Herve Nkurikiyimfura</span>
+                                <td>
+                                    <span><input type="text" name="name" value="Nkurikiyimfura" class="input-sm-form"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Client Email</b></td>
-                                <td> 
-                                    <span class="padding-x-3">herveralive@gmail.com</span>
+                                <td>
+                                    <span><input value="herveralive@gmail.com" class="input-sm-form"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Loan Amount</b></td>
-                                <td>$200 000</td>
+                                <td><span><input value="$200 000" class="input-sm-form"></span></td>
                             </tr>
                             <tr>
                                 <td><b>Tenor</b></td>
-                                <td>1 year</td>
+                                <td><input value="1 year" class="input-sm-form"></td>
                             </tr>
                             <tr>
                                 <td><b>Payment Installment</b></td>
-                                <td>$50</td>
+                                <td><input value="$50" class="input-sm-form"></td>
                             </tr>
                             <tr>
                                 <td><b>Balance</b></td>
-                                <td>$345</td>
+                                <td><input value="$345" class="input-sm-form"></td>
                             </tr>
                             <tr>
                                 <td><strong>Interest</strong></td>
-                                <td>5%</td>
+                                <td><input value="5%" class="input-sm-form"></td>
                             </tr>
                             <tr>
                                 <td><b>Created At</b></td>
-                                <td>26-04-2019 12:00pm</td>
+                                <td><input value="26-04-2019 12:00pm" class="input-sm-form"></td>
                             </tr>
                         </tbody>
 
@@ -111,9 +113,12 @@
     </div>
     <footer>
         <div class="copyright">
-             <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
+            <p>&copy;
+                <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights
+                Reserved</p>
         </div>
     </footer>
-    <script src="../js/script.js"></script>
+    <script src="../../js/script.js"></script>
 </body>
+
 </html>

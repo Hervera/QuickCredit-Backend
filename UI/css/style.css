@@ -32,9 +32,12 @@ ul {
 }
 
 ul li{
-	list-style-type: none;
+  list-style-type: none;
 }
 
+.content ul li{
+  overflow-x: auto;
+}
 .nav {
 	padding: .5em;
 }
@@ -180,8 +183,6 @@ ul li{
 }
 
 .input-form {
-	/*color: #6c757d;*/
-	/*opacity: 1;*/
 	display: block;
 	width: 100%;
 	padding: 0.375rem 0.75rem;
@@ -192,6 +193,19 @@ ul li{
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	border-radius: 0.25rem;
+}
+
+.input-sm-form {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.1rem 0.3rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }
 
 footer{
@@ -460,7 +474,6 @@ button {
 }
 
 .total-card {
-    width: 10rem;
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
     overflow: hidden;
@@ -488,12 +501,10 @@ button {
     display: inline-block;
     vertical-align: top;
     margin-right: 1em;
-    mar
 }
 
 .dash-table h3 {
-	padding-bottom: 1.5em;
-  text-decoration: underline;
+  padding: .5em 0 0.5em;
 }
 
 .dash-table .table{

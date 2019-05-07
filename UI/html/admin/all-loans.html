@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+    <title>Quick Credit | All Loans</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <div class="navigation">
+        <div class="header">
+            <div class="logo with-bars">
+                <h2><a href="login.html">Quick Credit</a></h2>
+                <div class="tree-bars" onclick="toggleLeftMenu()">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a class="account-link" onclick="toggleRightMenu()">
+                        <img class="circle profile-pic" src="../../images/default-avatar.png" alt="user">
+                        <span class="username"><span class="usernm">Admin</span> <i class="caret">&#9660;</i></span> 
+                        </a>
+                        <ul class="drop-content" id="right-menu">
+                            <li><a href="profile.html">My Profile</a></li>
+                            <hr>
+                            <li><a href="../login.html">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="aside" id="aside">
+            <ul onclick="myFunction(event)">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="all-clients.html">All Clients</a></li>
+                <li><a href="all-loans.html" class="active">All Loans</a></li>
+                <li><a href="pending-loans.html">Pending Loans</a></li>
+                <li><a href="rejected-loans.html">Rejected Loans</a></li>
+                <li><a href="not-fully-repaid-loans.html">Current Loans</a></li>
+                <li><a href="repaid-loans.html">Repaid Loans</a></li>
+                <li><a href="post-loan-repayment.html">Post repayment</a></li>
+            </ul>
+        </div>
+        <div class="content" id="content">
+            <div id="current-pages">
+                <ul class="current-page">
+                  <li class="active"> <b>All Loans</b></li>
+                </ul>
+            </div>
+            <div class="back-card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Loan ID</th>
+                            <th>Loan amount</th>
+                            <th>Interest</th>
+                            <th>Tenor</th>
+                            <th>PaymentInstallment</th>
+                            <th>Date of issue</th>
+                            <th>status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Aime Ndanyuzwe</td>
+                            <td>#12345676</td>
+                            <td>$120000</td>
+                            <td>33%</td>
+                            <td>4 months</td>
+                            <td>$60000</td>
+                            <td>23-01-2019</td>
+                            <td>
+                                <button class="btn yellow-btn click-btn">pending</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="specific-loan.html">View</a>
+                                </button>
+                                <button class="btn blue-btn sm-btn">
+                                    <a href="edit-loan.html">Edit</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>2</td>
+                            <td>John Gateja</td>
+                            <td>#12345675</td>
+                            <td>$66000</td>
+                            <td>20%</td>
+                            <td>4 months</td>
+                            <td>$60000</td>
+                            <td>23-03-2018</td>
+                            <td>
+                                <button class="btn green-btn click-btn">repaid</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="specific-loan.html">View</a>
+                                </button>
+                                <button class="btn blue-btn sm-btn">
+                                    <a href="edit-loan.html">Edit</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Aline Kayitesi</td>
+                            <td>#12345674</td>
+                            <td>$48300</td>
+                            <td>15%</td>
+                            <td>4 months</td>
+                            <td>$60000</td>
+                            <td>23-01-2017</td>
+                            <td>
+                                <button class="btn p-blue-btn click-btn">current</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="specific-loan.html">View</a>
+                                </button>
+                                <button class="btn blue-btn sm-btn">
+                                    <a href="edit-loan.html">Edit</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>4</td>
+                            <td>Herve Nkurikiyimfura</td>
+                            <td>#12345672</td>
+                            <td>$22900</td>
+                            <td>10%</td>
+                            <td>4 months</td>
+                            <td>$60000</td>
+                            <td>23-02-2016</td>
+                            <td>
+                                <button class="btn yellow-btn click-btn">pending</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="specific-loan.html">View</a>
+                                </button>
+                                <button class="btn blue-btn sm-btn">
+                                    <a href="edit-loan.html">Edit</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>5</td>
+                            <td>Eric Ngabo</td>
+                            <td>#12345672</td>
+                            <td>$12000</td>
+                            <td>7%</td>
+                            <td>4 months</td>
+                            <td>$60000</td>
+                            <td>23-02-2015</td>
+                            <td>
+                                <button class="btn red-btn click-btn">rejected</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="specific-loan.html">View</a>
+                                </button>
+                                <button class="btn blue-btn sm-btn">
+                                    <a href="edit-loan.html">Edit</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Johnathan Sagna</td>
+                            <td>#12345671</td>
+                            <td>$10000</td>
+                            <td>6%</td>
+                            <td>4 months</td>
+                            <td>$60000</td>
+                            <td>23-01-2014</td>
+                            <td>
+                                <button class="btn green-btn click-btn">repaid</button>
+                            </td>
+                            <td>
+                                <button class="btn p-blue-btn sm-btn">
+                                    <a href="specific-loan.html">View</a>
+                                </button>
+                                <button class="btn blue-btn sm-btn">
+                                    <a href="edit-loan.html">Edit</a>
+                                </button>
+                                <button class="btn red-btn sm-btn">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+             <p>&copy; <script>document.write(new Date().getFullYear());</script> <a href="#">Quick Credit</a> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="../../js/script.js"></script>
+</body>
+</html>

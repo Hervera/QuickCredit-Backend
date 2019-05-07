@@ -1,6 +1,19 @@
+@media(max-width: 1200px){
+	.dash-table h3 {
+		padding: 1.5em 0 0.5em;
+	}
+
+	.dash-table {
+		width: 100%;
+	}
+}
 @media(max-width: 1000px){
 	.card {
 		width: 55%;
+	}
+
+	.total-card {
+		width: 32.3%;
 	}
 
 	table {
@@ -32,7 +45,7 @@
 	}
 
 	.total-card {
-		width: 49%;
+		width: 47%;
 	}
 
 	.card {
