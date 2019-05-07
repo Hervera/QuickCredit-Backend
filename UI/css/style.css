@@ -501,6 +501,7 @@ button {
     display: inline-block;
     vertical-align: top;
     margin-right: 1em;
+    overflow-x: auto;
 }
 
 .dash-table h3 {
