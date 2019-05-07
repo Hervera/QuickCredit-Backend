@@ -1,9 +1,13 @@
 body {
-    background: rgb(225, 228, 232);
     font-family: 'Poppins', sans-serif;
     color: #333;
     margin: 0px;
     letter-spacing: 1px;
+    background: url("../images/Images-pictures-summer-wallpapers-high-quality.jpg") no-repeat;
+    background-size: cover;
+    /* background: rgb(225, 228, 232); 
+       background-size: 100% 100%;
+    */
 }
 
 *, ::before, ::after {
