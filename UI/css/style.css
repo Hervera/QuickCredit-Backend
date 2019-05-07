@@ -364,7 +364,7 @@ hr{
     border-right: 5px solid #138970;
 }
 
-.aside ul li a{
+.aside ul li a {
 	display: block;
 	padding: .9em 2em;
 	color: #fff;
@@ -385,7 +385,7 @@ hr{
 }
 
 .toggle-content{
-	width: 97.7%;
+  width: calc(100% - 2em);
 }
 
 .demo-login{
@@ -408,6 +408,7 @@ hr{
     margin: 0em auto;
     padding: 1em;
     border-radius: 4px;
+    overflow-x: auto;
 }
 
 .float-right{
