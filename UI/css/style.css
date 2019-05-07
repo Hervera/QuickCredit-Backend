@@ -390,8 +390,8 @@ hr{
 }
 
 .content {
-	width: calc(100% - 232px);;
-	margin: 0em 1em;
+  width: calc(100% - 210px);
+  margin: 0 10px
 }
 
 .toggle-aside {
@@ -399,7 +399,7 @@ hr{
 }
 
 .toggle-content{
-  width: calc(100% - 2em);
+  width: calc(100% - 20px);
 }
 
 .demo-login{

@@ -38,11 +38,12 @@
 	}
 
 	.content {
-		margin: 0em 0.5em;
+		width: calc(100% - 200px);
+		margin: 0em 5px;
 	}
 
 	.toggle-content{
-		width: calc(100% - 1em);
+		width: calc(100% - 10px);
 	}
 
 	.total-card {
