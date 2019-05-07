@@ -7,7 +7,7 @@ body {
 }
 
 body.auth {
-    background: url("../images/Images-pictures-summer-wallpapers-high-quality.jpg") no-repeat;
+    background: url("../images/wallpaper-high-quality.jpg") no-repeat;
     background-size: cover;
     /* background-size: 100% 100%;*/
 }
