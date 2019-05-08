@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/auth.routes';
+import adminRoutes from './routes/admin.routes';
+
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes which should handle requests
 app.use('/api/auth', userRoutes);
+app.use('/api', adminRoutes);
+
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
