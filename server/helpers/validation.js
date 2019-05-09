@@ -15,6 +15,11 @@ const loginSchema = Joi.object().keys({
   password: Joi.string().min(6).max(20).required(),
 });
 
+const idParams = Joi.object().keys({
+  id: Joi.number().integer()
+    .required(),
+});
+
 export default {
-  userSchema, loginSchema,
+  userSchema, loginSchema, idParams,
 };
