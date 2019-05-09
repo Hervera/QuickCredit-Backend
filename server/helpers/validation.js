@@ -20,6 +20,10 @@ const idParams = Joi.object().keys({
     .required(),
 });
 
+const emailParams = Joi.object().keys({
+  email: Joi.string().email({ minDomainAtoms: 2 }).required(),
+});
+
 export default {
-  userSchema, loginSchema, idParams,
+  userSchema, loginSchema, idParams, emailParams,
 };
