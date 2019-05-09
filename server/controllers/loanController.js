@@ -4,16 +4,26 @@ import validate from '../helpers/validation';
 
 const loans = {
 
-  allLoans(req, res) {
-    if (mock.loans.length === 0) {
-      res.status(404).json({
-        status: 404,
-        error: 'No loan found',
+  loans(req, res) {
+    // Get all current loans that are not fully repaid.
+    const reqStatus = req.query.status;
+    const reqRepaid = req.query.repaid;
+    const reqLoans = mock.loans.filter(result => result.status === reqStatus && result.repaid === reqRepaid);
+
+    if (reqLoans !== 0 && reqStatus != null && reqRepaid != null) {
+      res.status(200).json({
+        status: res.statusCode,
+        data: reqLoans,
+      });
+    } else if (reqStatus == null && reqRepaid == null && mock.loans !== 0) {
+      res.status(200).json({
+        status: res.statusCode,
+        data: mock.loans,
       });
     } else {
-      res.status(200).json({
-        status: 200,
-        data: mock.loans,
+      res.status(404).json({
+        status: res.statusCode,
+        error: 'No loan found',
       });
     }
   },
@@ -48,7 +58,6 @@ const loans = {
       error: 'Loan is not found',
     });
   },
-
 };
 
 export default loans;
