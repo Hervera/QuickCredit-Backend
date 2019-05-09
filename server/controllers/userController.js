@@ -33,7 +33,7 @@ const users = {
     if (error) {
       return res.status(400).json({
         status: res.statusCode,
-        error: error.message, // error.details to view more about the error
+        error: error.details[0].message, // error.details to view more about the error
       });
     }
     mock.users.map((user) => {
@@ -43,6 +43,38 @@ const users = {
           data: user,
         });
       }
+      return user;
+    });
+    return res.status(404).json({
+      status: 404,
+      error: 'User is not found',
+    });
+  },
+
+  verifyUser(req, res) {
+    const { email } = req.params;
+    const { error } = Joi.validate(
+      {
+        email,
+      },
+      validate.emailParams,
+    );
+
+    if (error) {
+      return res.status(400).json({
+        status: res.statusCode,
+        error: error.details[0].message, // error.details to view more about the error
+      });
+    }
+    mock.users.map((user) => {
+      if (user.email === email) {
+        user.status = 'verified';
+        return res.status(200).json({
+          status: 200,
+          data: user,
+        });
+      }
+      return user;
     });
     return res.status(404).json({
       status: 404,
