@@ -8,7 +8,8 @@
     "lint": "eslint server/app.js",
     "test": "mocha --require @babel/register ./server/tests --timeout 1200 --exit",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "build": "babel server --out-dir dist"
   },
   "repository": {
     "type": "git",
