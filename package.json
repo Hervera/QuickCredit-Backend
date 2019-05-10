@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon --exec babel-node server/app.js",
     "lint": "eslint server/app.js",
-    "test": "mocha --require @babel/register ./server/tests --timeout 1200 --exit"
+    "test": "mocha --require @babel/register ./server/tests --timeout 1200 --exit",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,5 @@
 # Quick Credit
+[![Build Status](https://travis-ci.org/Hervera/quick-credit.svg?branch=develop)](https://travis-ci.org/Hervera/quick-credit)
 
 [![Coverage Status](https://coveralls.io/repos/github/Hervera/quick-credit/badge.svg?branch=develop)](https://coveralls.io/github/Hervera/quick-credit?branch=develop)
 
