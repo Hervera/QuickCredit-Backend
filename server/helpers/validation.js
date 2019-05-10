@@ -24,6 +24,14 @@ const emailParams = Joi.object().keys({
   email: Joi.string().email({ minDomainAtoms: 2 }).required(),
 });
 
+const loanSchema = Joi.object().keys({
+  user: Joi.string().email({ minDomainAtoms: 2 }).required(),
+  tenor: Joi.number().integer()
+    .required(),
+  amount: Joi.number()
+    .required(),
+});
+
 export default {
-  userSchema, loginSchema, idParams, emailParams,
+  userSchema, loginSchema, idParams, emailParams, loanSchema,
 };
