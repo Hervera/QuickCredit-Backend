@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node server/app.js",
-    "lint": "eslint server/app.js"
+    "lint": "eslint server/app.js",
+    "test": "mocha --require @babel/register ./server/tests --timeout 1200 --exit"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
     "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
