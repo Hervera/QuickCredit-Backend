@@ -58,7 +58,7 @@ const loans = [
     repaid: 'true',
     amount: 100000,
     paymentInstallment: 16666.7,
-    balance: 100000,
+    balance: 102000,
     interest: 0.20,
   },
   {
@@ -94,7 +94,7 @@ const loans = [
     repaid: 'false',
     amount: 100000,
     paymentInstallment: 16666.7,
-    balance: 20000,
+    balance: 60000,
     interest: 0.20,
   },
   {
@@ -106,11 +106,88 @@ const loans = [
     repaid: 'true',
     amount: 200000,
     paymentInstallment: 25000.03125,
-    balance: 200000,
+    balance: 250000,
     interest: 0.25,
   },
 ];
 
+
+const repayments = [
+  {
+    id: 1,
+    loanId: 2,
+    createdOn: 'March 5th 2019, 08:00:00 pm',
+    monthlyInstallment: 16666.7,
+    repaid: 'false',
+    balance: 50000,
+    remain: 52000,
+  },
+  {
+    id: 2,
+    loanId: 2,
+    createdOn: 'March 6th 2019, 08:00:00 pm',
+    monthlyInstallment: 16666.7,
+    repaid: 'false',
+    balance: 750000,
+    remain: 27000,
+  },
+  {
+    id: 3,
+    loanId: 2,
+    createdOn: 'March 7th 2019, 08:00:00 pm',
+    monthlyInstallment: 16666.7,
+    repaid: 'true',
+    balance: 102000,
+    remain: 0,
+  },
+  {
+    id: 4,
+    loanId: 5,
+    createdOn: 'March 21th 2019, 07:00:00 pm',
+    monthlyInstallment: 16666.7,
+    repaid: 'false',
+    balance: 30000,
+    remain: 72000,
+  },
+  {
+    id: 5,
+    loanId: 5,
+    createdOn: 'March 21th 2019, 07:00:00 pm',
+    monthlyInstallment: 16666.7,
+    repaid: 'false',
+    balance: 60000,
+    remain: 42000,
+  },
+  {
+    id: 6,
+    loanId: 6,
+    createdOn: 'March 24th 2019, 02:00:00 pm',
+    monthlyInstallment: 25000.03125,
+    repaid: 'false',
+    balance: 50000,
+    interest: 0.25,
+    remain: 200000,
+  },
+  {
+    id: 7,
+    loanId: 6,
+    createdOn: 'March 24th 2019, 02:00:00 pm',
+    monthlyInstallment: 25000.03125,
+    repaid: 'false',
+    balance: 150000,
+    remain: 100000,
+  },
+  {
+    id: 8,
+    loanId: 6,
+    createdOn: 'March 24th 2019, 02:00:00 pm',
+    monthlyInstallment: 25000.03125,
+    repaid: 'true',
+    balance: 250000,
+    remain: 0,
+  },
+];
+
 export default {
-  users, loans,
+  users, loans, repayments,
 };
