@@ -61,33 +61,6 @@ const loans = {
     });
   },
 
-  loanRepaymentHistory(req, res) {
-    const id = parseInt(req.params.id, 10);
-    const repaymentHistory = mock.repayments.filter(result => result.loanId === id);
-    const { error } = Joi.validate(
-      {
-        id,
-      },
-      validate.idParams,
-    );
-    if (error) {
-      res.status(400).json({
-        status: res.statusCode,
-        error: error.details[0].message,
-      });
-    } else if (repaymentHistory.length !== 0) {
-      res.status(200).json({
-        status: res.statusCode,
-        data: repaymentHistory,
-      });
-    } else {
-      res.status(404).json({
-        status: res.statusCode,
-        error: 'There is no repayment history for that loan',
-      });
-    }
-  },
-
   createLoan(req, res) {
     const {
       user, tenor, amount,
