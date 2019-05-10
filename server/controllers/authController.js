@@ -9,7 +9,7 @@ import validate from '../helpers/validation';
 const auth = {
   register(req, res) {
     const {
-      firstName, lastName, email, password, isAdmin, address,
+      firstName, lastName, email, password, address,
     } = req.body;
 
     const result = Joi.validate(req.body, validate.userSchema, { abortEarly: false });
@@ -33,19 +33,11 @@ const auth = {
     }
     const id = mock.users.length + 1;
     const status = 'unverified';
-    const createdDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+    const createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
+    const isAdmin = 'false';
     const user = new User(
-      id, firstName, lastName, email, password, address, status, isAdmin, createdDate,
+      id, firstName, lastName, email, password, address, status, isAdmin, createdOn,
     );
-    const userId = user.id;
-    const userFistname = user.firstName;
-    const userLastname = user.lastName;
-    const userEmail = user.email;
-    const userPassword = user.password;
-    const userAddress = user.address;
-    const userStatus = user.status;
-    const userIsAdmin = user.isAdmin;
-    const userDate = user.createdDate;
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
     const token = jwt.sign({ user: mock.users.push(user) }, 'secret-key');
@@ -53,15 +45,15 @@ const auth = {
       status: res.statusCode,
       data: {
         token,
-        userId,
-        userFistname,
-        userLastname,
-        userEmail,
-        userPassword,
-        userAddress,
-        userStatus,
-        userIsAdmin,
-        userDate,
+        id: user.id,
+        fistName: firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        address: user.address,
+        status: user.status,
+        isAdmin: user.isAdmin,
+        CreatedOn: user.createdOn,
       },
     });
   },

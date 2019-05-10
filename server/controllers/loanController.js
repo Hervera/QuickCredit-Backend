@@ -1,10 +1,12 @@
 import Joi from 'joi';
+import moment from 'moment';
+import Loan from '../models/Loan';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
 
 const loans = {
 
-  loans(req, res) {
+  retrieveLoans(req, res) {
     // Get all current loans that are not fully repaid.
     const reqStatus = req.query.status;
     const reqRepaid = req.query.repaid;
@@ -81,11 +83,62 @@ const loans = {
     } else {
       res.status(404).json({
         status: res.statusCode,
-        error: 'There is no Repayment History for that loan',
+        error: 'There is no repayment history for that loan',
       });
     }
   },
 
+  createLoan(req, res) {
+    const {
+      user, tenor, amount,
+    } = req.body;
+
+    const result = Joi.validate(req.body, validate.loanSchema, { abortEarly: false });
+
+    if (result.error) {
+      const errors = [];
+      for (let index = 0; index < result.error.details.length; index++) {
+        errors.push(result.error.details[index].message.split('"').join(''));
+      }
+      return res.status(400).send({
+        status: res.statusCode,
+        error: errors,
+      });
+    }
+
+    const id = mock.loans.length + 1;
+    const status = 'pending';
+    const repaid = 'false';
+    const interest = 5;
+    const paymentInstallment = (amount + interest) / tenor;
+    const balance = 0;
+    const createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
+    const loan = new Loan(
+      id, user, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest,
+    );
+
+    const checkUser = mock.users.filter(verifyUser => verifyUser.email === user);
+    if (checkUser.length === 0) {
+      res.status(404).json({
+        status: 404,
+        error: 'The user with that email is not registered',
+      });
+    }
+    return res.status(201).send({
+      status: res.statusCode,
+      data: {
+        id: loan.id,
+        user: loan.user,
+        createdOn: loan.createdOn,
+        repaid: loan.repaid,
+        tenor: loan.tenor,
+        amount: loan.amount,
+        paymentInstallment: loan.paymentInstallment,
+        balance: loan.balance,
+        interest: loan.interest,
+      },
+    });
+  },
 };
 
 
