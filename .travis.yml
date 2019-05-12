@@ -1,16 +1,8 @@
 language: node_js
-node_js:
-  - 10.14.1
-
-before_script:
-  - npm install
-
-script:
-  - npm test
-
+node_js: 
+  - "stable"
 cache:
   directories:
     - "node_modules"
-    
 after_success:
 - npm run coverage
