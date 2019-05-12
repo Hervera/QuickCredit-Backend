@@ -1,7 +1,12 @@
 language: node_js
+node_js:
+  - 10.14.1
 
-node_js: 
-  - "stable"
+before_script:
+  - npm install
+
+script:
+  - npm test
 
 cache:
   directories:

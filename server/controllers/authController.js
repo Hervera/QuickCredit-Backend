@@ -24,8 +24,8 @@ const auth = {
         error: errors,
       });
     }
-    const uniqueUser = mock.users.filter(user => user.email === email);
-    if (uniqueUser.length === 1) {
+    const uniqueUser = mock.users.find(user => user.email === email);
+    if (uniqueUser) {
       return res.status(404).json({
         status: 404,
         error: `User with this email:${JSON.stringify(email)} is already registered`,
