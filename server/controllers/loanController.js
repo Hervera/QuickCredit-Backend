@@ -13,17 +13,17 @@ const loans = {
     const reqLoans = mock.loans.filter(result => result.status === reqStatus && result.repaid === reqRepaid);
 
     if (reqLoans.length !== 0) {
-      res.status(200).json({
+      res.status(200).send({
         status: res.statusCode,
         data: reqLoans,
       });
     } else if (reqStatus == null && reqRepaid == null && mock.loans !== 0) {
-      res.status(200).json({
+      res.status(200).send({
         status: res.statusCode,
         data: mock.loans,
       });
     } else {
-      res.status(404).json({
+      res.status(404).send({
         status: res.statusCode,
         error: 'No loan found',
       });
@@ -41,21 +41,20 @@ const loans = {
     );
 
     if (error) {
-      return res.status(400).json({
+      return res.status(400).send({
         status: res.statusCode,
         error: error.details[0].message,
       });
     }
-    mock.loans.map((loan) => {
-      if (loan.id === id) {
-        return res.status(200).json({
-          status: 200,
-          data: loan,
-        });
-      }
-      return loan;
-    });
-    return res.status(404).json({
+
+    const loan = mock.loans.find(el => el.id === id);
+    if (loan) {
+      return res.status(200).json({
+        status: 200,
+        data: loan,
+      });
+    }
+    return res.status(404).send({
       status: 404,
       error: 'Loan is not found',
     });
@@ -92,7 +91,7 @@ const loans = {
 
     const checkUser = mock.users.filter(verifyUser => verifyUser.email === user);
     if (checkUser.length === 0) {
-      res.status(404).json({
+      return res.status(404).send({
         status: 404,
         error: 'The user with that email is not registered',
       });
@@ -123,22 +122,21 @@ const loans = {
     );
 
     if (error) {
-      return res.status(400).json({
+      return res.status(400).send({
         status: res.statusCode,
         error: error.details[0].message, // error.details to view more about the error
       });
     }
-    mock.loans.map((loan) => {
-      if (loan.id === id) {
-        loan.status = req.body.status;
-        return res.status(200).json({
-          status: 200,
-          data: loan,
-        });
-      }
-      return loan;
-    });
-    return res.status(404).json({
+
+    const loan = mock.loans.find(el => el.id === id);
+    if (loan) {
+      loan.status = req.body.status;
+      return res.status(200).send({
+        status: 200,
+        data: loan,
+      });
+    }
+    return res.status(404).send({
       status: 404,
       error: 'Loan is not found',
     });

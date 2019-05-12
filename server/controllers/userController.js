@@ -36,15 +36,13 @@ const users = {
         error: error.details[0].message, // error.details to view more about the error
       });
     }
-    mock.users.map((user) => {
-      if (user.id === id) {
-        return res.status(200).json({
-          status: 200,
-          data: user,
-        });
-      }
-      return user;
-    });
+    const user = mock.users.find(el => el.id === id);
+    if (user) {
+      return res.status(200).json({
+        status: 200,
+        data: user,
+      });
+    }
     return res.status(404).json({
       status: 404,
       error: 'User is not found',
@@ -66,16 +64,14 @@ const users = {
         error: error.details[0].message, // error.details to view more about the error
       });
     }
-    mock.users.map((user) => {
-      if (user.email === email) {
-        user.status = 'verified';
-        return res.status(200).json({
-          status: 200,
-          data: user,
-        });
-      }
-      return user;
-    });
+    const user = mock.users.find(el => el.email === email);
+    if (user) {
+      user.status = 'verified';
+      return res.status(200).json({
+        status: 200,
+        data: user,
+      });
+    }
     return res.status(404).json({
       status: 404,
       error: 'User is not found',

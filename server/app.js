@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -7,20 +8,9 @@ import clientRoutes from './routes/client.routes';
 
 const app = express();
 
-// CORS
-app.all('/*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Content-Type', 'application/json');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-  );
-  next();
-});
+const port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
-
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,11 +34,7 @@ app.use((error, req, res) => {
   });
 });
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server running at port ${port}...`);
-});
+app.listen(port);
 
 
 export default app;
