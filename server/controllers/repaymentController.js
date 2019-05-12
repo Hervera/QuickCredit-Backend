@@ -4,7 +4,7 @@ import Repayment from '../models/Repayment';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
 
-const loans = {
+const repayments = {
 
   loanRepaymentHistory(req, res) {
     const id = parseInt(req.params.id, 10);
@@ -35,8 +35,8 @@ const loans = {
 
   createLoanRepayment(req, res) {
     const loanId = parseInt(req.params.id, 10);
-    const checkLoanId = mock.loans.filter(result => result.id === loanId && result.status === 'approved');
-    const repaidTrue = mock.loans.filter(result => result.id === loanId && result.repaid === 'true');
+    const checkLoanId = mock.loans.find(result => result.id === loanId && result.status === 'approved');
+    const repaidTrue = mock.loans.find(result => result.id === loanId && result.repaid === 'true');
     const { error } = Joi.validate(
       {
         loanId,
@@ -44,17 +44,19 @@ const loans = {
       validate.loanIdParams,
     );
     if (error) {
-      res.status(400).json({
+      return res.status(400).json({
         status: res.statusCode,
         error: error.details[0].message,
       });
-    } else if (repaidTrue.length !== 0) {
-      res.status(400).json({
+    }
+    if (repaidTrue) {
+      return res.status(400).json({
         status: res.statusCode,
         error: 'The loan has been fully repaid',
       });
-    } else if (checkLoanId.length === 0) {
-      res.status(404).json({
+    }
+    if (!checkLoanId) {
+      return res.status(404).json({
         status: res.statusCode,
         error: 'The loan doesn\'t exist',
       });
@@ -106,4 +108,4 @@ const loans = {
   },
 };
 
-export default loans;
+export default repayments;
