@@ -7,7 +7,7 @@ chai.should();
 chai.use(chaiHttp);
 
 describe('Repayment Endpoints', () => {
-  it('Should retrieve repayment history', (done) => {
+  it('Should retrieve repayment history if a loan exists', (done) => {
     chai.request(server)
       .get('/api/loans/2/repayments')
       .set('Accept', 'Application/JSON')
@@ -16,6 +16,30 @@ describe('Repayment Endpoints', () => {
         res.body.should.have.property('status').equal(200);
         res.body.should.have.property('data');
         res.body.data.should.be.an('array');
+        done();
+      });
+  });
+
+  it('Should not retrieve repayment history if a loan doesn\'t exist', (done) => {
+    chai.request(server)
+      .get('/api/loans/0/repayments')
+      .set('Accept', 'Application/JSON')
+      .end((err, res) => {
+        res.body.should.be.an('Object');
+        res.body.should.have.property('status').equal(404);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+
+  it('Should not retrieve repayment history if a loanId is not specified', (done) => {
+    chai.request(server)
+      .get('/api/loans/dsss/repayments')
+      .set('Accept', 'Application/JSON')
+      .end((err, res) => {
+        res.body.should.be.an('Object');
+        res.body.should.have.property('status').equal(400);
+        res.body.should.have.property('error');
         done();
       });
   });
