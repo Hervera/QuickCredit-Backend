@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _joi = _interopRequireDefault(require("joi"));
+var _joi = _interopRequireDefault(require("./node_modules/joi"));
 
-var _moment = _interopRequireDefault(require("moment"));
+var _moment = _interopRequireDefault(require("./node_modules/moment"));
 
 var _Repayment = _interopRequireDefault(require("../models/Repayment"));
 
