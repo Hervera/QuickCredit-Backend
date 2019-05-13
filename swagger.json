@@ -1,0 +1,433 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Quick Credit",
+        "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners."
+    },
+    "host": "hervera-quick-credit.herokuapp.com",
+    "basePath": "/api/",
+    "tags": [
+        {
+            "name": "User",
+            "description": "APIs for user Authentication and manage users"
+        },
+        {
+            "name": "Loan",
+            "description": "APIs for loan applications"
+        },
+        {
+            "name": "Payment",
+            "description": "APIs for loan payments"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/auth/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a user account",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Create a user account",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login a user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Login a user",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Get all users or clients",
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/users/{user-id}": {
+            "parameters": [
+                {
+                    "name": "user-id",
+                    "in": "path",
+                    "required": true,
+                    "description": "The id of the user you want to retrieve",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "View a particular user",
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/users/{user-email}/verify": {
+            "parameters": [
+                {
+                    "name": "user-email",
+                    "in": "path",
+                    "required": true,
+                    "description": "User with his/her email that we want to verify",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Mark a user as verified",
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/loans": {
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Create a loan application",
+                "tags": [
+                    "Loan"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Create a loan application",
+                        "schema": {
+                            "$ref": "#/definitions/Loan"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New loan is created",
+                        "schema": {}
+                    }
+                }
+            },
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "Loan"
+                ],
+                "summary": "Fetch all loans",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/loans?status=approved&repaid=false": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "Loan"
+                ],
+                "summary": "Get all current loans that are not fully repaid.",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/loans?status=approved&repaid=true": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Get all repaid loans.",
+                "tags": [
+                    "Loan"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/loans/{loanId}/repayments": {
+            "parameters": [
+                {
+                    "name": "loanId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of loan that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "View loan repayment history",
+                "tags": [
+                    "Payment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/loans/{loanId}": {
+            "parameters": [
+                {
+                    "name": "loanId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of loan that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "Loan"
+                ],
+                "summary": "Get a specific loan application",
+                "responses": {
+                    "200": {
+                        "description": "Success, Loan is found",
+                        "schema": {}
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Approve or reject a loan application. Specify the status in the request’s body",
+                "tags": [
+                    "Loan"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/loans/{loanId}/repayment": {
+            "parameters": [
+                {
+                    "name": "loanId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of loan that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Create a loan repayment record",
+                "tags": [
+                    "Payment"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Create a loan",
+                        "schema": {
+                            "$ref": "#/definitions/Loan"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success: Loan repayment is created",
+                        "schema": {}
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "password",
+                "address"
+            ],
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "password": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                }
+            }
+        },
+        "Loan": {
+            "required": [
+                "user",
+                "tenor",
+                "amount"
+            ],
+            "properties": {
+                "user": {
+                    "type": "string"
+                },
+                "tenor": {
+                    "type": "integer"
+                },
+                "amount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Repayment": {
+            "required": [
+                "paidAmount"
+            ],
+            "properties": {
+                "paidAmount": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

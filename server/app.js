@@ -1,10 +1,11 @@
-import '@babel/polyfill';
 import express from 'express';
 import morgan from 'morgan';
+import swaggerUI from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import authRoutes from './routes/auth.routes';
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
+import swaggerDocument from '../swagger.json';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/auth', authRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', clientRoutes);
+app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
