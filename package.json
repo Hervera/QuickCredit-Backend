@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/Hervera/quick-credit#readme",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/node": "^7.2.2",
     "@babel/polyfill": "^7.4.4",
-    "babel-cli": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
@@ -35,9 +36,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
     "babel-plugin-istanbul": "^5.1.4",
