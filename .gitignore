@@ -1,7 +1,6 @@
 node_modules
 .babelrc
 .eslintrc.json
-.travis.yml
 .nyc_output
 .coveralls.yml
-dist
+.travis.yml
