@@ -29,7 +29,7 @@ const users = [
     firstName: 'John',
     lastName: 'Lee',
     password: bcrypt.hashSync('secret', 10),
-    status: 'verified',
+    status: 'unverified',
     address: 'Kigali, Kicukiro',
     repaid: 'false',
     createdOn: 'March 5th 2019, 07:00:00 am',

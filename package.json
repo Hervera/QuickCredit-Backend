@@ -6,11 +6,8 @@
   "scripts": {
     "start": "nodemon --exec babel-node server/app.js",
     "lint": "eslint server/app.js",
-    "test": "mocha --exit --require @babel/register --require @babel/polyfill ./server/tests/*",
-    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "build": "babel server --out-dir dist",
-    "heroku": "node dist/app.js"
+    "test": "nyc --reporter=lcov --reporter=text mocha --exit --require @babel/register --require @babel/polyfill ./server/tests/*",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -31,6 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
+    "swagger-ui": "^3.22.1",
+    "swagger-ui-express": "^4.0.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
