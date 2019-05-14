@@ -12,7 +12,6 @@
     "lint": "eslint server/app.js",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "clean": "rm -rf build && mkdir build",
-    "heroku-postbuild": "npm install",
     "build": "babel server --out-dir dist"
   },
   "repository": {
