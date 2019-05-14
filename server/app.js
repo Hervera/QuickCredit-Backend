@@ -7,7 +7,7 @@ import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
 import swaggerDocument from '../swagger.json';
 
-const app = express();
+const app = express().router;
 
 const port = process.env.PORT || 3000;
 
