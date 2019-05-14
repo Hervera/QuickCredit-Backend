@@ -22,6 +22,10 @@ app.use('/api', adminRoutes);
 app.use('/api', clientRoutes);
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Welcome to Quick Credit application' });
+});
+
 app.use((req, res, next) => {
   const error = new Error('Not found');
   error.status = 404;
@@ -37,6 +41,5 @@ app.use((error, req, res) => {
 });
 
 app.listen(port);
-
 
 export default app;
