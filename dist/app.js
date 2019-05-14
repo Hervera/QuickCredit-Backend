@@ -36,11 +36,6 @@ app.use('/api/auth', _auth["default"]);
 app.use('/api', _admin["default"]);
 app.use('/api', _client["default"]);
 app.use('/documentation', _swaggerUiExpress["default"].serve, _swaggerUiExpress["default"].setup(_swagger["default"]));
-app.get('/', function (req, res) {
-  res.status(200).json({
-    message: 'Welcome to Quick Credit application'
-  });
-});
 app.use(function (req, res, next) {
   var error = new Error('Not found');
   error.status = 404;

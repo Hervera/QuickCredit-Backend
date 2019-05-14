@@ -11,7 +11,8 @@
     "lint": "eslint server/app.js",
     "test": "nyc --reporter=lcov --reporter=text mocha --exit --require @babel/register --require @babel/polyfill ./server/tests/*",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "build": "babel server --out-dir dist"
   },
   "repository": {
     "type": "git",
