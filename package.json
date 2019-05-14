@@ -1,6 +1,9 @@
 {
   "name": "quick-credit",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.14.1"
+  },
   "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.",
   "main": "index.js",
   "scripts": {
