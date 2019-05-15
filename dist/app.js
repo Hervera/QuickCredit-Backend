@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+require("@babel/polyfill");
+
 var _express = _interopRequireDefault(require("express"));
 
 var _morgan = _interopRequireDefault(require("morgan"));
@@ -52,7 +54,10 @@ app.use(function (error, req, res) {
     status: 404,
     error: error.message
   });
+}); // app.listen(port);
+
+app.listen(port, function () {
+  console.log("Server running at port ".concat(port, "..."));
 });
-app.listen(port);
 var _default = app;
 exports["default"] = _default;
