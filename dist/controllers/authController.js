@@ -1,25 +1,38 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
 
-var _joi = _interopRequireDefault(require("joi"));
+var _joi = require('joi');
 
-var _moment = _interopRequireDefault(require("moment"));
+var _joi2 = _interopRequireDefault(_joi);
 
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+var _moment = require('moment');
 
-var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
+var _moment2 = _interopRequireDefault(_moment);
 
-var _User = _interopRequireDefault(require("../models/User"));
+var _jsonwebtoken = require('jsonwebtoken');
 
-var _mock = _interopRequireDefault(require("../data/mock"));
+var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
-var _validation = _interopRequireDefault(require("../helpers/validation"));
+var _bcryptjs = require('bcryptjs');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
+
+var _User = require('../models/User');
+
+var _User2 = _interopRequireDefault(_User);
+
+var _mock = require('../data/mock');
+
+var _mock2 = _interopRequireDefault(_mock);
+
+var _validation = require('../helpers/validation');
+
+var _validation2 = _interopRequireDefault(_validation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var auth = {
   register: function register(req, res) {
@@ -30,48 +43,36 @@ var auth = {
         password = _req$body.password,
         address = _req$body.address;
 
-    var result = _joi["default"].validate(req.body, _validation["default"].userSchema, {
-      abortEarly: false
-    });
+
+    var result = _joi2.default.validate(req.body, _validation2.default.userSchema, { abortEarly: false });
 
     if (result.error) {
       var errors = [];
-
       for (var index = 0; index < result.error.details.length; index++) {
         errors.push(result.error.details[index].message.split('"').join(''));
       }
-
       return res.status(400).send({
         status: res.statusCode,
         error: errors
       });
     }
-
-    var uniqueUser = _mock["default"].users.find(function (user) {
+    var uniqueUser = _mock2.default.users.find(function (user) {
       return user.email === email;
     });
-
     if (uniqueUser) {
       return res.status(404).json({
         status: 404,
-        error: "User with this email:".concat(JSON.stringify(email), " is already registered")
+        error: 'User with this email:' + JSON.stringify(email) + ' is already registered'
       });
     }
-
-    var id = _mock["default"].users.length + 1;
+    var id = _mock2.default.users.length + 1;
     var status = 'unverified';
-    var createdOn = (0, _moment["default"])().format('MMMM Do YYYY, h:mm:ss a');
+    var createdOn = (0, _moment2.default)().format('MMMM Do YYYY, h:mm:ss a');
     var isAdmin = 'false';
-    var user = new _User["default"](id, firstName, lastName, email, password, address, status, isAdmin, createdOn);
-
-    var hash = _bcryptjs["default"].hashSync(user.password, 10);
-
+    var user = new _User2.default(id, firstName, lastName, email, password, address, status, isAdmin, createdOn);
+    var hash = _bcryptjs2.default.hashSync(user.password, 10);
     user.password = hash;
-
-    var token = _jsonwebtoken["default"].sign({
-      user: _mock["default"].users.push(user)
-    }, 'secret-key');
-
+    var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users.push(user) }, 'secret-key');
     return res.status(201).send({
       status: res.statusCode,
       data: {
@@ -93,67 +94,46 @@ var auth = {
         email = _req$body2.email,
         password = _req$body2.password;
 
-    var _Joi$validate = _joi["default"].validate(req.body, _validation["default"].loginSchema),
+    var _Joi$validate = _joi2.default.validate(req.body, _validation2.default.loginSchema),
         error = _Joi$validate.error;
 
     if (error) {
       var errors = [];
-
       for (var index = 0; index < error.details.length; index++) {
         errors.push(error.details[index].message.split('"').join(''));
       }
-
       return res.status(400).send({
         status: res.statusCode,
         error: errors
       });
     }
+    for (var i = 0; i < _mock2.default.users.length; i++) {
+      if (_mock2.default.users[i].email === email) {
+        var id = _mock2.default.users[i].id;
+        var firstName = _mock2.default.users[i].firstName;
+        var lastName = _mock2.default.users[i].lastName;
+        var status = _mock2.default.users[i].status;
+        var isAdmin = _mock2.default.users[i].isAdmin;
+        var createdOn = _mock2.default.users[i].createdOn;
 
-    for (var i = 0; i < _mock["default"].users.length; i++) {
-      if (_mock["default"].users[i].email === email) {
-        var id = _mock["default"].users[i].id;
-        var firstName = _mock["default"].users[i].firstName;
-        var lastName = _mock["default"].users[i].lastName;
-        var status = _mock["default"].users[i].status;
-        var isAdmin = _mock["default"].users[i].isAdmin;
-        var createdOn = _mock["default"].users[i].createdOn;
-
-        var truePass = _bcryptjs["default"].compareSync(password, _mock["default"].users[i].password);
-
+        var truePass = _bcryptjs2.default.compareSync(password, _mock2.default.users[i].password);
         if (truePass) {
-          var token = _jsonwebtoken["default"].sign({
-            user: _mock["default"].users[i].password
-          }, 'secret-key', {
-            expiresIn: '1h'
-          });
-
+          var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users[i].password }, 'secret-key', { expiresIn: '1h' });
           return res.status(200).send({
             status: res.statusCode,
             data: {
-              token: token,
-              id: id,
-              firstName: firstName,
-              lastName: lastName,
-              email: email,
-              status: status,
-              isAdmin: isAdmin,
-              createdOn: createdOn
+              token: token, id: id, firstName: firstName, lastName: lastName, email: email, status: status, isAdmin: isAdmin, createdOn: createdOn
             }
           });
         }
-
         return res.status(400).send({
           status: res.statusCode,
           error: 'incorrect password'
         });
       }
     }
-
-    return res.status(400).send({
-      status: 400,
-      error: 'invalid email'
-    });
+    return res.status(400).send({ status: 400, error: 'invalid email' });
   }
 };
-var _default = auth;
-exports["default"] = _default;
+
+exports.default = auth;

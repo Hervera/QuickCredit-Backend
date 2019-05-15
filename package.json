@@ -11,7 +11,7 @@
     "start": "nodemon --exec babel-node server/app.js",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "build": "babel server --out-dir dist"
+    "build": "babel --presets es2015 -d dist/ server"
   },
   "heroku-run-build-script": true,
   "repository": {
@@ -37,13 +37,10 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/register": "^7.0.0",
+    "babel-cli": "^6.26.0",
     "babel-plugin-istanbul": "^5.1.1",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "chai-things": "^0.2.0",

@@ -1,19 +1,22 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
 
-var _express = _interopRequireDefault(require("express"));
+var _express = require('express');
 
-var _authController = _interopRequireDefault(require("../controllers/authController"));
+var _express2 = _interopRequireDefault(_express);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _authController = require('../controllers/authController');
 
-var router = _express["default"].Router();
+var _authController2 = _interopRequireDefault(_authController);
 
-router.post('/signup', _authController["default"].register);
-router.post('/signin', _authController["default"].login);
-var _default = router;
-exports["default"] = _default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var router = _express2.default.Router();
+
+router.post('/signup', _authController2.default.register);
+router.post('/signin', _authController2.default.login);
+
+exports.default = router;

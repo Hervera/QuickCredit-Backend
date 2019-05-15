@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21,5 +20,4 @@ var User = function User(id, firstName, lastName, email, password, address, stat
   this.createdOn = createdOn;
 };
 
-var _default = User;
-exports["default"] = _default;
+exports.default = User;

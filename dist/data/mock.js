@@ -1,20 +1,21 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
 
-var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
+var _bcryptjs = require('bcryptjs');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var users = [{
   id: 1,
   email: 'hervera@gmail.com',
   firstName: 'Herve',
   lastName: 'Nkuri',
-  password: _bcryptjs["default"].hashSync('secret', 10),
+  password: _bcryptjs2.default.hashSync('secret', 10),
   status: 'verified',
   address: 'Kigali, Gasabo',
   isAdmin: 'true',
@@ -24,7 +25,7 @@ var users = [{
   email: 'brad@gmail.com',
   firstName: 'Brad',
   lastName: 'John',
-  password: _bcryptjs["default"].hashSync('secret', 10),
+  password: _bcryptjs2.default.hashSync('secret', 10),
   status: 'unverified',
   address: 'Kigali, Nyarugenge',
   isAdmin: 'false',
@@ -34,12 +35,13 @@ var users = [{
   email: 'johnLee@gmail.com',
   firstName: 'John',
   lastName: 'Lee',
-  password: _bcryptjs["default"].hashSync('secret', 10),
+  password: _bcryptjs2.default.hashSync('secret', 10),
   status: 'unverified',
   address: 'Kigali, Kicukiro',
   repaid: 'false',
   createdOn: 'March 5th 2019, 07:00:00 am'
 }];
+
 var loans = [{
   id: 1,
   user: 'hervera@gmail.com',
@@ -107,6 +109,7 @@ var loans = [{
   balance: 250000,
   interest: 0.25
 }];
+
 var repayments = [{
   id: 1,
   loanId: 2,
@@ -196,9 +199,7 @@ var repayments = [{
   interest: 0.25,
   remain: 0
 }];
-var _default = {
-  users: users,
-  loans: loans,
-  repayments: repayments
+
+exports.default = {
+  users: users, loans: loans, repayments: repayments
 };
-exports["default"] = _default;

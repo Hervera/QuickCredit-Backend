@@ -1,18 +1,21 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
 
-var _express = _interopRequireDefault(require("express"));
+var _express = require('express');
 
-var _loanController = _interopRequireDefault(require("../controllers/loanController"));
+var _express2 = _interopRequireDefault(_express);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _loanController = require('../controllers/loanController');
 
-var router = _express["default"].Router();
+var _loanController2 = _interopRequireDefault(_loanController);
 
-router.post('/loans', _loanController["default"].createLoan);
-var _default = router;
-exports["default"] = _default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var router = _express2.default.Router();
+
+router.post('/loans', _loanController2.default.createLoan);
+
+exports.default = router;
