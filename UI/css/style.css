@@ -153,6 +153,13 @@ ul li{
 	margin: 5rem 1rem;
 }
 
+.title-heading.message-header {
+  text-align: center;
+  margin: 2em 0px;
+  padding-top: 1em;
+  color: #fff;
+}
+
 /*login and registration*/
 .card {
 	background: #fff;
@@ -356,7 +363,8 @@ hr{
 	background: #fff;
 	width: 190px;
 	font-size: 15px;
-	height: calc(140vh - 3rem);
+  height: calc(100vh - 4rem);
+  /* height: 550px; */
 	box-shadow: 0 0 0.2rem 0 #aba4d0;
 	background: #705ecf;
 	color: #fff;
