@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import express from 'express';
 import morgan from 'morgan';
 import swaggerUI from 'swagger-ui-express';
@@ -40,6 +41,10 @@ app.use((error, req, res) => {
   });
 });
 
-app.listen(port);
+// app.listen(port);
+app.listen(port, () => {
+  console.log(`Server running at port ${port}...`);
+});
+
 
 export default app;
