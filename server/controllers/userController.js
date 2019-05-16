@@ -12,6 +12,9 @@ const users = {
         error: 'No user found',
       });
     } else {
+      // const valueToShow = mock.users.forEach((item) => {
+      //   item.password;
+      // });
       res.status(200).json({
         status: 200,
         successMessage: 'Users',
@@ -20,7 +23,7 @@ const users = {
     }
   },
 
-  // Get specific user details
+  // Get a specific user details
   getSpecificUser(req, res) {
     const id = parseInt(req.params.id, 10);
     const { error } = Joi.validate(

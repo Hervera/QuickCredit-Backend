@@ -60,8 +60,8 @@ var auth = {
       return user.email === email;
     });
     if (uniqueUser) {
-      return res.status(404).json({
-        status: 404,
+      return res.status(409).json({
+        status: res.statusCode,
         error: 'User with this email:' + JSON.stringify(email) + ' is already registered'
       });
     }
@@ -81,7 +81,6 @@ var auth = {
         fistName: firstName,
         lastName: user.lastName,
         email: user.email,
-        password: user.password,
         address: user.address,
         status: user.status,
         isAdmin: user.isAdmin,

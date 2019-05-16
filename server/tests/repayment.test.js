@@ -1,16 +1,29 @@
-/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../app';
+
+import {
+  authUser,
+} from './dummy';
 
 chai.should();
 chai.use(chaiHttp);
 
 describe('Repayment Endpoints', () => {
+  let authToken;
+  before((done) => {
+    chai.request(server).post('/api/v1/auth/signin')
+      .send(authUser)
+      .end((err, res) => {
+        authToken = res.body.data.token; // save the token
+        done();
+      });
+  });
   it('Should retrieve repayment history if a loan exists', (done) => {
     chai.request(server)
-      .get('/api/loans/2/repayments')
+      .get('/api/v1/loans/2/repayments')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
@@ -22,8 +35,9 @@ describe('Repayment Endpoints', () => {
 
   it('Should not retrieve repayment history if a loan doesn\'t exist', (done) => {
     chai.request(server)
-      .get('/api/loans/0/repayments')
+      .get('/api/v1/loans/0/repayments')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);
@@ -34,8 +48,9 @@ describe('Repayment Endpoints', () => {
 
   it('Should not retrieve repayment history if a loanId is not specified', (done) => {
     chai.request(server)
-      .get('/api/loans/dsss/repayments')
+      .get('/api/v1/loans/dsss/repayments')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);
@@ -44,14 +59,15 @@ describe('Repayment Endpoints', () => {
       });
   });
 
-  it('Should Create a loan repayment record.', (done) => {
+  it('Should create a loan repayment record.', (done) => {
     const loan = {
       paidAmount: 5000000,
     };
     chai.request(server)
-      .post('/api/loans/5/repayment')
+      .post('/api/v1/loans/5/repayment')
       .send(loan)
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(201);
@@ -61,14 +77,15 @@ describe('Repayment Endpoints', () => {
       });
   });
 
-  it('Should not create a loan repayment record if a loan is not approved or doen\'t exist.', (done) => {
+  it('Should not create a loan repayment record if a loan is not approved or doesn\'t exist.', (done) => {
     const loan = {
       paidAmount: 5000000,
     };
     chai.request(server)
-      .post('/api/loans/1/repayment')
+      .post('/api/v1/loans/1/repayment')
       .send(loan)
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);

@@ -7,7 +7,7 @@ import validate from '../helpers/validation';
 const repayments = {
 
   loanRepaymentHistory(req, res) {
-    const id = parseInt(req.params.id, 10);
+    const id = Number(req.params.id);
     const repaymentHistory = mock.repayments.filter(result => result.loanId === id);
     const { error } = Joi.validate(
       {
@@ -37,16 +37,23 @@ const repayments = {
     const loanId = parseInt(req.params.id, 10);
     const checkLoanId = mock.loans.find(result => result.id === loanId && result.status === 'approved');
     const repaidTrue = mock.loans.find(result => result.id === loanId && result.repaid === 'true');
-    const { error } = Joi.validate(
-      {
-        loanId,
-      },
-      validate.loanIdParams,
-    );
+    const { paidAmount } = req.body;
+    const { error } = Joi.validate({ loanId }, validate.loanIdParams);
+    const result = Joi.validate(req.body, validate.repaymentSchema, { abortEarly: false });
     if (error) {
       return res.status(400).json({
         status: res.statusCode,
         error: error.details[0].message,
+      });
+    }
+    if (result.error) {
+      const errors = [];
+      for (let index = 0; index < result.error.details.length; index++) {
+        errors.push(result.error.details[index].message.split('"').join(''));
+      }
+      return res.status(400).send({
+        status: res.statusCode,
+        error: errors,
       });
     }
     if (repaidTrue) {
@@ -59,23 +66,6 @@ const repayments = {
       return res.status(404).json({
         status: res.statusCode,
         error: 'The loan doesn\'t exist',
-      });
-    }
-
-    // Validate the inputs in body
-    const {
-      paidAmount,
-    } = req.body;
-    const result = Joi.validate(req.body, validate.repaymentSchema, { abortEarly: false });
-
-    if (result.error) {
-      const errors = [];
-      for (let index = 0; index < result.error.details.length; index++) {
-        errors.push(result.error.details[index].message.split('"').join(''));
-      }
-      return res.status(400).send({
-        status: res.statusCode,
-        error: errors,
       });
     }
 

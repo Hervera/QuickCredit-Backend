@@ -28,6 +28,9 @@ var users = {
         error: 'No user found'
       });
     } else {
+      // const valueToShow = mock.users.forEach((item) => {
+      //   item.password;
+      // });
       res.status(200).json({
         status: 200,
         successMessage: 'Users',
@@ -37,7 +40,7 @@ var users = {
   },
 
 
-  // Get specific user details
+  // Get a specific user details
   getSpecificUser: function getSpecificUser(req, res) {
     var id = parseInt(req.params.id, 10);
 

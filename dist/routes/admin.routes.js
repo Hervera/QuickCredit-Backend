@@ -8,6 +8,10 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
+var _auth = require('../middleware/auth.middleware');
+
+var _auth2 = _interopRequireDefault(_auth);
+
 var _userController = require('../controllers/userController');
 
 var _userController2 = _interopRequireDefault(_userController);
@@ -24,13 +28,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-router.get('/users', _userController2.default.getAllUsers);
-router.get('/users/:id', _userController2.default.getSpecificUser);
-router.put('/users/:email/verify', _userController2.default.verifyUser);
-router.get('/loans', _loanController2.default.retrieveLoans);
-router.get('/loans/:id', _loanController2.default.getSpecificLoan);
-router.put('/loans/:id', _loanController2.default.approveOrRejectLoan);
-router.get('/loans/:id/repayments', _repaymentController2.default.loanRepaymentHistory);
-router.post('/loans/:id/repayment', _repaymentController2.default.createLoanRepayment);
+router.get('/users', _auth2.default.verifyToken, _userController2.default.getAllUsers);
+router.get('/users/:id', _auth2.default.verifyToken, _userController2.default.getSpecificUser);
+router.patch('/users/:email/verify', _auth2.default.verifyToken, _userController2.default.verifyUser);
+router.get('/loans', _auth2.default.verifyToken, _loanController2.default.retrieveLoans);
+router.get('/loans/:id', _auth2.default.verifyToken, _loanController2.default.getSpecificLoan);
+router.patch('/loans/:id', _auth2.default.verifyToken, _loanController2.default.approveOrRejectLoan);
+router.get('/loans/:id/repayments', _auth2.default.verifyToken, _repaymentController2.default.loanRepaymentHistory);
+router.post('/loans/:id/repayment', _auth2.default.verifyToken, _repaymentController2.default.createLoanRepayment);
 
 exports.default = router;
