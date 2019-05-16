@@ -6,7 +6,7 @@
         "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners."
     },
     "host": "hervera-quick-credit.herokuapp.com",
-    "basePath": "/api/",
+    "basePath": "/api/v1/",
     "tags": [
         {
             "name": "User",
@@ -55,7 +55,7 @@
                         "required": true,
                         "description": "Create a user account",
                         "schema": {
-                            "$ref": "#/definitions/User"
+                            "$ref": "#/definitions/registerUser"
                         }
                     }
                 ],
@@ -83,7 +83,7 @@
                         "required": true,
                         "description": "Login a user",
                         "schema": {
-                            "$ref": "#/definitions/User"
+                            "$ref": "#/definitions/loginUser"
                         }
                     }
                 ],
@@ -151,7 +151,7 @@
                     "type": "string"
                 }
             ],
-            "put": {
+            "patch": {
                 "security": [
                     {
                         "Bearer": []
@@ -312,10 +312,21 @@
                     }
                 }
             },
-            "put": {
+            "patch": {
                 "security": [
                     {
                         "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "Give a status: approved or rejected",
+                        "schema": {
+                            "$ref": "#/definitions/approveLoan"
+                        }
                     }
                 ],
                 "summary": "Approve or reject a loan application. Specify the status in the request’s body",
@@ -355,9 +366,9 @@
                         "in": "body",
                         "name": "body",
                         "required": true,
-                        "description": "Create a loan",
+                        "description": "Add a loan repayment",
                         "schema": {
-                            "$ref": "#/definitions/Loan"
+                            "$ref": "#/definitions/Repayment"
                         }
                     }
                 ],
@@ -374,7 +385,7 @@
         }
     },
     "definitions": {
-        "User": {
+        "registerUser": {
             "required": [
                 "firstName",
                 "lastName",
@@ -401,6 +412,21 @@
                 }
             }
         },
+        "loginUser": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
         "Loan": {
             "required": [
                 "user",
@@ -416,6 +442,16 @@
                 },
                 "amount": {
                     "type": "integer"
+                }
+            }
+        },
+        "approveLoan": {
+            "required": [
+                "status"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string"
                 }
             }
         },

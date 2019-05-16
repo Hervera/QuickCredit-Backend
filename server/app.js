@@ -9,7 +9,7 @@ import swaggerDocument from '../swagger.json';
 
 const app = express();
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
 // Parse incoming requests data
@@ -17,20 +17,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes which should handle requests
-app.use('/api/auth', authRoutes);
-app.use('/api', adminRoutes);
-app.use('/api', clientRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1', adminRoutes);
+app.use('/api/v1', clientRoutes);
+app.get('/', (req, res) => res.redirect('/documentation'));
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to Quick Credit application' });
-});
-
-app.use((req, res, next) => {
-  const error = new Error('Not found');
-  error.status = 404;
-  next(error);
-});
+app.use((req, res) => res.status(404).send({
+  status: 404,
+  error: 'url is not found',
+}));
 
 app.use((error, req, res) => {
   res.status(error.status || 500);
@@ -40,10 +36,6 @@ app.use((error, req, res) => {
   });
 });
 
-// app.listen(port);
-app.listen(port, () => {
-  console.log(`Server running at port ${port}...`);
-});
-
+app.listen(port);
 
 export default app;

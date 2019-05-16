@@ -28,7 +28,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var repayments = {
   loanRepaymentHistory: function loanRepaymentHistory(req, res) {
-    var id = parseInt(req.params.id, 10);
+    var id = req.params.id;
+
     var repaymentHistory = _mock2.default.repayments.filter(function (result) {
       return result.loanId === id;
     });

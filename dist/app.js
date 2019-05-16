@@ -48,9 +48,9 @@ app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: false }));
 
 // Routes which should handle requests
-app.use('/api/auth', _auth2.default);
-app.use('/api', _admin2.default);
-app.use('/api', _client2.default);
+app.use('/api/v1/auth', _auth2.default);
+app.use('/api/v1', _admin2.default);
+app.use('/api/v1', _client2.default);
 app.use('/documentation', _swaggerUiExpress2.default.serve, _swaggerUiExpress2.default.setup(_swagger2.default));
 
 app.get('/', function (req, res) {
@@ -71,9 +71,6 @@ app.use(function (error, req, res) {
   });
 });
 
-// app.listen(port);
-app.listen(port, function () {
-  console.log('Server running at port ' + port + '...');
-});
+app.listen(port);
 
 exports.default = app;

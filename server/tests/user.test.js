@@ -1,16 +1,30 @@
-/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../app';
+
+import {
+  authUser,
+} from './dummy';
 
 chai.should();
 chai.use(chaiHttp);
 
 describe('User Endpoints', () => {
+  let authToken;
+  before((done) => {
+    chai.request(server).post('/api/v1/auth/signin')
+      .send(authUser)
+      .end((err, res) => {
+        authToken = res.body.data.token; // save the token
+        done();
+      });
+  });
+
   it('Should retrieve all users', (done) => {
     chai.request(server)
-      .get('/api/users')
+      .get('/api/v1/users')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
@@ -22,8 +36,9 @@ describe('User Endpoints', () => {
 
   it('Should retrieve a specific user/client', (done) => {
     chai.request(server)
-      .get('/api/users/1')
+      .get('/api/v1/users/1')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
@@ -35,8 +50,9 @@ describe('User Endpoints', () => {
 
   it('Should not retrieve a specific user/client if user is not found', (done) => {
     chai.request(server)
-      .get('/api/users/0')
+      .get('/api/v1/users/0')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);
@@ -47,8 +63,9 @@ describe('User Endpoints', () => {
 
   it('Should not retrieve a specific user/client if the userId is not specified', (done) => {
     chai.request(server)
-      .get('/api/users/dsss')
+      .get('/api/v1/users/dsss')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);
@@ -59,8 +76,9 @@ describe('User Endpoints', () => {
 
   it('Should verify a user if email of the user is found', (done) => {
     chai.request(server)
-      .put('/api/users/hervera@gmail.com/verify')
+      .patch('/api/v1/users/hervera@gmail.com/verify')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
@@ -72,8 +90,9 @@ describe('User Endpoints', () => {
 
   it('Should not verify a user if email is not found', (done) => {
     chai.request(server)
-      .put('/api/users/xxxxx@gmail.com/verify')
+      .patch('/api/v1/users/xxxxx@gmail.com/verify')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);
@@ -84,8 +103,9 @@ describe('User Endpoints', () => {
 
   it('Should not verify a user if email is not specified', (done) => {
     chai.request(server)
-      .put('/api/users/xxxxx/verify')
+      .patch('/api/v1/users/xxxxx/verify')
       .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);

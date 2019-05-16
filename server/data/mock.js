@@ -3,9 +3,9 @@ import bcrypt from 'bcryptjs';
 const users = [
   {
     id: 1,
-    email: 'hervera@gmail.com',
-    firstName: 'Herve',
-    lastName: 'Nkuri',
+    email: 'admin@gmail.com',
+    firstName: 'The Quick',
+    lastName: 'Loan Admin',
     password: bcrypt.hashSync('secret', 10),
     status: 'verified',
     address: 'Kigali, Gasabo',
@@ -14,8 +14,8 @@ const users = [
   },
   {
     id: 2,
-    email: 'brad@gmail.com',
-    firstName: 'Brad',
+    email: 'client@gmail.com',
+    firstName: 'client',
     lastName: 'John',
     password: bcrypt.hashSync('secret', 10),
     status: 'unverified',
@@ -39,7 +39,7 @@ const users = [
 const loans = [
   {
     id: 1,
-    user: 'hervera@gmail.com',
+    user: 'client@gmail.com',
     createdOn: 'March 3th 2019, 11:00:00 am',
     status: 'pending',
     tenor: 4,
