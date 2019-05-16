@@ -16,7 +16,6 @@ var _dummy = require('./dummy');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable no-undef */
 _chai2.default.should();
 _chai2.default.use(_chaiHttp2.default);
 

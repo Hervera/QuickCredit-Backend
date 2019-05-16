@@ -12,22 +12,18 @@ var _app = require('../app');
 
 var _app2 = _interopRequireDefault(_app);
 
+var _dummy = require('./dummy');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_chai2.default.should(); /* eslint-disable no-undef */
-
+_chai2.default.should();
 _chai2.default.use(_chaiHttp2.default);
 
 describe('Repayment Endpoints', function () {
   var authToken = void 0;
   before(function (done) {
-    var user = {
-      email: 'hervera@gmail.com',
-      password: 'secret'
-    };
-
-    _chai2.default.request(_app2.default).post('/api/v1/auth/signin').send(user).end(function (err, res) {
-      authToken = res.body.data[0].token; // save the token
+    _chai2.default.request(_app2.default).post('/api/v1/auth/signin').send(_dummy.authUser).end(function (err, res) {
+      authToken = res.body.data.token; // save the token
       done();
     });
   });

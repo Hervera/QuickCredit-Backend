@@ -12,22 +12,18 @@ var _app = require('../app');
 
 var _app2 = _interopRequireDefault(_app);
 
+var _dummy = require('./dummy');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_chai2.default.should(); /* eslint-disable no-undef */
-
+_chai2.default.should();
 _chai2.default.use(_chaiHttp2.default);
 
 describe('User Endpoints', function () {
   var authToken = void 0;
   before(function (done) {
-    var user = {
-      email: 'hervera@gmail.com',
-      password: 'secret'
-    };
-
-    _chai2.default.request(_app2.default).post('/api/v1/auth/signin').send(user).end(function (err, res) {
-      authToken = res.body.data[0].token; // save the token
+    _chai2.default.request(_app2.default).post('/api/v1/auth/signin').send(_dummy.authUser).end(function (err, res) {
+      authToken = res.body.data.token; // save the token
       done();
     });
   });
@@ -71,7 +67,7 @@ describe('User Endpoints', function () {
   });
 
   it('Should verify a user if email of the user is found', function (done) {
-    _chai2.default.request(_app2.default).put('/api/v1/users/hervera@gmail.com/verify').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
+    _chai2.default.request(_app2.default).patch('/api/v1/users/hervera@gmail.com/verify').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
       res.body.should.be.an('Object');
       res.body.should.have.property('status').equal(200);
       res.body.should.have.property('data');
@@ -81,7 +77,7 @@ describe('User Endpoints', function () {
   });
 
   it('Should not verify a user if email is not found', function (done) {
-    _chai2.default.request(_app2.default).put('/api/v1/users/xxxxx@gmail.com/verify').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
+    _chai2.default.request(_app2.default).patch('/api/v1/users/xxxxx@gmail.com/verify').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
       res.body.should.be.an('Object');
       res.body.should.have.property('status').equal(404);
       res.body.should.have.property('error');
@@ -90,7 +86,7 @@ describe('User Endpoints', function () {
   });
 
   it('Should not verify a user if email is not specified', function (done) {
-    _chai2.default.request(_app2.default).put('/api/v1/users/xxxxx/verify').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
+    _chai2.default.request(_app2.default).patch('/api/v1/users/xxxxx/verify').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
       res.body.should.be.an('Object');
       res.body.should.have.property('status').equal(400);
       res.body.should.have.property('error');

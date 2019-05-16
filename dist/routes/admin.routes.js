@@ -30,10 +30,10 @@ var router = _express2.default.Router();
 
 router.get('/users', _auth2.default.verifyToken, _userController2.default.getAllUsers);
 router.get('/users/:id', _auth2.default.verifyToken, _userController2.default.getSpecificUser);
-router.put('/users/:email/verify', _auth2.default.verifyToken, _userController2.default.verifyUser);
+router.patch('/users/:email/verify', _auth2.default.verifyToken, _userController2.default.verifyUser);
 router.get('/loans', _auth2.default.verifyToken, _loanController2.default.retrieveLoans);
 router.get('/loans/:id', _auth2.default.verifyToken, _loanController2.default.getSpecificLoan);
-router.put('/loans/:id', _auth2.default.verifyToken, _loanController2.default.approveOrRejectLoan);
+router.patch('/loans/:id', _auth2.default.verifyToken, _loanController2.default.approveOrRejectLoan);
 router.get('/loans/:id/repayments', _auth2.default.verifyToken, _repaymentController2.default.loanRepaymentHistory);
 router.post('/loans/:id/repayment', _auth2.default.verifyToken, _repaymentController2.default.createLoanRepayment);
 

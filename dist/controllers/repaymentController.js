@@ -28,8 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var repayments = {
   loanRepaymentHistory: function loanRepaymentHistory(req, res) {
-    var id = req.params.id;
-
+    var id = Number(req.params.id);
     var repaymentHistory = _mock2.default.repayments.filter(function (result) {
       return result.loanId === id;
     });
@@ -64,16 +63,26 @@ var repayments = {
     var repaidTrue = _mock2.default.loans.find(function (result) {
       return result.id === loanId && result.repaid === 'true';
     });
+    var paidAmount = req.body.paidAmount;
 
-    var _Joi$validate2 = _joi2.default.validate({
-      loanId: loanId
-    }, _validation2.default.loanIdParams),
+    var _Joi$validate2 = _joi2.default.validate({ loanId: loanId }, _validation2.default.loanIdParams),
         error = _Joi$validate2.error;
 
+    var result = _joi2.default.validate(req.body, _validation2.default.repaymentSchema, { abortEarly: false });
     if (error) {
       return res.status(400).json({
         status: res.statusCode,
         error: error.details[0].message
+      });
+    }
+    if (result.error) {
+      var errors = [];
+      for (var index = 0; index < result.error.details.length; index++) {
+        errors.push(result.error.details[index].message.split('"').join(''));
+      }
+      return res.status(400).send({
+        status: res.statusCode,
+        error: errors
       });
     }
     if (repaidTrue) {
@@ -86,22 +95,6 @@ var repayments = {
       return res.status(404).json({
         status: res.statusCode,
         error: 'The loan doesn\'t exist'
-      });
-    }
-
-    // Validate the inputs in body
-    var paidAmount = req.body.paidAmount;
-
-    var result = _joi2.default.validate(req.body, _validation2.default.repaymentSchema, { abortEarly: false });
-
-    if (result.error) {
-      var errors = [];
-      for (var index = 0; index < result.error.details.length; index++) {
-        errors.push(result.error.details[index].message.split('"').join(''));
-      }
-      return res.status(400).send({
-        status: res.statusCode,
-        error: errors
       });
     }
 

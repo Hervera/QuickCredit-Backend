@@ -51,16 +51,16 @@ app.use(_bodyParser2.default.urlencoded({ extended: false }));
 app.use('/api/v1/auth', _auth2.default);
 app.use('/api/v1', _admin2.default);
 app.use('/api/v1', _client2.default);
+app.get('/', function (req, res) {
+  return res.redirect('/documentation');
+});
 app.use('/documentation', _swaggerUiExpress2.default.serve, _swaggerUiExpress2.default.setup(_swagger2.default));
 
-app.get('/', function (req, res) {
-  res.status(200).json({ message: 'Welcome to Quick Credit application' });
-});
-
-app.use(function (req, res, next) {
-  var error = new Error('Not found');
-  error.status = 404;
-  next(error);
+app.use(function (req, res) {
+  return res.status(404).send({
+    status: 404,
+    error: 'url is not found'
+  });
 });
 
 app.use(function (error, req, res) {
