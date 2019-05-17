@@ -2,9 +2,12 @@ import Joi from 'joi';
 import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 import User from '../models/User';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
+
+dotenv.config();
 
 const auth = {
   register(req, res) {
@@ -40,7 +43,7 @@ const auth = {
     );
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
-    const token = jwt.sign({ user: mock.users.push(user) }, 'secret-key');
+    const token = jwt.sign({ user: mock.users.push(user) }, `${process.env.SECRET_KEY_CODE}`);
     return res.status(201).send({
       status: res.statusCode,
       data: {
@@ -82,7 +85,7 @@ const auth = {
         const { createdOn } = mock.users[i];
         const truePass = bcrypt.compareSync(password, mock.users[i].password);
         if (truePass) {
-          const token = jwt.sign({ user: mock.users[i].password }, 'secret-key', { expiresIn: '1h' });
+          const token = jwt.sign({ user: mock.users[i].password }, `${process.env.SECRET_KEY_CODE}`, { expiresIn: '1h' });
           return res.status(200).send({
             status: res.statusCode,
             data: {
