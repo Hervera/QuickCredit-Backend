@@ -20,6 +20,10 @@ var _bcryptjs = require('bcryptjs');
 
 var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 var _User = require('../models/User');
 
 var _User2 = _interopRequireDefault(_User);
@@ -33,6 +37,8 @@ var _validation = require('../helpers/validation');
 var _validation2 = _interopRequireDefault(_validation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_dotenv2.default.config();
 
 var auth = {
   register: function register(req, res) {
@@ -72,7 +78,7 @@ var auth = {
     var user = new _User2.default(id, firstName, lastName, email, password, address, status, isAdmin, createdOn);
     var hash = _bcryptjs2.default.hashSync(user.password, 10);
     user.password = hash;
-    var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users.push(user) }, 'secret-key');
+    var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users.push(user) }, '' + process.env.SECRET_KEY_CODE);
     return res.status(201).send({
       status: res.statusCode,
       data: {
@@ -117,7 +123,7 @@ var auth = {
 
         var truePass = _bcryptjs2.default.compareSync(password, _mock2.default.users[i].password);
         if (truePass) {
-          var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users[i].password }, 'secret-key', { expiresIn: '1h' });
+          var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users[i].password }, '' + process.env.SECRET_KEY_CODE, { expiresIn: '1h' });
           return res.status(200).send({
             status: res.statusCode,
             data: {
