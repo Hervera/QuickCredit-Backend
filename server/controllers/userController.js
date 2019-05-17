@@ -12,13 +12,20 @@ const users = {
         error: 'No user found',
       });
     } else {
-      // const valueToShow = mock.users.forEach((item) => {
-      //   item.password;
-      // });
+      // Remove of password in each object of the
+      // for (let i = 0, len = mock.users.length; i < len; i++) {
+      //   delete mock.users[i].password;
+      // }
+      // or use map() instead of for loop
+      const newUsersArray = mock.users.map((eachItem) => {
+        const item = eachItem;
+        delete item.password;
+        return item;
+      });
       res.status(200).json({
         status: 200,
         successMessage: 'Users',
-        data: mock.users,
+        data: newUsersArray,
       });
     }
   },
@@ -40,6 +47,7 @@ const users = {
       });
     }
     const user = mock.users.find(el => el.id === id);
+    delete user.password;
     if (user) {
       return res.status(200).json({
         status: 200,
@@ -68,6 +76,7 @@ const users = {
       });
     }
     const user = mock.users.find(el => el.email === email);
+    delete user.password; // remove the password from the object you want to display in the output
     if (user) {
       user.status = 'verified';
       return res.status(200).json({
