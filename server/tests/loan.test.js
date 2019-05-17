@@ -50,7 +50,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not retrieve a specific loan if a loan doesn\'t exist', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/0')
+      .get('/api/v1/loans/50000')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -133,7 +133,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not approve or reject a specific a loan if it is not found', (done) => {
     chai.request(server)
-      .patch('/api/v1/loans/0')
+      .patch('/api/v1/loans/50000')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {

@@ -50,7 +50,7 @@ describe('User Endpoints', () => {
 
   it('Should not retrieve a specific user/client if user is not found', (done) => {
     chai.request(server)
-      .get('/api/v1/users/0')
+      .get('/api/v1/users/50000')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {

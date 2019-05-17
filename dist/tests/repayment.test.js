@@ -38,7 +38,7 @@ describe('Repayment Endpoints', function () {
   });
 
   it('Should not retrieve repayment history if a loan doesn\'t exist', function (done) {
-    _chai2.default.request(_app2.default).get('/api/v1/loans/0/repayments').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
+    _chai2.default.request(_app2.default).get('/api/v1/loans/50000/repayments').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
       res.body.should.be.an('Object');
       res.body.should.have.property('status').equal(404);
       res.body.should.have.property('error');

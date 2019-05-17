@@ -50,9 +50,9 @@ var loans = [{
   tenor: 4,
   repaid: 'false',
   amount: 550000,
-  paymentInstallment: 137500.025,
+  paymentInstallment: 144375,
   balance: 100000,
-  interest: 0.10
+  interest: 27500
 }, {
   id: 2,
   user: 'brad@gmail.com',
@@ -61,9 +61,9 @@ var loans = [{
   tenor: 6,
   repaid: 'true',
   amount: 100000,
-  paymentInstallment: 16666.7,
+  paymentInstallment: 17500,
   balance: 102000,
-  interest: 0.20
+  interest: 5000
 }, {
   id: 3,
   user: 'johnLee@gmail.com',
@@ -72,9 +72,9 @@ var loans = [{
   tenor: 8,
   repaid: 'false',
   amount: 200000,
-  paymentInstallment: 25000.03125,
+  paymentInstallment: 26250,
   balance: 50000,
-  interest: 0.25
+  interest: 10000
 }, {
   id: 4,
   user: 'danny5@gmail.com',
@@ -83,9 +83,9 @@ var loans = [{
   tenor: 4,
   repaid: 'false',
   amount: 400000,
-  paymentInstallment: 100000.0375,
+  paymentInstallment: 105000,
   balance: 100000,
-  interest: 0.15
+  interest: 20000
 }, {
   id: 5,
   user: 'eric@gmail.com',
@@ -94,9 +94,9 @@ var loans = [{
   tenor: 6,
   repaid: 'false',
   amount: 100000,
-  paymentInstallment: 16666.7,
+  paymentInstallment: 17500,
   balance: 60000,
-  interest: 0.20
+  interest: 5000
 }, {
   id: 6,
   user: 'peter@gmail.com',
@@ -105,9 +105,9 @@ var loans = [{
   tenor: 6,
   repaid: 'true',
   amount: 200000,
-  paymentInstallment: 25000.03125,
+  paymentInstallment: 35000,
   balance: 250000,
-  interest: 0.25
+  interest: 10000
 }];
 
 var repayments = [{
@@ -115,7 +115,7 @@ var repayments = [{
   loanId: 2,
   createdOn: 'March 5th 2019, 08:00:00 pm',
   amount: 100000,
-  monthlyInstallment: 16666.7,
+  monthlyInstallment: 17500,
   paidAmount: 50000,
   repaid: 'false',
   balance: 50000,
@@ -126,77 +126,77 @@ var repayments = [{
   loanId: 2,
   createdOn: 'March 6th 2019, 08:00:00 pm',
   amount: 100000,
-  monthlyInstallment: 16666.7,
+  monthlyInstallment: 17500,
   paidAmount: 25000,
   repaid: 'false',
   balance: 750000,
-  interest: 0.20,
+  interest: 5000,
   remain: 27000
 }, {
   id: 3,
   loanId: 2,
   createdOn: 'March 7th 2019, 08:00:00 pm',
   amount: 100000,
-  monthlyInstallment: 16666.7,
+  monthlyInstallment: 17500,
   repaid: 'true',
   paidAmount: 27000,
   balance: 102000,
-  interest: 0.20,
+  interest: 5000,
   remain: 0
 }, {
   id: 4,
   loanId: 5,
   createdOn: 'March 21th 2019, 07:00:00 pm',
   amount: 100000,
-  monthlyInstallment: 16666.7,
+  monthlyInstallment: 17500,
   repaid: 'false',
   paidAmount: 30000,
   balance: 30000,
-  interest: 0.20,
+  interest: 5000,
   remain: 72000
 }, {
   id: 5,
   loanId: 5,
   createdOn: 'March 21th 2019, 07:00:00 pm',
   amount: 100000,
-  monthlyInstallment: 16666.7,
+  monthlyInstallment: 17500,
   paidAmount: 30000,
   repaid: 'false',
   balance: 60000,
-  interest: 0.20,
+  interest: 5000,
   remain: 42000
 }, {
   id: 6,
   loanId: 6,
   createdOn: 'March 24th 2019, 02:00:00 pm',
   amount: 400000,
-  monthlyInstallment: 25000.03125,
+  monthlyInstallment: 35000,
   paidAmount: 50000,
   repaid: 'false',
   balance: 50000,
-  interest: 0.25,
+  interest: 5000,
   remain: 200000
 }, {
   id: 7,
   loanId: 6,
   createdOn: 'March 24th 2019, 02:00:00 pm',
   amount: 400000,
-  monthlyInstallment: 25000.03125,
+  monthlyInstallment: 35000,
   paidAmount: 120000,
   repaid: 'false',
   balance: 170000,
-  interest: 0.25,
+  interest: 5000,
   remain: 80000
 }, {
   id: 8,
   loanId: 6,
   createdOn: 'March 24th 2019, 02:00:00 pm',
   amount: 400000,
-  monthlyInstallment: 25000.03125,
+  monthlyInstallment: 35000,
   paidAmount: 80000,
   repaid: 'true',
   balance: 250000,
-  interest: 0.25,
+  interest: 5000,
   remain: 0
 }];
 

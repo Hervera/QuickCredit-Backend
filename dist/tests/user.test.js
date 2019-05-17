@@ -49,7 +49,7 @@ describe('User Endpoints', function () {
   });
 
   it('Should not retrieve a specific user/client if user is not found', function (done) {
-    _chai2.default.request(_app2.default).get('/api/v1/users/0').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
+    _chai2.default.request(_app2.default).get('/api/v1/users/50000').set('Accept', 'Application/JSON').set('Authorization', 'Bearer ' + authToken).end(function (err, res) {
       res.body.should.be.an('Object');
       res.body.should.have.property('status').equal(404);
       res.body.should.have.property('error');

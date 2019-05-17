@@ -107,16 +107,16 @@ var loans = {
     var id = _mock2.default.loans.length + 1;
     var status = 'pending';
     var repaid = 'false';
-    var interest = 5;
+    var interest = amount * 0.05;
     var paymentInstallment = (amount + interest) / tenor;
     var balance = 0;
     var createdOn = (0, _moment2.default)().format('MMMM Do YYYY, h:mm:ss a');
     var loan = new _Loan2.default(id, user, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest);
 
-    var checkUser = _mock2.default.users.filter(function (verifyUser) {
+    var checkUser = _mock2.default.users.find(function (verifyUser) {
       return verifyUser.email === user;
     });
-    if (checkUser.length === 0) {
+    if (!checkUser) {
       return res.status(404).send({
         status: 404,
         error: 'The user with that email is not registered'

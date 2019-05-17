@@ -35,7 +35,7 @@ describe('Repayment Endpoints', () => {
 
   it('Should not retrieve repayment history if a loan doesn\'t exist', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/0/repayments')
+      .get('/api/v1/loans/50000/repayments')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {

@@ -81,7 +81,7 @@ const loans = {
     const id = mock.loans.length + 1;
     const status = 'pending';
     const repaid = 'false';
-    const interest = 5;
+    const interest = amount * 0.05;
     const paymentInstallment = (amount + interest) / tenor;
     const balance = 0;
     const createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -89,8 +89,8 @@ const loans = {
       id, user, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest,
     );
 
-    const checkUser = mock.users.filter(verifyUser => verifyUser.email === user);
-    if (checkUser.length === 0) {
+    const checkUser = mock.users.find(verifyUser => verifyUser.email === user);
+    if (!checkUser) {
       return res.status(404).send({
         status: 404,
         error: 'The user with that email is not registered',

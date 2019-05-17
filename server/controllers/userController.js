@@ -47,8 +47,8 @@ const users = {
       });
     }
     const user = mock.users.find(el => el.id === id);
-    delete user.password;
     if (user) {
+      delete user.password;
       return res.status(200).json({
         status: 200,
         data: user,
@@ -76,8 +76,8 @@ const users = {
       });
     }
     const user = mock.users.find(el => el.email === email);
-    delete user.password; // remove the password from the object you want to display in the output
     if (user) {
+      delete user.password; // remove the password from the object you want to display in the output
       user.status = 'verified';
       return res.status(200).json({
         status: 200,

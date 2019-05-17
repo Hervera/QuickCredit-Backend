@@ -102,7 +102,7 @@ var repayments = {
     var createdOn = (0, _moment2.default)().format('MMMM Do YYYY, h:mm:ss a');
     var monthlyInstallment = 4; // bring back paymentInstallment of that specific loan; (work on this later)
     var amount = 600000; // bring back loan amount of that specific loan; (work on this later)
-    var interest = 0.20; // bring back interest of that specific loan; (work on this later)
+    var interest = amount * 0.5;
     var balance = 50000; //  balance = paidAmount + lastBalance; (work on this later)
     var remain = 40000; // remain = amount - balance; (work on this later)
     var repaid = 'false'; // compare the loan amount and the balance of that specific loan, if they are equal change repaid to true ; (work on this later)
