@@ -43,7 +43,7 @@ Starting application run the following npm scripts
 * `npm start` for starting the server.
 
 # Testing
-When you need to test the application and view test coverate run:
+When you need to test the application and view test coverage run:
 * `npm test` for running the tests, and 
 * `npm run coverage` for getting the coverage summary.
 
