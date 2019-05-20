@@ -5,9 +5,9 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import User from '../models/User';
 import db from '../data/connection';
-import mock from '../data/mock';
 import validate from '../helpers/validation';
 import queries from '../data/queries';
+import Helper from '../helpers/passwordCompare';
 
 dotenv.config();
 
@@ -78,7 +78,7 @@ class AuthController {
     }
   }
 
-  static login(req, res) {
+  static async login(req, res) {
     const { error } = Joi.validate(req.body, validate.loginSchema);
     if (error) {
       const errors = [];
@@ -90,42 +90,40 @@ class AuthController {
         error: errors,
       });
     }
-
-    const user = mock.users.find(findEmail => findEmail.email === req.body.email);
-    if (!user) {
-      return res.status(400).json({
+    try {
+      const { rows } = await db.query(queries.selectUser, [req.body.email]);
+      if (rows.length === 0) {
+        return res.status(550).send({
+          status: res.statusCode,
+          error: 'User with that email is not found',
+        });
+      }
+      if (!Helper.comparePassword(rows[0].password, req.body.password)) {
+        return res.status(400).json({
+          status: res.statusCode,
+          error: 'The credentials you provided is incorrect',
+        });
+      }
+      const options = { expiresIn: '2d' };
+      const token = jwt.sign({ rows }, `${process.env.SECRET_KEY_CODE}`, options);
+      return res.status(200).send({
         status: res.statusCode,
-        error: 'Invalid email',
+        data: {
+          token,
+          id: rows[0].id,
+          firstName: rows[0].firstname,
+          lastName: rows[0].lastname,
+          isAdmin: rows[0].isadmin,
+          email: rows[0].email,
+          address: rows[0].address,
+        },
+      });
+    } catch (er) {
+      return res.status(400).send({
+        status: res.statusCode,
+        error: `error ${er}`,
       });
     }
-    const passwordCompare = bcrypt.compareSync(req.body.password, user.password);
-
-    if (!passwordCompare) {
-      return res.status(400).json({
-        status: res.statusCode,
-        error: 'Incorrect password',
-      });
-    }
-    const payload = {
-      id: user.id,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    };
-    const options = { expiresIn: '2d' };
-    const token = jwt.sign(payload, `${process.env.SECRET_KEY_CODE}`, options);
-    return res.status(200).send({
-      status: res.statusCode,
-      data: {
-        token,
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        status: user.status,
-        isAdmin: user.isAdmin,
-        email: user.email,
-        address: user.address,
-      },
-    });
   }
 }
 
