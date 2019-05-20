@@ -1,3 +1,5 @@
+import randomEmail from 'random-email';
+
 const user1 = {
   firstName: '445',
   lastName: '',
@@ -17,7 +19,7 @@ const registeredUser = {
 const newUser = {
   firstName: 'Hervera',
   lastName: 'Nkuli',
-  email: 'hervera@gmail.com',
+  email: randomEmail(),
   password: 'secret',
   address: 'Kigali, Gasabo',
 };

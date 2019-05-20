@@ -4,13 +4,15 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import User from '../models/User';
+import db from '../data/connection';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
+import queries from '../data/queries';
 
 dotenv.config();
 
-const auth = {
-  register(req, res) {
+class AuthController {
+  static async register(req, res) {
     const {
       firstName, lastName, email, password, address,
     } = req.body;
@@ -27,40 +29,56 @@ const auth = {
         error: errors,
       });
     }
-    const uniqueUser = mock.users.find(user => user.email === email);
-    if (uniqueUser) {
-      return res.status(409).json({
-        status: res.statusCode,
-        error: `User with this email:${JSON.stringify(email)} is already registered`,
-      });
-    }
-    const id = mock.users.length + 1;
     const status = 'unverified';
-    const createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
+    const createdOn = moment(new Date());
+    const updatedOn = moment(new Date());
     const isAdmin = 'false';
     const user = new User(
-      id, firstName, lastName, email, password, address, status, isAdmin, createdOn,
+      firstName, lastName, email, password, address, status, isAdmin, createdOn, updatedOn,
     );
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
-    const token = jwt.sign({ user: mock.users.push(user) }, `${process.env.SECRET_KEY_CODE}`);
-    return res.status(201).send({
-      status: res.statusCode,
-      data: {
-        token,
-        id: user.id,
-        fistName: firstName,
-        lastName: user.lastName,
-        email: user.email,
-        address: user.address,
-        status: user.status,
-        isAdmin: user.isAdmin,
-        CreatedOn: user.createdOn,
-      },
-    });
-  },
+    const values = [
+      user.firstName,
+      user.lastName,
+      user.email,
+      user.password,
+      user.address,
+      user.status,
+      user.isAdmin,
+      user.createdOn,
+      user.updatedOn,
+    ];
+    try {
+      const { payload } = await db.query(queries.insertUser, values);
+      // create token
+      const token = jwt.sign({ payload }, `${process.env.SECRET_KEY_CODE}`, { expiresIn: '2d' });
+      return res.status(201).send({
+        status: res.statusCode,
+        data: {
+          token,
+          id: user.id,
+          fistName: firstName,
+          lastName: user.lastName,
+          email: user.email,
+          address: user.address,
+          status: user.status,
+          isAdmin: user.isAdmin,
+          CreatedOn: user.createdOn,
+        },
+      });
+    } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(409).json({
+          status: res.statusCode,
+          error: 'User with that EMAIL already exist',
+        });
+      }
+      return res.status(500).json({ status: 500, error: `error ${error}` });
+    }
+  }
 
-  login(req, res) {
+  static login(req, res) {
     const { error } = Joi.validate(req.body, validate.loginSchema);
     if (error) {
       const errors = [];
@@ -108,7 +126,7 @@ const auth = {
         address: user.address,
       },
     });
-  },
-};
+  }
+}
 
-export default auth;
+export default AuthController;

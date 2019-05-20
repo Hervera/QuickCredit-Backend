@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 describe('Repayment Endpoints', () => {
   let authToken;
   before((done) => {
-    chai.request(server).post('/api/v1/auth/signin')
+    chai.request(server).post('/api/v2/auth/signin')
       .send(authUser)
       .end((err, res) => {
         authToken = res.body.data.token; // save the token
@@ -21,7 +21,7 @@ describe('Repayment Endpoints', () => {
   });
   it('Should retrieve repayment history if a loan exists', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/2/repayments')
+      .get('/api/v2/loans/2/repayments')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -35,7 +35,7 @@ describe('Repayment Endpoints', () => {
 
   it('Should not retrieve repayment history if a loan doesn\'t exist', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/50000/repayments')
+      .get('/api/v2/loans/50000/repayments')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -48,7 +48,7 @@ describe('Repayment Endpoints', () => {
 
   it('Should not retrieve repayment history if a loanId is not specified', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/dsss/repayments')
+      .get('/api/v2/loans/dsss/repayments')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -64,7 +64,7 @@ describe('Repayment Endpoints', () => {
       paidAmount: 5000000,
     };
     chai.request(server)
-      .post('/api/v1/loans/5/repayment')
+      .post('/api/v2/loans/5/repayment')
       .send(loan)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
@@ -82,7 +82,7 @@ describe('Repayment Endpoints', () => {
       paidAmount: 5000000,
     };
     chai.request(server)
-      .post('/api/v1/loans/1/repayment')
+      .post('/api/v2/loans/1/repayment')
       .send(loan)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)

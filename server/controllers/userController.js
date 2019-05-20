@@ -2,37 +2,25 @@ import Joi from 'joi';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
 
-const users = {
-
+class UserController {
   // Get all users
-  getAllUsers(req, res) {
+  static getAllUsers(req, res) {
     if (mock.users.length === 0) {
       res.status(404).json({
         status: 404,
         error: 'No user found',
       });
     } else {
-      // Remove of password in each object of the array, but this avoid login again for data structures bcz all password are removed
-      // const TheArray = mock.users;
-      // for (let i = 0, len = TheArray.length; i < len; i++) {
-      //   TheArray[i].password = undefined;
-      // }
-      // or use map() instead of for loop
-      // const newUsersArray = mock.users.map((eachItem) => {
-      //   const item = eachItem;
-      //   delete item.password;
-      //   return item;
-      // });
       res.status(200).json({
         status: 200,
         successMessage: 'Users',
         data: mock.users,
       });
     }
-  },
+  }
 
   // Get a specific user details
-  getSpecificUser(req, res) {
+  static getSpecificUser(req, res) {
     const id = parseInt(req.params.id, 10);
     const { error } = Joi.validate(
       {
@@ -67,9 +55,9 @@ const users = {
       status: 404,
       error: 'User is not found',
     });
-  },
+  }
 
-  verifyUser(req, res) {
+  static verifyUser(req, res) {
     const { email } = req.params;
     const { error } = Joi.validate(
       {
@@ -105,7 +93,7 @@ const users = {
       status: 404,
       error: 'User is not found',
     });
-  },
-};
+  }
+}
 
-export default users;
+export default UserController;

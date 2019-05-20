@@ -1,6 +1,6 @@
 import express from 'express';
-import auth from '../middleware/auth';
-import loanController from '../controllers/loanController';
+import auth from '../middleware/VerifyAuthToken';
+import loanController from '../controllers/LoanController';
 
 
 const router = express.Router();

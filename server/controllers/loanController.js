@@ -4,9 +4,8 @@ import Loan from '../models/Loan';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
 
-const loans = {
-
-  retrieveLoans(req, res) {
+class LoanController {
+  static retrieveLoans(req, res) {
     // Get all current loans that are not fully repaid.
     const reqStatus = req.query.status;
     const reqRepaid = req.query.repaid;
@@ -28,10 +27,10 @@ const loans = {
         error: 'No loan found',
       });
     }
-  },
+  }
 
   // Get specific loan details
-  getSpecificLoan(req, res) {
+  static getSpecificLoan(req, res) {
     const id = parseInt(req.params.id, 10);
     const { error } = Joi.validate(
       {
@@ -58,9 +57,9 @@ const loans = {
       status: 404,
       error: 'Loan is not found',
     });
-  },
+  }
 
-  createLoan(req, res) {
+  static createLoan(req, res) {
     const {
       user, tenor, amount,
     } = req.body;
@@ -110,9 +109,9 @@ const loans = {
         interest: loan.interest,
       },
     });
-  },
+  }
 
-  approveOrRejectLoan(req, res) {
+  static approveOrRejectLoan(req, res) {
     const id = parseInt(req.params.id, 10);
     const { error } = Joi.validate(
       {
@@ -140,7 +139,7 @@ const loans = {
       status: 404,
       error: 'Loan is not found',
     });
-  },
-};
+  }
+}
 
-export default loans;
+export default LoanController;

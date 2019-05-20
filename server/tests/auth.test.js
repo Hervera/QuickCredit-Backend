@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 describe('User authentication Endpoints', () => {
   it('Should not create an account if input are not validated', (done) => {
     chai.request(server)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .send(user1)
       .set('Accept', 'Application/JSON')
       .end((err, res) => {
@@ -25,7 +25,7 @@ describe('User authentication Endpoints', () => {
 
   it('Should not create an account if user email already exists', (done) => {
     chai.request(server)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .send(registeredUser)
       .set('Accept', 'Application/JSON')
       .end((err, res) => {
@@ -38,7 +38,7 @@ describe('User authentication Endpoints', () => {
 
   it('Should create an account', (done) => {
     chai.request(server)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .send(newUser)
       .set('Accept', 'Application/JSON')
       .end((err, res) => {
@@ -52,7 +52,7 @@ describe('User authentication Endpoints', () => {
 
   it('Should be able to login', (done) => {
     chai.request(server)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send(authUser)
       .end((err, res) => {
         res.body.should.be.an('Object');
@@ -65,7 +65,7 @@ describe('User authentication Endpoints', () => {
 
   it('Should not login a user if email is incorrect', (done) => {
     chai.request(server)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send(falseUserEmail)
       .end((err, res) => {
         res.body.should.be.an('Object');
@@ -77,7 +77,7 @@ describe('User authentication Endpoints', () => {
 
   it('Should not login a user if password is incorrect', (done) => {
     chai.request(server)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send(falseUserPassword)
       .end((err, res) => {
         res.body.should.be.an('Object');

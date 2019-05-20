@@ -1,8 +1,9 @@
 node_modules
+dist
+coverage
 .babelrc
 .eslintrc.json
 .nyc_output
 .coveralls.yml
 .travis.yml
-dist
 .env

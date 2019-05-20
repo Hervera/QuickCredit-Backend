@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.routes';
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
 import swaggerDocument from '../swagger.json';
+// import { createTables } from './data/create_tables';
 
 const app = express();
 
@@ -14,15 +15,17 @@ const port = process.env.PORT || 3000;
 
 dotenv.config();
 
+// createTables();
+
 app.use(morgan('dev'));
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes which should handle requests
-app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1', adminRoutes);
-app.use('/api/v1', clientRoutes);
+app.use('/api/v2/auth', authRoutes);
+app.use('/api/v2', adminRoutes);
+app.use('/api/v2', clientRoutes);
 app.get('/', (req, res) => res.redirect('/documentation'));
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 

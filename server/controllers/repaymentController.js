@@ -4,9 +4,8 @@ import Repayment from '../models/Repayment';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
 
-const repayments = {
-
-  loanRepaymentHistory(req, res) {
+class RepaymentController {
+  static loanRepaymentHistory(req, res) {
     const id = Number(req.params.id);
     const repaymentHistory = mock.repayments.filter(result => result.loanId === id);
     const { error } = Joi.validate(
@@ -31,9 +30,9 @@ const repayments = {
         error: 'There is no repayment history for that loan',
       });
     }
-  },
+  }
 
-  createLoanRepayment(req, res) {
+  static createLoanRepayment(req, res) {
     const loanId = parseInt(req.params.id, 10);
     const checkLoanId = mock.loans.find(result => result.id === loanId && result.status === 'approved');
     const repaidTrue = mock.loans.find(result => result.id === loanId && result.repaid === 'true');
@@ -95,7 +94,7 @@ const repayments = {
         CreatedOn: repayment.createdOn,
       },
     });
-  },
-};
+  }
+}
 
-export default repayments;
+export default RepaymentController;
