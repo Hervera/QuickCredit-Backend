@@ -1,6 +1,5 @@
 class Loan {
-  constructor(id, user, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest) {
-    this.id = id;
+  constructor(user, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest) {
     this.user = user;
     this.createdOn = createdOn;
     this.status = status;

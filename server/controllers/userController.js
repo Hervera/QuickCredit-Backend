@@ -2,10 +2,9 @@ import Joi from 'joi';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
 
-const users = {
-
+class UserController {
   // Get all users
-  getAllUsers(req, res) {
+  static getAllUsers(req, res) {
     if (mock.users.length === 0) {
       res.status(404).json({
         status: 404,
@@ -18,10 +17,10 @@ const users = {
         data: mock.users,
       });
     }
-  },
+  }
 
   // Get a specific user details
-  getSpecificUser(req, res) {
+  static getSpecificUser(req, res) {
     const id = parseInt(req.params.id, 10);
     const { error } = Joi.validate(
       {
@@ -56,9 +55,9 @@ const users = {
       status: 404,
       error: 'User is not found',
     });
-  },
+  }
 
-  verifyUser(req, res) {
+  static verifyUser(req, res) {
     const { email } = req.params;
     const { error } = Joi.validate(
       {
@@ -94,7 +93,7 @@ const users = {
       status: 404,
       error: 'User is not found',
     });
-  },
-};
+  }
+}
 
-export default users;
+export default UserController;

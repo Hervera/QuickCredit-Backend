@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 describe('Loan Endpoints', () => {
   let authToken;
   before((done) => {
-    chai.request(server).post('/api/v1/auth/signin')
+    chai.request(server).post('/api/v2/auth/signin')
       .send(authUser)
       .end((err, res) => {
         authToken = res.body.data.token; // save the token
@@ -22,7 +22,7 @@ describe('Loan Endpoints', () => {
 
   it('Should retrieve all loans', (done) => {
     chai.request(server)
-      .get('/api/v1/loans')
+      .get('/api/v2/loans')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -36,7 +36,7 @@ describe('Loan Endpoints', () => {
 
   it('Should retrieve a specific loan', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/2')
+      .get('/api/v2/loans/2')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -50,7 +50,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not retrieve a specific loan if a loan doesn\'t exist', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/50000')
+      .get('/api/v2/loans/50000')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -63,7 +63,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not retrieve a specific loan if a loanId is not specified', (done) => {
     chai.request(server)
-      .get('/api/v1/loans/dsss')
+      .get('/api/v2/loans/dsss')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -76,7 +76,7 @@ describe('Loan Endpoints', () => {
 
   it('Should create a loan', (done) => {
     chai.request(server)
-      .post('/api/v1/loans')
+      .post('/api/v2/loans')
       .send(newLoan)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
@@ -91,7 +91,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not create a loan if a user with this email doesn\'t exist', (done) => {
     chai.request(server)
-      .post('/api/v1/loans')
+      .post('/api/v2/loans')
       .send(fakeLoan1)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
@@ -105,7 +105,7 @@ describe('Loan Endpoints', () => {
 
   it('Should create a loan if email is not specified in url params', (done) => {
     chai.request(server)
-      .post('/api/v1/loans')
+      .post('/api/v2/loans')
       .send(fakeLoan2)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
@@ -119,7 +119,7 @@ describe('Loan Endpoints', () => {
 
   it('Should approve or reject a specific loan', (done) => {
     chai.request(server)
-      .patch('/api/v1/loans/2')
+      .patch('/api/v2/loans/2')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -133,7 +133,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not approve or reject a specific a loan if it is not found', (done) => {
     chai.request(server)
-      .patch('/api/v1/loans/50000')
+      .patch('/api/v2/loans/50000')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -146,7 +146,7 @@ describe('Loan Endpoints', () => {
 
   it('Should not retrieve approve or reject a loan if the loanId is not specified', (done) => {
     chai.request(server)
-      .patch('/api/v1/loans/dsss')
+      .patch('/api/v2/loans/dsss')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {

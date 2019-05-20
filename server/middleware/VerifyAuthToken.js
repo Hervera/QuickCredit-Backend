@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const auth = {
-  async verifyToken(req, res, next) {
+class AuthMiddleware {
+  static async verifyToken(req, res, next) {
     const authorizationHeaader = req.headers.authorization; // Express headers are auto converted to lowercase
     if (authorizationHeaader) {
       const token = req.headers.authorization.split(' ')[1]; // Bearer <token>
@@ -32,7 +32,7 @@ const auth = {
         error: "'Unauthorized, No token provided",
       });
     }
-  },
-};
+  }
+}
 
-export default auth;
+export default AuthMiddleware;
