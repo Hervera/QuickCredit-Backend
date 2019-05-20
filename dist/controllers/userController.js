@@ -28,20 +28,21 @@ var users = {
         error: 'No user found'
       });
     } else {
-      // Remove of password in each object of the
-      // for (let i = 0, len = mock.users.length; i < len; i++) {
-      //   delete mock.users[i].password;
+      // Remove of password in each object of the array, but this avoid login again for data structures bcz all password are removed
+      // const TheArray = mock.users;
+      // for (let i = 0, len = TheArray.length; i < len; i++) {
+      //   TheArray[i].password = undefined;
       // }
       // or use map() instead of for loop
-      var newUsersArray = _mock2.default.users.map(function (eachItem) {
-        var item = eachItem;
-        delete item.password;
-        return item;
-      });
+      // const newUsersArray = mock.users.map((eachItem) => {
+      //   const item = eachItem;
+      //   delete item.password;
+      //   return item;
+      // });
       res.status(200).json({
         status: 200,
         successMessage: 'Users',
-        data: newUsersArray
+        data: _mock2.default.users
       });
     }
   },
@@ -66,10 +67,18 @@ var users = {
       return el.id === id;
     });
     if (user) {
-      delete user.password;
       return res.status(200).json({
         status: 200,
-        data: user
+        data: {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          status: user.status,
+          address: user.address,
+          isAdmin: user.isAdmin,
+          createdOn: user.createdOn
+        }
       });
     }
     return res.status(404).json({
@@ -95,11 +104,19 @@ var users = {
       return el.email === email;
     });
     if (user) {
-      delete user.password; // remove the password from the object you want to display in the output
       user.status = 'verified';
       return res.status(200).json({
         status: 200,
-        data: user
+        data: {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          status: user.status,
+          address: user.address,
+          isAdmin: user.isAdmin,
+          createdOn: user.createdOn
+        }
       });
     }
     return res.status(404).json({

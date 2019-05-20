@@ -8,7 +8,7 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _auth = require('../middleware/auth.middleware');
+var _auth = require('../middleware/auth');
 
 var _auth2 = _interopRequireDefault(_auth);
 
