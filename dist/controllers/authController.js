@@ -16,13 +16,13 @@ var _jsonwebtoken = require('jsonwebtoken');
 
 var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
-var _bcryptjs = require('bcryptjs');
-
-var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
-
 var _dotenv = require('dotenv');
 
 var _dotenv2 = _interopRequireDefault(_dotenv);
+
+var _bcryptjs = require('bcryptjs');
+
+var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 
 var _User = require('../models/User');
 
@@ -95,10 +95,6 @@ var auth = {
     });
   },
   login: function login(req, res) {
-    var _req$body2 = req.body,
-        email = _req$body2.email,
-        password = _req$body2.password;
-
     var _Joi$validate = _joi2.default.validate(req.body, _validation2.default.loginSchema),
         error = _Joi$validate.error;
 
@@ -112,32 +108,44 @@ var auth = {
         error: errors
       });
     }
-    for (var i = 0; i < _mock2.default.users.length; i++) {
-      if (_mock2.default.users[i].email === email) {
-        var id = _mock2.default.users[i].id;
-        var firstName = _mock2.default.users[i].firstName;
-        var lastName = _mock2.default.users[i].lastName;
-        var status = _mock2.default.users[i].status;
-        var isAdmin = _mock2.default.users[i].isAdmin;
-        var createdOn = _mock2.default.users[i].createdOn;
 
-        var truePass = _bcryptjs2.default.compareSync(password, _mock2.default.users[i].password);
-        if (truePass) {
-          var token = _jsonwebtoken2.default.sign({ user: _mock2.default.users[i].password }, '' + process.env.SECRET_KEY_CODE, { expiresIn: '1h' });
-          return res.status(200).send({
-            status: res.statusCode,
-            data: {
-              token: token, id: id, firstName: firstName, lastName: lastName, email: email, status: status, isAdmin: isAdmin, createdOn: createdOn
-            }
-          });
-        }
-        return res.status(400).send({
-          status: res.statusCode,
-          error: 'incorrect password'
-        });
-      }
+    var user = _mock2.default.users.find(function (findEmail) {
+      return findEmail.email === req.body.email;
+    });
+    if (!user) {
+      return res.status(400).json({
+        status: res.statusCode,
+        error: 'Invalid email'
+      });
     }
-    return res.status(400).send({ status: 400, error: 'invalid email' });
+    var passwordCompare = _bcryptjs2.default.compareSync(req.body.password, user.password);
+
+    if (!passwordCompare) {
+      return res.status(400).json({
+        status: res.statusCode,
+        error: 'Incorrect password'
+      });
+    }
+    var payload = {
+      id: user.id,
+      email: user.email,
+      isAdmin: user.isAdmin
+    };
+    var options = { expiresIn: '2d' };
+    var token = _jsonwebtoken2.default.sign(payload, '' + process.env.SECRET_KEY_CODE, options);
+    return res.status(200).send({
+      status: res.statusCode,
+      data: {
+        token: token,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        status: user.status,
+        isAdmin: user.isAdmin,
+        email: user.email,
+        address: user.address
+      }
+    });
   }
 };
 

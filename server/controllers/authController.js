@@ -1,8 +1,8 @@
 import Joi from 'joi';
 import moment from 'moment';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
 import User from '../models/User';
 import mock from '../data/mock';
 import validate from '../helpers/validation';
@@ -61,10 +61,7 @@ const auth = {
   },
 
   login(req, res) {
-    const { email, password } = req.body;
-
     const { error } = Joi.validate(req.body, validate.loginSchema);
-
     if (error) {
       const errors = [];
       for (let index = 0; index < error.details.length; index++) {
@@ -75,31 +72,42 @@ const auth = {
         error: errors,
       });
     }
-    for (let i = 0; i < mock.users.length; i++) {
-      if (mock.users[i].email === email) {
-        const { id } = mock.users[i];
-        const { firstName } = mock.users[i];
-        const { lastName } = mock.users[i];
-        const { status } = mock.users[i];
-        const { isAdmin } = mock.users[i];
-        const { createdOn } = mock.users[i];
-        const truePass = bcrypt.compareSync(password, mock.users[i].password);
-        if (truePass) {
-          const token = jwt.sign({ user: mock.users[i].password }, `${process.env.SECRET_KEY_CODE}`, { expiresIn: '1h' });
-          return res.status(200).send({
-            status: res.statusCode,
-            data: {
-              token, id, firstName, lastName, email, status, isAdmin, createdOn,
-            },
-          });
-        }
-        return res.status(400).send({
-          status: res.statusCode,
-          error: 'incorrect password',
-        });
-      }
+
+    const user = mock.users.find(findEmail => findEmail.email === req.body.email);
+    if (!user) {
+      return res.status(400).json({
+        status: res.statusCode,
+        error: 'Invalid email',
+      });
     }
-    return res.status(400).send({ status: 400, error: 'invalid email' });
+    const passwordCompare = bcrypt.compareSync(req.body.password, user.password);
+
+    if (!passwordCompare) {
+      return res.status(400).json({
+        status: res.statusCode,
+        error: 'Incorrect password',
+      });
+    }
+    const payload = {
+      id: user.id,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    };
+    const options = { expiresIn: '2d' };
+    const token = jwt.sign(payload, `${process.env.SECRET_KEY_CODE}`, options);
+    return res.status(200).send({
+      status: res.statusCode,
+      data: {
+        token,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        status: user.status,
+        isAdmin: user.isAdmin,
+        email: user.email,
+        address: user.address,
+      },
+    });
   },
 };
 
