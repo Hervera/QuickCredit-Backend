@@ -22,8 +22,8 @@
         }
     ],
     "schemes": [
-        "http",
-        "https"
+        "https",
+        "http"
     ],
     "securityDefinitions": {
         "Bearer": {

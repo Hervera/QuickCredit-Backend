@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import swaggerUI from 'swagger-ui-express';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import authRoutes from './routes/auth.routes';
 import adminRoutes from './routes/admin.routes';
@@ -10,6 +11,8 @@ import swaggerDocument from '../swagger.json';
 const app = express();
 
 const port = process.env.PORT || 3000;
+
+dotenv.config();
 
 app.use(morgan('dev'));
 // Parse incoming requests data

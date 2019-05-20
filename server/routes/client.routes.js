@@ -1,5 +1,5 @@
 import express from 'express';
-import auth from '../middleware/auth.middleware';
+import auth from '../middleware/auth';
 import loanController from '../controllers/loanController';
 
 
