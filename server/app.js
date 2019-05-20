@@ -7,12 +7,15 @@ import authRoutes from './routes/auth.routes';
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
 import swaggerDocument from '../swagger.json';
+import { createTables } from './data/create_tables';
 
 const app = express();
 
 const port = process.env.PORT || 3000;
 
 dotenv.config();
+
+createTables();
 
 app.use(morgan('dev'));
 // Parse incoming requests data

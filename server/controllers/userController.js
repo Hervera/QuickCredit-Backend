@@ -12,17 +12,6 @@ const users = {
         error: 'No user found',
       });
     } else {
-      // Remove of password in each object of the array, but this avoid login again for data structures bcz all password are removed
-      // const TheArray = mock.users;
-      // for (let i = 0, len = TheArray.length; i < len; i++) {
-      //   TheArray[i].password = undefined;
-      // }
-      // or use map() instead of for loop
-      // const newUsersArray = mock.users.map((eachItem) => {
-      //   const item = eachItem;
-      //   delete item.password;
-      //   return item;
-      // });
       res.status(200).json({
         status: 200,
         successMessage: 'Users',

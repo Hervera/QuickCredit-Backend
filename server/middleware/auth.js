@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-// import mock from '../data/mock';
 
 dotenv.config();
 
@@ -16,7 +15,6 @@ const auth = {
       try {
         // verify makes sure that the token hasn't expired
         result = jwt.verify(token, `${process.env.SECRET_KEY_CODE}`, options);
-        // Let's pass back the decoded token to the request object
         req.decoded = result;
         // We call next to pass execution to the subsequent middleware
         next();
