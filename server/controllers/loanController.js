@@ -8,13 +8,30 @@ import queries from '../data/queries';
 
 class LoanController {
   static async retrieveLoans(req, res) {
-    // Get all current loans
     try {
+      // Get all current loans
       const { rows, rowCount } = await db.query(queries.retrieveAllLoans);
-      return res.status(200).json({
+      const reqStatus = req.query.status;
+      const reqRepaid = req.query.repaid;
+
+      // Get all loans which safisfies the requested status and the requested repaid
+      const reqLoans = await db.query(queries.repaidLoans, [reqStatus, reqRepaid]);
+      if (reqLoans.rows.length !== 0) {
+        return res.status(200).json({
+          status: res.statusCode,
+          data: reqLoans.rows,
+        });
+      }
+      if (reqStatus == null && reqRepaid == null && rows.length !== 0) {
+        return res.status(200).json({
+          status: res.statusCode,
+          total: rowCount,
+          data: rows,
+        });
+      }
+      return res.status(404).json({
         status: res.statusCode,
-        total: rowCount,
-        data: rows,
+        error: 'No loan found',
       });
     } catch (error) {
       return res.status(400).json({
