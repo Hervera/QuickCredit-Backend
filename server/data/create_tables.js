@@ -34,7 +34,7 @@ const createTables = () => new Promise(async (resolve, reject) => {
     CREATE TABLE IF NOT EXISTS
     loans(
       id SERIAL NOT NULL PRIMARY KEY,
-      userID INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      userEmail VARCHAR(255) NOT NULL REFERENCES users(email) ON DELETE CASCADE,
       status VARCHAR(255) NOT NULL,
       repaid BOOLEAN NOT NULL,
       tenor INTEGER NOT NULL,

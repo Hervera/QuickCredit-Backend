@@ -3,11 +3,11 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import User from '../models/User';
+import User from '../Models/User';
 import db from '../data/connection';
-import validate from '../helpers/validation';
+import validate from '../Helpers/Validation';
 import queries from '../data/queries';
-import Helper from '../helpers/passwordCompare';
+import Helper from '../Helpers/PasswordCompare';
 
 dotenv.config();
 
@@ -30,8 +30,8 @@ class AuthController {
       });
     }
     const status = 'unverified';
-    const createdOn = moment(new Date());
-    const updatedOn = moment(new Date());
+    const createdOn = moment().format('LL');
+    const updatedOn = moment().format('LL');
     const isAdmin = 'false';
     const user = new User(
       firstName, lastName, email, password, address, status, isAdmin, createdOn, updatedOn,
@@ -93,15 +93,15 @@ class AuthController {
     try {
       const { rows } = await db.query(queries.selectUser, [req.body.email]);
       if (rows.length === 0) {
-        return res.status(550).send({
+        return res.status(400).send({
           status: res.statusCode,
-          error: 'User with that email is not found',
+          error: 'Invalid email',
         });
       }
       if (!Helper.comparePassword(rows[0].password, req.body.password)) {
         return res.status(400).json({
           status: res.statusCode,
-          error: 'The credentials you provided is incorrect',
+          error: 'Incorrect password',
         });
       }
       const options = { expiresIn: '2d' };
