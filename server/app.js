@@ -17,7 +17,6 @@ dotenv.config();
 
 createTables();
 
-
 app.use(morgan('dev'));
 // Parse incoming requests data
 app.use(bodyParser.json());

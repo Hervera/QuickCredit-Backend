@@ -95,7 +95,7 @@ class AuthController {
       if (rows.length === 0) {
         return res.status(400).send({
           status: res.statusCode,
-          error: 'Invalid email',
+          error: 'User with that email is not found',
         });
       }
       if (!Helper.comparePassword(rows[0].password, req.body.password)) {
