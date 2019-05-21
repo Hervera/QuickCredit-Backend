@@ -1,7 +1,7 @@
 import express from 'express';
-import auth from '../Middleware/VerifyAuthToken';
-import loanController from '../Controllers/LoanController';
-import repaymentController from '../Controllers/RepaymentController';
+import auth from '../middleware/VerifyAuthToken';
+import loanController from '../controllers/LoanController';
+import repaymentController from '../controllers/RepaymentController';
 
 const router = express.Router();
 

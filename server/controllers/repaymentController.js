@@ -1,8 +1,8 @@
 import Joi from 'joi';
 import moment from 'moment';
-import Repayment from '../Models/Repayment';
+import Repayment from '../models/Repayment';
 import mock from '../data/mock';
-import validate from '../Helpers/Validation';
+import validate from '../helpers/validation';
 
 class RepaymentController {
   static loanRepaymentHistory(req, res) {

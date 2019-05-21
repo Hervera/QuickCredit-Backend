@@ -3,11 +3,11 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import User from '../Models/User';
+import User from '../models/User';
 import db from '../data/connection';
-import validate from '../Helpers/Validation';
+import validate from '../helpers/validation';
 import queries from '../data/queries';
-import Helper from '../Helpers/PasswordCompare';
+import Helper from '../helpers/passwordCompare';
 
 dotenv.config();
 

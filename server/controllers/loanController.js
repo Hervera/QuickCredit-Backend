@@ -1,9 +1,9 @@
 import Joi from 'joi';
 import moment from 'moment';
-import Loan from '../Models/Loan';
+import Loan from '../models/Loan';
 import mock from '../data/mock';
 import db from '../data/connection';
-import validate from '../Helpers/Validation';
+import validate from '../helpers/validation';
 import queries from '../data/queries';
 
 class LoanController {
