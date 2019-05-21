@@ -14,17 +14,17 @@ class LoanController {
     const reqLoans = mock.loans.filter(result => result.status === reqStatus && result.repaid === reqRepaid);
 
     if (reqLoans.length !== 0) {
-      res.status(200).send({
+      res.status(200).json({
         status: res.statusCode,
         data: reqLoans,
       });
     } else if (reqStatus == null && reqRepaid == null && mock.loans !== 0) {
-      res.status(200).send({
+      res.status(200).json({
         status: res.statusCode,
         data: mock.loans,
       });
     } else {
-      res.status(404).send({
+      res.status(404).json({
         status: res.statusCode,
         error: 'No loan found',
       });
@@ -32,33 +32,51 @@ class LoanController {
   }
 
   // Get specific loan details
-  static getSpecificLoan(req, res) {
-    const id = parseInt(req.params.id, 10);
-    const { error } = Joi.validate(
-      {
-        id,
-      },
-      validate.idParams,
-    );
+  static async getSpecificLoan(req, res) {
+    try {
+      const { id } = req.params;
+      const { error } = Joi.validate(
+        {
+          id,
+        },
+        validate.idParams,
+      );
+      if (error) {
+        return res.status(400).json({
+          status: res.statusCode,
+          error: error.details[0].message,
+        });
+      }
+      const { rows } = await db.query(queries.getLoan, [req.params.id]);
 
-    if (error) {
-      return res.status(400).send({
-        status: res.statusCode,
-        error: error.details[0].message,
-      });
-    }
-
-    const loan = mock.loans.find(el => el.id === id);
-    if (loan) {
+      if (!rows[0]) {
+        return res.status(404).json({
+          status: res.statusCode,
+          error: 'Loan is not found',
+        });
+      }
       return res.status(200).json({
         status: 200,
-        data: loan,
+        data: {
+          id: 2,
+          user: rows[0].useremail,
+          status: rows[0].status,
+          repaid: rows[0].repaid,
+          tenor: rows[0].tenor,
+          amount: rows[0].amount,
+          paymentInstallment: rows[0].paymentinstallment,
+          balance: rows[0].balance,
+          interest: rows[0].interest,
+          createdOn: rows[0].createdon,
+          updatedOn: rows[0].updatedon,
+        },
+      });
+    } catch (er) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: `${er}`,
       });
     }
-    return res.status(404).send({
-      status: 404,
-      error: 'Loan is not found',
-    });
   }
 
   static async createLoan(req, res) {
@@ -74,7 +92,7 @@ class LoanController {
         for (let index = 0; index < result.error.details.length; index++) {
           errors.push(result.error.details[index].message.split('"').join(''));
         }
-        res.status(400).send({
+        res.status(400).json({
           status: res.statusCode,
           error: errors,
         });
@@ -102,7 +120,7 @@ class LoanController {
         loan.balance, loan.interest, loan.updatedOn,
       ];
       const newLoan = await db.query(queries.insertLoan, values);
-      return res.status(201).send({
+      return res.status(201).json({
         status: res.statusCode,
         data: {
           loanId: newLoan.rows[0].id,
@@ -111,7 +129,7 @@ class LoanController {
           email: newLoan.rows[0].userEmail,
           tenor: newLoan.rows[0].tenor,
           amount: newLoan.rows[0].amount,
-          paymentInstallment: newLoan.rows[0].paymentInstallment,
+          paymentInstallment: newLoan.rows[0].paymentinstallment,
           status: newLoan.rows[0].status,
           balance: newLoan.rows[0].balance,
           interest: newLoan.rows[0].interest,
@@ -135,7 +153,7 @@ class LoanController {
     );
 
     if (error) {
-      return res.status(400).send({
+      return res.status(400).json({
         status: res.statusCode,
         error: error.details[0].message, // error.details to view more about the error
       });
@@ -144,12 +162,12 @@ class LoanController {
     const loan = mock.loans.find(el => el.id === id);
     if (loan) {
       loan.status = req.body.status;
-      return res.status(200).send({
+      return res.status(200).json({
         status: 200,
         data: loan,
       });
     }
-    return res.status(404).send({
+    return res.status(404).json({
       status: 404,
       error: 'Loan is not found',
     });
