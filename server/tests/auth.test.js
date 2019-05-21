@@ -69,7 +69,7 @@ describe('User authentication Endpoints', () => {
       .send(falseUserEmail)
       .end((err, res) => {
         res.body.should.be.an('Object');
-        res.body.should.have.property('status').equal(400);
+        res.body.should.have.property('status').equal(550);
         res.body.should.have.property('error');
         done();
       });
