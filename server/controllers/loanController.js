@@ -7,26 +7,19 @@ import validate from '../helpers/validation';
 import queries from '../data/queries';
 
 class LoanController {
-  static retrieveLoans(req, res) {
-    // Get all current loans that are not fully repaid.
-    const reqStatus = req.query.status;
-    const reqRepaid = req.query.repaid;
-    const reqLoans = mock.loans.filter(result => result.status === reqStatus && result.repaid === reqRepaid);
-
-    if (reqLoans.length !== 0) {
-      res.status(200).json({
+  static async retrieveLoans(req, res) {
+    // Get all current loans
+    try {
+      const { rows, rowCount } = await db.query(queries.retrieveAllLoans);
+      return res.status(200).json({
         status: res.statusCode,
-        data: reqLoans,
+        total: rowCount,
+        data: rows,
       });
-    } else if (reqStatus == null && reqRepaid == null && mock.loans !== 0) {
-      res.status(200).json({
+    } catch (error) {
+      return res.status(400).json({
         status: res.statusCode,
-        data: mock.loans,
-      });
-    } else {
-      res.status(404).json({
-        status: res.statusCode,
-        error: 'No loan found',
+        error: `${error}`,
       });
     }
   }
@@ -92,7 +85,7 @@ class LoanController {
         for (let index = 0; index < result.error.details.length; index++) {
           errors.push(result.error.details[index].message.split('"').join(''));
         }
-        res.status(400).json({
+        return res.status(400).json({
           status: res.statusCode,
           error: errors,
         });

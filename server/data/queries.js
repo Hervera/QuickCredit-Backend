@@ -10,6 +10,8 @@ const insertLoan = `INSERT INTO loans(userEmail, createdOn, status, repaid, teno
 
 const getLoan = 'SELECT * FROM loans WHERE id = $1';
 
+const retrieveAllLoans = 'SELECT * FROM loans';
+
 export default {
-  insertUser, selectUser, retrieveSpecificUser, insertLoan, getLoan,
+  insertUser, selectUser, retrieveSpecificUser, insertLoan, getLoan, retrieveAllLoans,
 };
