@@ -89,7 +89,7 @@ describe('Loan Endpoints', () => {
       });
   });
 
-  it('Should not create a loan if a user with this email doesn\'t exist', (done) => {
+  it('Should not create a loan if a user with the email used is not found', (done) => {
     chai.request(server)
       .post('/api/v2/loans')
       .send(fakeLoan1)

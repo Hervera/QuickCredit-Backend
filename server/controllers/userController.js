@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import mock from '../data/mock';
-import validate from '../helpers/validation';
+import validate from '../Helpers/Validation';
 
 class UserController {
   // Get all users

@@ -1,8 +1,10 @@
 import Joi from 'joi';
 import moment from 'moment';
-import Loan from '../models/Loan';
+import Loan from '../Models/Loan';
 import mock from '../data/mock';
-import validate from '../helpers/validation';
+import db from '../data/connection';
+import validate from '../Helpers/Validation';
+import queries from '../data/queries';
 
 class LoanController {
   static retrieveLoans(req, res) {
@@ -59,56 +61,68 @@ class LoanController {
     });
   }
 
-  static createLoan(req, res) {
-    const {
-      user, tenor, amount,
-    } = req.body;
+  static async createLoan(req, res) {
+    try {
+      const {
+        userEmail, tenor, amount,
+      } = req.body;
 
-    const result = Joi.validate(req.body, validate.loanSchema, { abortEarly: false });
+      const result = Joi.validate(req.body, validate.loanSchema, { abortEarly: false });
 
-    if (result.error) {
-      const errors = [];
-      for (let index = 0; index < result.error.details.length; index++) {
-        errors.push(result.error.details[index].message.split('"').join(''));
+      if (result.error) {
+        const errors = [];
+        for (let index = 0; index < result.error.details.length; index++) {
+          errors.push(result.error.details[index].message.split('"').join(''));
+        }
+        res.status(400).send({
+          status: res.statusCode,
+          error: errors,
+        });
       }
-      return res.status(400).send({
+
+      const status = 'pending';
+      const repaid = 'false';
+      const interest = amount * 0.05;
+      const paymentInstallment = (amount + interest) / tenor;
+      const balance = 0;
+      const createdOn = moment().format('LL');
+      const updatedOn = moment().format('LL');
+      const loan = new Loan(
+        userEmail, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest, updatedOn,
+      );
+      const { rows } = await db.query(queries.retrieveSpecificUser, [userEmail]);
+      if (!rows[0]) {
+        return res.status(404).json({ status: res.statusCode, error: 'That user is not registered' });
+      }
+      const nameFirst = rows[0].firstname;
+      const nameLast = rows[0].lastname;
+
+      const values = [
+        loan.userEmail, loan.createdOn, loan.status, loan.repaid, loan.tenor, loan.amount, loan.paymentInstallment,
+        loan.balance, loan.interest, loan.updatedOn,
+      ];
+      const newLoan = await db.query(queries.insertLoan, values);
+      return res.status(201).send({
         status: res.statusCode,
-        error: errors,
+        data: {
+          loanId: newLoan.rows[0].id,
+          firstName: nameFirst,
+          lastName: nameLast,
+          email: newLoan.rows[0].userEmail,
+          tenor: newLoan.rows[0].tenor,
+          amount: newLoan.rows[0].amount,
+          paymentInstallment: newLoan.rows[0].paymentInstallment,
+          status: newLoan.rows[0].status,
+          balance: newLoan.rows[0].balance,
+          interest: newLoan.rows[0].interest,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: `${error}`,
       });
     }
-
-    const id = mock.loans.length + 1;
-    const status = 'pending';
-    const repaid = 'false';
-    const interest = amount * 0.05;
-    const paymentInstallment = (amount + interest) / tenor;
-    const balance = 0;
-    const createdOn = moment().format('MMMM Do YYYY, h:mm:ss a');
-    const loan = new Loan(
-      id, user, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest,
-    );
-
-    const checkUser = mock.users.find(verifyUser => verifyUser.email === user);
-    if (!checkUser) {
-      return res.status(404).send({
-        status: 404,
-        error: 'The user with that email is not registered',
-      });
-    }
-    return res.status(201).send({
-      status: res.statusCode,
-      data: {
-        id: loan.id,
-        user: loan.user,
-        createdOn: loan.createdOn,
-        repaid: loan.repaid,
-        tenor: loan.tenor,
-        amount: loan.amount,
-        paymentInstallment: loan.paymentInstallment,
-        balance: loan.balance,
-        interest: loan.interest,
-      },
-    });
   }
 
   static approveOrRejectLoan(req, res) {
