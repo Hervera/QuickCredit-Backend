@@ -429,12 +429,12 @@
         },
         "Loan": {
             "required": [
-                "user",
+                "userEmail",
                 "tenor",
                 "amount"
             ],
             "properties": {
-                "user": {
+                "userEmail": {
                     "type": "string"
                 },
                 "tenor": {

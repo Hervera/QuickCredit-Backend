@@ -40,19 +40,19 @@ const falseUserPassword = {
 };
 
 const newLoan = {
-  user: 'client@gmail.com',
+  userEmail: 'client@gmail.com',
   tenor: 4,
   amount: 550000,
 };
 
 const fakeLoan1 = {
-  user: 'xxxxxxxx@gmail.com',
+  userEmail: 'xxxxxxxx@gmail.com',
   tenor: 4,
   amount: 550000,
 };
 
 const fakeLoan2 = {
-  user: 'xxxxxxxx',
+  userEmail: 'xxxxxxxx',
   tenor: 4,
   amount: 550000,
 };

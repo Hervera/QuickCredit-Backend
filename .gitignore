@@ -4,6 +4,4 @@ coverage
 .babelrc
 .eslintrc.json
 .nyc_output
-.coveralls.yml
-.travis.yml
 .env

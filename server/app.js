@@ -3,9 +3,9 @@ import morgan from 'morgan';
 import swaggerUI from 'swagger-ui-express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import authRoutes from './routes/auth.routes';
-import adminRoutes from './routes/admin.routes';
-import clientRoutes from './routes/client.routes';
+import authRoutes from './routes/authRoutes';
+import adminRoutes from './routes/adminRoutes';
+import clientRoutes from './routes/clientRoutes';
 import swaggerDocument from '../swagger.json';
 import { createTables } from './data/create_tables';
 
