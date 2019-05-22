@@ -2,8 +2,9 @@
 const insertUser = `INSERT INTO users(firstName, lastName, email, password, address, status, isAdmin, createdOn, updatedOn)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *`;
 const allUsers = 'SELECT * FROM users';
-const getUserWithId = 'SELECT * FROM users WHERE id = $1';
-const getUserWithEmail = 'SELECT * FROM users WHERE email = $1;';
+const getUserById = 'SELECT * FROM users WHERE id = $1';
+const getUserByEmail = 'SELECT * FROM users WHERE email = $1;';
+const verifyUser = 'UPDATE users SET status=$1, updatedOn=$2 WHERE email=$3 RETURNING *';
 
 // Loan model
 const insertLoan = `INSERT INTO loans(userEmail, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest, updatedOn)
@@ -17,8 +18,9 @@ const approveOrRejectLoan = 'UPDATE loans SET status=$1, updatedOn=$2 WHERE id=$
 export default {
   insertUser,
   allUsers,
-  getUserWithId,
-  getUserWithEmail,
+  getUserById,
+  getUserByEmail,
+  verifyUser,
   insertLoan,
   getLoan,
   retrieveAllLoans,
