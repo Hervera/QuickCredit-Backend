@@ -30,8 +30,8 @@ class AuthController {
       });
     }
     const status = 'unverified';
-    const createdOn = moment().format('LL');
-    const updatedOn = moment().format('LL');
+    const createdOn = moment().format('YYYY-MM-DD HH:mm:ss');
+    const updatedOn = moment().format('YYYY-MM-DD HH:mm:ss');
     const isAdmin = 'false';
     const user = new User(
       firstName, lastName, email, password, address, status, isAdmin, createdOn, updatedOn,
@@ -50,21 +50,21 @@ class AuthController {
       user.updatedOn,
     ];
     try {
-      const { payload } = await db.query(queries.insertUser, values);
+      const payload = await db.query(queries.insertUser, values);
       // create token
-      const token = jwt.sign({ payload }, `${process.env.SECRET_KEY_CODE}`, { expiresIn: '2d' });
+      const token = jwt.sign(payload.rows[0], `${process.env.SECRET_KEY_CODE}`, { expiresIn: '2d' });
       return res.status(201).send({
         status: res.statusCode,
         data: {
           token,
-          id: user.id,
-          fistName: firstName,
-          lastName: user.lastName,
-          email: user.email,
-          address: user.address,
-          status: user.status,
-          isAdmin: user.isAdmin,
-          CreatedOn: user.createdOn,
+          id: payload.rows[0].id,
+          fistName: payload.rows[0].firstname,
+          lastName: payload.rows[0].lastname,
+          email: payload.rows[0].email,
+          address: payload.rows[0].address,
+          status: payload.rows[0].status,
+          isAdmin: payload.rows[0].isadmin,
+          CreatedOn: payload.rows[0].createdon,
         },
       });
     } catch (error) {
@@ -105,7 +105,8 @@ class AuthController {
         });
       }
       const options = { expiresIn: '2d' };
-      const token = jwt.sign({ rows }, `${process.env.SECRET_KEY_CODE}`, options);
+      const token = jwt.sign(rows[0], `${process.env.SECRET_KEY_CODE}`, options);
+
       return res.status(200).send({
         status: res.statusCode,
         data: {

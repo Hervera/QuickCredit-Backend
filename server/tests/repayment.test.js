@@ -71,16 +71,29 @@ describe('Repayment Endpoints', () => {
       });
   });
 
-  it('Should not create a loan repayment record if a loan is not approved or doesn\'t exist.', (done) => {
-
+  it('Should not create a loan repayment record if a loan doesn\'t exist.', (done) => {
     chai.request(server)
-      .post('/api/v2/loans/1/repayment')
+      .post('/api/v2/loans/1000000000/repayment')
       .send(dummy.paidAmount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+
+  it('Should not create a loan repayment record if a loan is not approved', (done) => {
+    chai.request(server)
+      .post('/api/v2/loans/54/repayment')
+      .send(dummy.paidAmount)
+      .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
+      .end((err, res) => {
+        res.body.should.be.an('Object');
+        res.body.should.have.property('status').equal(400);
         res.body.should.have.property('error');
         done();
       });
