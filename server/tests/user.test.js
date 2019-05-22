@@ -1,10 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../app';
-
-import {
-  authUser,
-} from './dummy';
+import dummy from './dummy';
 
 chai.should();
 chai.use(chaiHttp);
@@ -13,7 +10,7 @@ describe('User Endpoints', () => {
   let authToken;
   before((done) => {
     chai.request(server).post('/api/v2/auth/signin')
-      .send(authUser)
+      .send(dummy.authUser)
       .end((err, res) => {
         authToken = res.body.data.token; // save the token
         done();

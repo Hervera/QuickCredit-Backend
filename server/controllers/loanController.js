@@ -1,7 +1,6 @@
 import Joi from 'joi';
 import moment from 'moment';
 import Loan from '../models/Loan';
-import mock from '../data/mock';
 import db from '../data/connection';
 import validate from '../helpers/validation';
 import queries from '../data/queries';
@@ -70,6 +69,7 @@ class LoanController {
         data: {
           id: 2,
           user: rows[0].useremail,
+          createdOn: rows[0].createdon,
           status: rows[0].status,
           repaid: rows[0].repaid,
           tenor: rows[0].tenor,
@@ -77,7 +77,6 @@ class LoanController {
           paymentInstallment: rows[0].paymentinstallment,
           balance: rows[0].balance,
           interest: rows[0].interest,
-          createdOn: rows[0].createdon,
           updatedOn: rows[0].updatedon,
         },
       });
@@ -153,34 +152,52 @@ class LoanController {
     }
   }
 
-  static approveOrRejectLoan(req, res) {
-    const id = parseInt(req.params.id, 10);
-    const { error } = Joi.validate(
-      {
-        id,
-      },
-      validate.idParams,
-    );
-
-    if (error) {
-      return res.status(400).json({
-        status: res.statusCode,
-        error: error.details[0].message, // error.details to view more about the error
-      });
-    }
-
-    const loan = mock.loans.find(el => el.id === id);
-    if (loan) {
-      loan.status = req.body.status;
+  static async approveOrRejectLoan(req, res) {
+    try {
+      const id = parseInt(req.params.id, 10);
+      const { status } = req.body;
+      const { error } = Joi.validate({ id, status }, validate.loanStatusSchema, { abortEarly: false });
+      if (error != null) {
+        const errors = [];
+        for (let index = 0; index < error.details.length; index++) {
+          errors.push(error.details[index].message.split('"').join(''));
+        }
+        return res.status(400).json({
+          status: res.statusCode,
+          error: errors,
+        });
+      }
+      const findLoan = await db.query(queries.getLoan, [req.params.id]);
+      if (findLoan.rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Loan is not found',
+        });
+      }
+      const updateDate = moment().format('LL');
+      const updateLoan = await db.query(queries.approveOrRejectLoan, [req.body.status, updateDate, findLoan.rows[0].id]);
       return res.status(200).json({
         status: 200,
-        data: loan,
+        data: {
+          LoanId: 2,
+          LoanAmount: updateLoan.rows[0].amount,
+          tenor: updateLoan.rows[0].tenor,
+          status: updateLoan.rows[0].status,
+          monthlyInstallment: updateLoan.rows[0].paymentinstallment,
+          interest: updateLoan.rows[0].interest,
+          user: updateLoan.rows[0].useremail,
+          repaid: updateLoan.rows[0].repaid,
+          balance: updateLoan.rows[0].balance,
+          createdOn: updateLoan.rows[0].createdon,
+          updatedOn: updateLoan.rows[0].updatedon,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: `${error}`,
       });
     }
-    return res.status(404).json({
-      status: 404,
-      error: 'Loan is not found',
-    });
   }
 }
 

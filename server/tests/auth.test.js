@@ -1,10 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../app';
-
-import {
-  user1, registeredUser, newUser, authUser, falseUserEmail, falseUserPassword,
-} from './dummy';
+import dummy from './dummy';
 
 chai.should();
 chai.use(chaiHttp);
@@ -13,7 +10,7 @@ describe('User authentication Endpoints', () => {
   it('Should not create an account if input are not validated', (done) => {
     chai.request(server)
       .post('/api/v2/auth/signup')
-      .send(user1)
+      .send(dummy.user1)
       .set('Accept', 'Application/JSON')
       .end((err, res) => {
         res.body.should.be.an('Object');
@@ -26,7 +23,7 @@ describe('User authentication Endpoints', () => {
   it('Should not create an account if user email already exists', (done) => {
     chai.request(server)
       .post('/api/v2/auth/signup')
-      .send(registeredUser)
+      .send(dummy.registeredUser)
       .set('Accept', 'Application/JSON')
       .end((err, res) => {
         res.body.should.be.an('Object');
@@ -39,7 +36,7 @@ describe('User authentication Endpoints', () => {
   it('Should create an account', (done) => {
     chai.request(server)
       .post('/api/v2/auth/signup')
-      .send(newUser)
+      .send(dummy.newUser)
       .set('Accept', 'Application/JSON')
       .end((err, res) => {
         res.body.should.be.an('Object');
@@ -53,7 +50,7 @@ describe('User authentication Endpoints', () => {
   it('Should be able to login', (done) => {
     chai.request(server)
       .post('/api/v2/auth/signin')
-      .send(authUser)
+      .send(dummy.authUser)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
@@ -66,7 +63,7 @@ describe('User authentication Endpoints', () => {
   it('Should not login a user if email is incorrect', (done) => {
     chai.request(server)
       .post('/api/v2/auth/signin')
-      .send(falseUserEmail)
+      .send(dummy.falseUserEmail)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);
@@ -78,7 +75,7 @@ describe('User authentication Endpoints', () => {
   it('Should not login a user if password is incorrect', (done) => {
     chai.request(server)
       .post('/api/v2/auth/signin')
-      .send(falseUserPassword)
+      .send(dummy.falseUserPassword)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);

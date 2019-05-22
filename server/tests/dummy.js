@@ -57,6 +57,14 @@ const fakeLoan2 = {
   amount: 550000,
 };
 
-export {
-  user1, registeredUser, newUser, authUser, falseUserEmail, falseUserPassword, newLoan, fakeLoan1, fakeLoan2,
+const LoanStatus = {
+  status: 'approved',
+};
+
+const paidAmount = {
+  paidAmount: 5000000,
+};
+
+export default {
+  user1, registeredUser, newUser, authUser, falseUserEmail, falseUserPassword, newLoan, fakeLoan1, fakeLoan2, LoanStatus, paidAmount,
 };

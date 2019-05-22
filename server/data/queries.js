@@ -10,7 +10,15 @@ const insertLoan = `INSERT INTO loans(userEmail, createdOn, status, repaid, teno
 const getLoan = 'SELECT * FROM loans WHERE id = $1';
 const retrieveAllLoans = 'SELECT * FROM loans';
 const repaidLoans = 'SELECT * FROM loans where status = $1 AND repaid = $2';
+const approveOrRejectLoan = 'UPDATE loans SET status=$1, updatedOn=$2 WHERE id=$3 RETURNING *';
 
 export default {
-  insertUser, selectUser, retrieveSpecificUser, insertLoan, getLoan, retrieveAllLoans, repaidLoans,
+  insertUser,
+  selectUser,
+  retrieveSpecificUser,
+  insertLoan,
+  getLoan,
+  retrieveAllLoans,
+  repaidLoans,
+  approveOrRejectLoan,
 };
