@@ -1,10 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../app';
-
-import {
-  authUser,
-} from './dummy';
+import dummy from './dummy';
 
 chai.should();
 chai.use(chaiHttp);
@@ -13,7 +10,7 @@ describe('Repayment Endpoints', () => {
   let authToken;
   before((done) => {
     chai.request(server).post('/api/v2/auth/signin')
-      .send(authUser)
+      .send(dummy.authUser)
       .end((err, res) => {
         authToken = res.body.data.token; // save the token
         done();
@@ -60,12 +57,9 @@ describe('Repayment Endpoints', () => {
   });
 
   it('Should create a loan repayment record.', (done) => {
-    const loan = {
-      paidAmount: 5000000,
-    };
     chai.request(server)
       .post('/api/v2/loans/5/repayment')
-      .send(loan)
+      .send(dummy.paidAmount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -78,12 +72,10 @@ describe('Repayment Endpoints', () => {
   });
 
   it('Should not create a loan repayment record if a loan is not approved or doesn\'t exist.', (done) => {
-    const loan = {
-      paidAmount: 5000000,
-    };
+
     chai.request(server)
       .post('/api/v2/loans/1/repayment')
-      .send(loan)
+      .send(dummy.paidAmount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
