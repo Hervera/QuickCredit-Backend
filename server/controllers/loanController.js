@@ -117,7 +117,7 @@ class LoanController {
       const loan = new Loan(
         userEmail, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest, updatedOn,
       );
-      const { rows } = await db.query(queries.retrieveSpecificUser, [userEmail]);
+      const { rows } = await db.query(queries.getUserWithEmail, [userEmail]);
       if (!rows[0]) {
         return res.status(404).json({ status: res.statusCode, error: 'That user is not registered' });
       }
