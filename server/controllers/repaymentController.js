@@ -1,36 +1,42 @@
 import Joi from 'joi';
 import moment from 'moment';
 import Repayment from '../models/Repayment';
-import mock from '../data/mock';
 import validate from '../helpers/validation';
 import db from '../data/connection';
 import queries from '../data/queries';
 
 
 class RepaymentController {
-  static loanRepaymentHistory(req, res) {
-    const id = Number(req.params.id);
-    const repaymentHistory = mock.repayments.filter(result => result.loanId === id);
-    const { error } = Joi.validate(
-      {
-        id,
-      },
-      validate.idParams,
-    );
-    if (error) {
-      res.status(400).json({
+  static async loanRepaymentHistory(req, res) {
+    try {
+      const loanId = Number(req.params.id);
+      const { error } = Joi.validate(
+        {
+          loanId,
+        },
+        validate.loanIdParams,
+      );
+      if (error) {
+        return res.status(400).json({
+          status: res.statusCode,
+          error: error.details[0].message,
+        });
+      }
+      const repaymentHistory = await db.query(queries.repaymentHistory, [loanId]);
+      if (repaymentHistory.rows.length === 0) {
+        return res.status(404).json({
+          status: res.statusCode,
+          error: 'There is no repayment history for that loan',
+        });
+      } 
+      return res.status(200).json({
         status: res.statusCode,
-        error: error.details[0].message,
+        data: repaymentHistory.rows,
       });
-    } else if (repaymentHistory.length !== 0) {
-      res.status(200).json({
+    } catch (error) {
+      return res.status(500).json({
         status: res.statusCode,
-        data: repaymentHistory,
-      });
-    } else {
-      res.status(404).json({
-        status: res.statusCode,
-        error: 'There is no repayment history for that loan',
+        error: `${error}`,
       });
     }
   }

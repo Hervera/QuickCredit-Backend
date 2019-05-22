@@ -32,7 +32,7 @@ describe('Repayment Endpoints', () => {
 
   it('Should not retrieve repayment history if a loan doesn\'t exist', (done) => {
     chai.request(server)
-      .get('/api/v2/loans/50000/repayments')
+      .get('/api/v2/loans/500000/repayments')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -88,6 +88,20 @@ describe('Repayment Endpoints', () => {
   it('Should not create a loan repayment record if a loan is not approved', (done) => {
     chai.request(server)
       .post('/api/v2/loans/54/repayment')
+      .send(dummy.paidAmount)
+      .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
+      .end((err, res) => {
+        res.body.should.be.an('Object');
+        res.body.should.have.property('status').equal(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+
+  it('Should not create a loan repayment record if a loan is not specified', (done) => {
+    chai.request(server)
+      .post('/api/v2/loans/xxxxx/repayment')
       .send(dummy.paidAmount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
