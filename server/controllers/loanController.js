@@ -162,8 +162,7 @@ class LoanController {
         for (let index = 0; index < error.details.length; index++) {
           errors.push(error.details[index].message.split('"').join(''));
         }
-        return res.status(422).json({
-          // send a 422 error response if validation fails
+        return res.status(400).json({
           status: res.statusCode,
           error: errors,
         });
