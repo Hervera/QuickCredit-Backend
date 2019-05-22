@@ -7,12 +7,12 @@
   "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.",
   "main": "server/app.js",
   "scripts": {
-    "test-dev": "mocha --require babel-register ./server/tests --timeout 1200 --exit",
+    "test": "mocha --require babel-register ./server/tests --timeout 1200 --exit",
     "start-dev": "nodemon --exec babel-node server/app.js",
-    "test": "mocha dist/tests",
     "start": "node dist/app.js",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
     "coverage": "nyc npm run test-dev && nyc report --reporter=text-lcov | coveralls",
+    "create": "babel-node server/data/create_tables.js createTables",
     "build": "babel --presets es2015 -d dist/ server"
   },
   "heroku-run-build-script": true,

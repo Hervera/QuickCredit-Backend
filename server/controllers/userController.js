@@ -1,20 +1,29 @@
 import Joi from 'joi';
 import mock from '../data/mock';
+import db from '../data/connection';
+import queries from '../data/queries';
 import validate from '../helpers/validation';
 
 class UserController {
   // Get all users
-  static getAllUsers(req, res) {
-    if (mock.users.length === 0) {
-      res.status(404).json({
-        status: 404,
-        error: 'No user found',
-      });
-    } else {
-      res.status(200).json({
+  static async getAllUsers(req, res) {
+    try {
+      const allUsers = await db.query(queries.allUsers);
+      if (allUsers.rows.length === 0) {
+        res.status(404).json({
+          status: 404,
+          error: 'No user found',
+        });
+      } 
+      return res.status(200).json({
         status: 200,
         successMessage: 'Users',
-        data: mock.users,
+        data: allUsers.rows,
+      });
+    } catch (er) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error: `${er}`,
       });
     }
   }
