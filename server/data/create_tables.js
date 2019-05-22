@@ -49,14 +49,13 @@ const createTables = () => new Promise(async (resolve, reject) => {
     CREATE TABLE IF NOT EXISTS
     repayments(
       id SERIAL NOT NULL PRIMARY KEY,
-      loadId INTEGER NOT NULL REFERENCES loans(id) ON DELETE CASCADE,
+      loanId INTEGER NOT NULL REFERENCES loans(id) ON DELETE CASCADE,
       paidAmount NUMERIC NOT NULL,
       monthlyInstallment VARCHAR(255) NOT NULL,
       repaid BOOLEAN NOT NULL,
       balance NUMERIC NOT NULL,
       remain NUMERIC NOT NULL,
-      createdOn TIMESTAMP,
-      updatedOn TIMESTAMP
+      createdOn TIMESTAMP
     );`;
 
   try {

@@ -95,7 +95,7 @@ class UserController {
           error: 'User is not found',
         });
       }
-      const updateDate = moment().format('LL');
+      const updateDate = moment().format('YYYY-MM-DD HH:mm:ss');
       const updatedUser = await db.query(queries.verifyUser, ['verified', updateDate, user.rows[0].email]);
       return res.status(200).json({
         status: 200,

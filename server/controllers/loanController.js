@@ -112,8 +112,8 @@ class LoanController {
       const interest = amount * 0.05;
       const paymentInstallment = (amount + interest) / tenor;
       const balance = 0;
-      const createdOn = moment().format('LL');
-      const updatedOn = moment().format('LL');
+      const createdOn = moment().format('YYYY-MM-DD HH:mm:ss');
+      const updatedOn = moment().format('YYYY-MM-DD HH:mm:ss');
       const loan = new Loan(
         userEmail, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest, updatedOn,
       );
@@ -174,7 +174,7 @@ class LoanController {
           error: 'Loan is not found',
         });
       }
-      const updateDate = moment().format('LL');
+      const updateDate = moment().format('YYYY-MM-DD HH:mm:ss');
       const updatedLoan = await db.query(queries.approveOrRejectLoan, [req.body.status, updateDate, findLoan.rows[0].id]);
       return res.status(200).json({
         status: 200,

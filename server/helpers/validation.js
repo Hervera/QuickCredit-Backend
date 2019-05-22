@@ -33,6 +33,7 @@ const loanSchema = Joi.object().keys({
 });
 
 const repaymentSchema = Joi.object().keys({
+  loanId: Joi.number().integer().required(),
   paidAmount: Joi.number().required(),
 });
 
