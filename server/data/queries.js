@@ -17,6 +17,8 @@ const approveOrRejectLoan = 'UPDATE loans SET status=$1, updatedOn=$2 WHERE id=$
 // Repayment queries
 const insertRepayment = `INSERT INTO repayments(loanId, monthlyInstallment, paidAmount, repaid, balance, remain, createdOn)
      VALUES ($1, $2, $3, $4, $5, $6, $7) returning *`;
+const repaymentHistory = 'SELECT * FROM repayments where loanId = $1';
+
 export default {
   insertUser,
   allUsers,
@@ -29,4 +31,5 @@ export default {
   repaidLoans,
   approveOrRejectLoan,
   insertRepayment,
+  repaymentHistory,
 };
