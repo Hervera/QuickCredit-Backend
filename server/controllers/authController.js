@@ -91,7 +91,7 @@ class AuthController {
       });
     }
     try {
-      const { rows } = await db.query(queries.getUserWithEmail, [req.body.email]);
+      const { rows } = await db.query(queries.getUserByEmail, [req.body.email]);
       if (rows.length === 0) {
         return res.status(400).send({
           status: res.statusCode,
