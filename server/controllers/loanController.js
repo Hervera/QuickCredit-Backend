@@ -33,7 +33,7 @@ class LoanController {
         error: 'No loan found',
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         status: res.statusCode,
         error: `${error}`,
       });
@@ -69,15 +69,15 @@ class LoanController {
         data: {
           id: 2,
           user: rows[0].useremail,
-          createdOn: rows[0].createdon,
+          createdon: rows[0].createdon,
           status: rows[0].status,
           repaid: rows[0].repaid,
           tenor: rows[0].tenor,
           amount: rows[0].amount,
-          paymentInstallment: rows[0].paymentinstallment,
+          paymentinstallment: rows[0].paymentinstallment,
           balance: rows[0].balance,
           interest: rows[0].interest,
-          updatedOn: rows[0].updatedon,
+          updatedon: rows[0].updatedon,
         },
       });
     } catch (er) {
@@ -91,7 +91,7 @@ class LoanController {
   static async createLoan(req, res) {
     try {
       const {
-        userEmail, tenor, amount,
+        useremail, tenor, amount,
       } = req.body;
 
       const result = Joi.validate(req.body, validate.loanSchema, { abortEarly: false });
@@ -110,14 +110,14 @@ class LoanController {
       const status = 'pending';
       const repaid = 'false';
       const interest = amount * 0.05;
-      const paymentInstallment = (amount + interest) / tenor;
+      const paymentinstallment = (amount + interest) / tenor;
       const balance = 0;
-      const createdOn = moment().format('YYYY-MM-DD HH:mm:ss');
-      const updatedOn = moment().format('YYYY-MM-DD HH:mm:ss');
+      const createdon = moment().format('YYYY-MM-DD HH:mm:ss');
+      const updatedon = moment().format('YYYY-MM-DD HH:mm:ss');
       const loan = new Loan(
-        userEmail, createdOn, status, repaid, tenor, amount, paymentInstallment, balance, interest, updatedOn,
+        useremail, createdon, status, repaid, tenor, amount, paymentinstallment, balance, interest, updatedon,
       );
-      const { rows } = await db.query(queries.getUserByEmail, [userEmail]);
+      const { rows } = await db.query(queries.getUserByEmail, [useremail]);
       if (!rows[0]) {
         return res.status(404).json({ status: res.statusCode, error: 'That user is not registered' });
       }
@@ -125,20 +125,20 @@ class LoanController {
       const nameLast = rows[0].lastname;
 
       const values = [
-        loan.userEmail, loan.createdOn, loan.status, loan.repaid, loan.tenor, loan.amount, loan.paymentInstallment,
-        loan.balance, loan.interest, loan.updatedOn,
+        loan.useremail, loan.createdon, loan.status, loan.repaid, loan.tenor, loan.amount, loan.paymentinstallment,
+        loan.balance, loan.interest, loan.updatedon,
       ];
       const newLoan = await db.query(queries.insertLoan, values);
       return res.status(201).json({
         status: res.statusCode,
         data: {
           loanId: newLoan.rows[0].id,
-          firstName: nameFirst,
-          lastName: nameLast,
-          email: newLoan.rows[0].userEmail,
+          firstname: nameFirst,
+          lastname: nameLast,
+          email: newLoan.rows[0].useremail,
           tenor: newLoan.rows[0].tenor,
           amount: newLoan.rows[0].amount,
-          paymentInstallment: newLoan.rows[0].paymentinstallment,
+          paymentinstallment: newLoan.rows[0].paymentinstallment,
           status: newLoan.rows[0].status,
           balance: newLoan.rows[0].balance,
           interest: newLoan.rows[0].interest,
@@ -188,8 +188,8 @@ class LoanController {
           user: updatedLoan.rows[0].useremail,
           repaid: updatedLoan.rows[0].repaid,
           balance: updatedLoan.rows[0].balance,
-          createdOn: updatedLoan.rows[0].createdon,
-          updatedOn: updatedLoan.rows[0].updatedon,
+          createdon: updatedLoan.rows[0].createdon,
+          updatedon: updatedLoan.rows[0].updatedon,
         },
       });
     } catch (error) {

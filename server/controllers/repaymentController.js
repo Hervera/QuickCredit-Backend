@@ -28,7 +28,7 @@ class RepaymentController {
           status: res.statusCode,
           error: 'There is no repayment history for that loan',
         });
-      } 
+      }
       return res.status(200).json({
         status: res.statusCode,
         data: repaymentHistory.rows,
@@ -44,8 +44,8 @@ class RepaymentController {
   static async createLoanRepayment(req, res) {
     try {
       const loanId = parseInt(req.params.id, 10);
-      const { paidAmount } = req.body;
-      const result = Joi.validate({ loanId, paidAmount }, validate.repaymentSchema, { abortEarly: false });
+      const { paidamount } = req.body;
+      const result = Joi.validate({ loanId, paidamount }, validate.repaymentSchema, { abortEarly: false });
       if (result.error) {
         const errors = [];
         for (let index = 0; index < result.error.details.length; index++) {
@@ -79,24 +79,24 @@ class RepaymentController {
           error: 'The loan is not approved',
         });
       }
-      const createdOn = moment().format('YYYY-MM-DD HH:mm:ss');
-      const monthlyInstallment = 4; // bring back paymentInstallment of that specific loan; (work on this later)
+      const createdon = moment().format('YYYY-MM-DD HH:mm:ss');
+      const monthlyInstallment = 4; // bring back paymentinstallment of that specific loan; (work on this later)
       const amount = currentAmount; // bring back loan amount of that specific loan; (work on this later)
       const interest = amount * 0.5;
-      const balance = currentBalance + 50000; //  balance = paidAmount + lastBalance; (work on this later)
+      const balance = currentBalance + 50000; //  balance = paidamount + lastBalance; (work on this later)
       const remain = amount - balance; // remain = amount - balance; (work on this later)
       const repaid = 'false'; // compare the loan amount and the balance of that specific loan, if they are equal change repaid to true ; (work on this later)
       const repayment = new Repayment(
-        loanId, monthlyInstallment, paidAmount, repaid, balance, remain, createdOn,
+        loanId, monthlyInstallment, paidamount, repaid, balance, remain, createdon,
       );
       const dataValues = [
         repayment.loanId,
         repayment.monthlyInstallment,
-        repayment.paidAmount,
+        repayment.paidamount,
         repayment.repaid,
         repayment.balance,
         repayment.remain,
-        repayment.createdOn,
+        repayment.createdon,
       ];
       const repaidPart = await db.query(queries.insertRepayment, dataValues);
       return res.status(201).send({
@@ -105,13 +105,13 @@ class RepaymentController {
           id: repaidPart.rows[0].id,
           loanId: repaidPart.rows[0].loanid,
           monthlyInstallment: repaidPart.rows[0].monthlyinstallment,
-          paidAmount: repaidPart.rows[0].paidamount,
+          paidamount: repaidPart.rows[0].paidamount,
           amount,
           interest,
           repaid: repaidPart.rows[0].repaid,
           balance: repaidPart.rows[0].balance,
           remain: repaidPart.rows[0].remain,
-          createdOn: repaidPart.rows[0].createdon,
+          createdon: repaidPart.rows[0].createdon,
         },
       });
     } catch (error) {

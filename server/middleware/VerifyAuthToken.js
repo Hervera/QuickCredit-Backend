@@ -1,35 +1,66 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import db from '../data/connection';
+import queries from '../data/queries';
 
 dotenv.config();
 
 class AuthMiddleware {
   static async verifyToken(req, res, next) {
-    const authorizationHeaader = req.headers.authorization; // Express headers are auto converted to lowercase
-    if (authorizationHeaader) {
+    const authorizationHeader = req.headers.authorization;
+    if (authorizationHeader) {
       const token = req.headers.authorization.split(' ')[1]; // Bearer <token>
-      let result;
       const options = {
         expiresIn: '2d',
       };
       try {
-        // verify makes sure that the token hasn't expired
-        result = jwt.verify(token, `${process.env.SECRET_KEY_CODE}`, options);
-        req.decoded = result;
-        // We call next to pass execution to the subsequent middleware
-        next();
+        const user = jwt.verify(token, `${process.env.SECRET_KEY_CODE}`, options);
+        const { rows } = await db.query(queries.getUserById, [user.id]);
+        if (!rows[0]) {
+          return res.status(400).send({
+            status: res.statusCode,
+            error: 'Token expired',
+          });
+        }
+        req.decoded = user;
+        // console.log(res.locals.user);
+        return next();
       } catch (error) {
         // Throw an error just in case anything goes wrong with verification
-        res.status(400).send({
+        return res.status(400).send({
           status: res.statusCode,
           error: 'Invalid token',
         });
       }
     } else {
       // Forbidden
-      res.status(403).send({
+      return res.status(403).send({
         status: res.statusCode,
         error: "'Unauthorized, No token provided",
+      });
+    }
+  }
+
+  static verifyAdmin(req, res, next) {
+    const payload = req.decoded;
+    if ((payload && payload.isadmin === true)) {
+      next();
+    } else {
+      res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Contact QuickQredit admin',
+      });
+    }
+  }
+
+  static verifyClient(req, res, next) {
+    const payload = req.decoded;
+    if ((payload && payload.email === req.body.useremail)) {
+      next();
+    } else {
+      res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized',
       });
     }
   }

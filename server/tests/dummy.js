@@ -1,25 +1,23 @@
-import randomEmail from 'random-email';
-
 const user1 = {
-  firstName: '445',
-  lastName: '',
+  firstname: '445',
+  lastname: '',
   email: 'admin12@gmail.com',
   password: 'secret',
   address: 'Kigali, Gasabo',
 };
 
-const registeredUser = {
-  firstName: 'nkuli',
-  lastName: 'client',
-  email: 'client@gmail.com',
+const adminUser = {
+  firstname: 'Admin',
+  lastname: 'QuickCredit',
+  email: 'admin@gmail.com',
   password: 'secret',
   address: 'Kigali, Gasabo',
 };
 
 const newUser = {
-  firstName: 'Hervera',
-  lastName: 'Nkuli',
-  email: randomEmail(),
+  firstname: 'client',
+  lastname: 'quickCredit',
+  email: 'client@gmail.com',
   password: 'secret',
   address: 'Kigali, Gasabo',
 };
@@ -40,19 +38,19 @@ const falseUserPassword = {
 };
 
 const newLoan = {
-  userEmail: 'client@gmail.com',
+  useremail: 'kevin5@gmail.com',
   tenor: 4,
   amount: 550000,
 };
 
 const fakeLoan1 = {
-  userEmail: 'xxxxxxxx@gmail.com',
+  useremail: 'xxxxxxxx@gmail.com',
   tenor: 4,
   amount: 550000,
 };
 
 const fakeLoan2 = {
-  userEmail: 'xxxxxxxx',
+  useremail: 'xxxxxxxx',
   tenor: 4,
   amount: 550000,
 };
@@ -61,10 +59,10 @@ const LoanStatus = {
   status: 'approved',
 };
 
-const paidAmount = {
-  paidAmount: 5000000,
+const paidamount = {
+  paidamount: 5000000,
 };
 
 export default {
-  user1, registeredUser, newUser, authUser, falseUserEmail, falseUserPassword, newLoan, fakeLoan1, fakeLoan2, LoanStatus, paidAmount,
+  user1, adminUser, newUser, authUser, falseUserEmail, falseUserPassword, newLoan, fakeLoan1, fakeLoan2, LoanStatus, paidamount,
 };

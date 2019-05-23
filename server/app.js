@@ -7,7 +7,7 @@ import authRoutes from './routes/authRoutes';
 import adminRoutes from './routes/adminRoutes';
 import clientRoutes from './routes/clientRoutes';
 import swaggerDocument from '../swagger.json';
-import { createTables } from './data/create_tables';
+import { createTables } from './data/tables';
 
 const app = express();
 

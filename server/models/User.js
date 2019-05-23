@@ -1,14 +1,14 @@
 class User {
-  constructor(firstName, lastName, email, password, address, status, isAdmin, createdOn, updatedOn) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor(firstname, lastname, email, password, address, status, isadmin, createdon, updatedon) {
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.email = email;
     this.password = password;
     this.address = address;
     this.status = status;
-    this.isAdmin = isAdmin;
-    this.createdOn = createdOn;
-    this.updatedOn = updatedOn;
+    this.isadmin = isadmin;
+    this.createdon = createdon;
+    this.updatedon = updatedon;
   }
 }
 

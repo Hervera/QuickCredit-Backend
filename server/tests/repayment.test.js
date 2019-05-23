@@ -59,7 +59,7 @@ describe('Repayment Endpoints', () => {
   it('Should create a loan repayment record.', (done) => {
     chai.request(server)
       .post('/api/v2/loans/5/repayment')
-      .send(dummy.paidAmount)
+      .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -74,7 +74,7 @@ describe('Repayment Endpoints', () => {
   it('Should not create a loan repayment record if a loan doesn\'t exist.', (done) => {
     chai.request(server)
       .post('/api/v2/loans/1000000000/repayment')
-      .send(dummy.paidAmount)
+      .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -88,7 +88,7 @@ describe('Repayment Endpoints', () => {
   it('Should not create a loan repayment record if a loan is not approved', (done) => {
     chai.request(server)
       .post('/api/v2/loans/54/repayment')
-      .send(dummy.paidAmount)
+      .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
@@ -102,7 +102,7 @@ describe('Repayment Endpoints', () => {
   it('Should not create a loan repayment record if a loan is not specified', (done) => {
     chai.request(server)
       .post('/api/v2/loans/xxxxx/repayment')
-      .send(dummy.paidAmount)
+      .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {

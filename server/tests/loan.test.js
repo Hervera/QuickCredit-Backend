@@ -1,18 +1,57 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import dummy from './dummy';
+import db from '../data/connection';
+import queries from '../data/queries';
 import server from '../app';
+import { createTables, dropTables } from '../data/tables';
+
+dotenv.config();
 
 chai.should();
 chai.use(chaiHttp);
 
 describe('Loan Endpoints', () => {
   let authToken;
-  before((done) => {
-    chai.request(server).post('/api/v2/auth/signin')
-      .send(dummy.authUser)
+  before(async () => {
+    await dropTables();
+    await createTables();
+    const data = {
+      firstname: 'David',
+      lastname: 'Kevin',
+      email: 'kevin8@gmail.com',
+      password: 'secret',
+      address: 'Kigali',
+      status: 'unverified',
+      isadmin: false,
+      createdon: new Date(),
+      updatedon: new Date(),
+    };
+    authToken = jwt.sign(data, `${process.env.SECRET_KEY_CODE}`, { expiresIn: '24h' });
+    await db.query(queries.insertUser, [
+      data.firstname, data.lastname, data.email, data.password, data.address, data.status, data.isadmin, data.createdon, data.updatedon,
+    ]);
+  });
+  it('Should create a loan', (done) => {
+    const loan = {
+      useremail: 'kevin8@gmail.com',
+      tenor: 6,
+      amount: 4000,
+    };
+    chai.request(server)
+      .post('/api/v2/loans')
+      .send(loan)
+      .set('Accept', 'Application/JSON')
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
-        authToken = res.body.data.token; // save the token
+        // console.log(authToken);
+        // console.log(res.body);
+        res.body.should.be.an('Object');
+        res.body.should.have.property('status').equal(201);
+        res.body.should.have.property('data');
+        res.body.data.should.be.an('object');
         done();
       });
   });
@@ -23,6 +62,7 @@ describe('Loan Endpoints', () => {
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
+        console.log(res.body);
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
         res.body.should.have.property('data');
@@ -67,21 +107,6 @@ describe('Loan Endpoints', () => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);
         res.body.should.have.property('error');
-        done();
-      });
-  });
-
-  it('Should create a loan', (done) => {
-    chai.request(server)
-      .post('/api/v2/loans')
-      .send(dummy.newLoan)
-      .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${authToken}`)
-      .end((err, res) => {
-        res.body.should.be.an('Object');
-        res.body.should.have.property('status').equal(201);
-        res.body.should.have.property('data');
-        res.body.data.should.be.an('object');
         done();
       });
   });

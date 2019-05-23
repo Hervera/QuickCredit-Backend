@@ -1,13 +1,17 @@
 import Joi from 'joi';
 
 const userSchema = Joi.object().keys({
-  firstName: Joi.string().alphanum().min(3).max(20)
+  firstname: Joi.string().alphanum().min(3).max(20)
     .required(),
-  lastName: Joi.string().alphanum().min(3).max(20)
+  lastname: Joi.string().alphanum().min(3).max(20)
     .required(),
   email: Joi.string().email({ minDomainAtoms: 2 }).required(),
   password: Joi.string().min(6).max(20).required(),
   address: Joi.string().min(2).max(100).required(),
+  isadmin: Joi.boolean().allow(null),
+  status: Joi.allow(null),
+  createdon: Joi.allow(null),
+  updatedon: Joi.allow(null),
 });
 
 const loginSchema = Joi.object().keys({
@@ -16,7 +20,7 @@ const loginSchema = Joi.object().keys({
 });
 
 const idParams = Joi.object().keys({
-  id: Joi.number().integer()
+  id: Joi.number().integer().positive()
     .required(),
 });
 
@@ -25,24 +29,23 @@ const emailParams = Joi.object().keys({
 });
 
 const loanSchema = Joi.object().keys({
-  userEmail: Joi.string().email({ minDomainAtoms: 2 }).required(),
-  tenor: Joi.number().integer()
+  useremail: Joi.string().email({ minDomainAtoms: 2 }).required(),
+  tenor: Joi.number().positive().integer()
     .required(),
-  amount: Joi.number()
-    .required(),
+  amount: Joi.number().positive().required(),
 });
 
 const repaymentSchema = Joi.object().keys({
-  loanId: Joi.number().integer().required(),
-  paidAmount: Joi.number().required(),
+  loanId: Joi.number().positive().integer().required(),
+  paidamount: Joi.number().positive().required(),
 });
 
 const loanIdParams = Joi.object().keys({
-  loanId: Joi.number().integer().required(),
+  loanId: Joi.number().integer().positive().required(),
 });
 
 const loanStatusSchema = Joi.object().keys({
-  id: Joi.number().integer().required(),
+  id: Joi.number().integer().positive().required(),
   status: Joi.string().valid('approved', 'rejected').required(),
 });
 

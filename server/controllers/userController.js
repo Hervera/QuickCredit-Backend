@@ -56,12 +56,12 @@ class UserController {
         data: {
           id: user.rows[0].id,
           email: user.rows[0].email,
-          firstName: user.rows[0].firstname,
-          lastName: user.rows[0].lastname,
+          firstname: user.rows[0].firstname,
+          lastname: user.rows[0].lastname,
           status: user.rows[0].status,
           address: user.rows[0].address,
-          isAdmin: user.rows[0].isadmin,
-          createdOn: user.rows[0].createdon,
+          isadmin: user.rows[0].isadmin,
+          createdon: user.rows[0].createdon,
         },
       });
     } catch (er) {
@@ -102,13 +102,13 @@ class UserController {
         data: {
           id: updatedUser.rows[0].id,
           email: updatedUser.rows[0].email,
-          firstName: updatedUser.rows[0].firstname,
-          lastName: updatedUser.rows[0].lastname,
+          firstname: updatedUser.rows[0].firstname,
+          lastname: updatedUser.rows[0].lastname,
           status: updatedUser.rows[0].status,
           address: updatedUser.rows[0].address,
-          isAdmin: updatedUser.rows[0].isadmin,
-          createdOn: updatedUser.rows[0].createdon,
-          updatedOn: updatedUser.rows[0].updatedon,
+          isadmin: updatedUser.rows[0].isadmin,
+          createdon: updatedUser.rows[0].createdon,
+          updatedon: updatedUser.rows[0].updatedon,
         },
       });
     } catch (er) {

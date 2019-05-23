@@ -14,7 +14,7 @@ dotenv.config();
 class AuthController {
   static async register(req, res) {
     const {
-      firstName, lastName, email, password, address,
+      firstname, lastname, email, password, address,
     } = req.body;
 
     const result = Joi.validate(req.body, validate.userSchema, { abortEarly: false });
@@ -30,24 +30,24 @@ class AuthController {
       });
     }
     const status = 'unverified';
-    const createdOn = moment().format('YYYY-MM-DD HH:mm:ss');
-    const updatedOn = moment().format('YYYY-MM-DD HH:mm:ss');
-    const isAdmin = 'false';
+    const createdon = moment().format('YYYY-MM-DD HH:mm:ss');
+    const updatedon = moment().format('YYYY-MM-DD HH:mm:ss');
+    const isadmin = 'false';
     const user = new User(
-      firstName, lastName, email, password, address, status, isAdmin, createdOn, updatedOn,
+      firstname, lastname, email, password, address, status, isadmin, createdon, updatedon,
     );
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
     const values = [
-      user.firstName,
-      user.lastName,
+      user.firstname,
+      user.lastname,
       user.email,
       user.password,
       user.address,
       user.status,
-      user.isAdmin,
-      user.createdOn,
-      user.updatedOn,
+      user.isadmin,
+      user.createdon,
+      user.updatedon,
     ];
     try {
       const payload = await db.query(queries.insertUser, values);
@@ -59,11 +59,11 @@ class AuthController {
           token,
           id: payload.rows[0].id,
           fistName: payload.rows[0].firstname,
-          lastName: payload.rows[0].lastname,
+          lastname: payload.rows[0].lastname,
           email: payload.rows[0].email,
           address: payload.rows[0].address,
           status: payload.rows[0].status,
-          isAdmin: payload.rows[0].isadmin,
+          isadmin: payload.rows[0].isadmin,
           CreatedOn: payload.rows[0].createdon,
         },
       });
@@ -106,15 +106,15 @@ class AuthController {
       }
       const options = { expiresIn: '2d' };
       const token = jwt.sign(rows[0], `${process.env.SECRET_KEY_CODE}`, options);
-
+      console.log(res.locals.user);
       return res.status(200).send({
         status: res.statusCode,
         data: {
           token,
           id: rows[0].id,
-          firstName: rows[0].firstname,
-          lastName: rows[0].lastname,
-          isAdmin: rows[0].isadmin,
+          firstname: rows[0].firstname,
+          lastname: rows[0].lastname,
+          isadmin: rows[0].isadmin,
           email: rows[0].email,
           address: rows[0].address,
         },
