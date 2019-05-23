@@ -45,11 +45,11 @@ class RepaymentController {
     try {
       const loanId = parseInt(req.params.id, 10);
       const { paidamount } = req.body;
-      const result = Joi.validate({ loanId, paidamount }, validate.repaymentSchema, { abortEarly: false });
-      if (result.error) {
+      const { error } = Joi.validate({ loanId, paidamount }, validate.repaymentSchema);
+      if (error) {
         const errors = [];
-        for (let index = 0; index < result.error.details.length; index++) {
-          errors.push(result.error.details[index].message.split('"').join(''));
+        for (let index = 0; index < error.details.length; index++) {
+          errors.push(error.details[index].message.split('"').join(''));
         }
         return res.status(400).send({
           status: res.statusCode,

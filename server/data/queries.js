@@ -62,6 +62,7 @@ const getLoan = 'SELECT * FROM loans WHERE id = $1';
 const retrieveAllLoans = 'SELECT * FROM loans';
 const repaidLoans = 'SELECT * FROM loans where status = $1 AND repaid = $2';
 const approveOrRejectLoan = 'UPDATE loans SET status=$1, updatedon=$2 WHERE id=$3 RETURNING *';
+const fetchUserInLoan = 'SELECT * FROM loans WHERE useremail = $1';
 
 // Repayment queries
 const insertRepayment = `INSERT INTO repayments(loanid, monthlyinstallment, paidamount, repaid, balance, remain, createdon)
@@ -82,6 +83,7 @@ export default {
   retrieveAllLoans,
   repaidLoans,
   approveOrRejectLoan,
+  fetchUserInLoan,
   insertRepayment,
   repaymentHistory,
 };

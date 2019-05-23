@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
@@ -17,12 +16,11 @@ class AuthController {
       firstname, lastname, email, password, address,
     } = req.body;
 
-    const result = Joi.validate(req.body, validate.userSchema, { abortEarly: false });
-
-    if (result.error) {
+    const { error } = Joi.validate(req.body, validate.userSchema);
+    if (error) {
       const errors = [];
-      for (let index = 0; index < result.error.details.length; index++) {
-        errors.push(result.error.details[index].message.split('"').join(''));
+      for (let index = 0; index < error.details.length; index++) {
+        errors.push(error.details[index].message.split('"').join(''));
       }
       return res.status(400).send({
         status: res.statusCode,
@@ -30,8 +28,8 @@ class AuthController {
       });
     }
     const status = 'unverified';
-    const createdon = moment().format('YYYY-MM-DD HH:mm:ss');
-    const updatedon = moment().format('YYYY-MM-DD HH:mm:ss');
+    const createdon = new Date();
+    const updatedon = new Date();
     const isadmin = 'false';
     const user = new User(
       firstname, lastname, email, password, address, status, isadmin, createdon, updatedon,
@@ -52,19 +50,19 @@ class AuthController {
     try {
       const payload = await db.query(queries.insertUser, values);
       // create token
-      const token = jwt.sign(payload.rows[0], `${process.env.SECRET_KEY_CODE}`, { expiresIn: '2d' });
+      const token = jwt.sign(payload.rows[0], `${process.env.SECRET_KEY_CODE}`, { expiresIn: '30min' });
       return res.status(201).send({
         status: res.statusCode,
         data: {
           token,
           id: payload.rows[0].id,
-          fistName: payload.rows[0].firstname,
-          lastname: payload.rows[0].lastname,
+          firstName: payload.rows[0].firstname,
+          lastName: payload.rows[0].lastname,
           email: payload.rows[0].email,
           address: payload.rows[0].address,
           status: payload.rows[0].status,
-          isadmin: payload.rows[0].isadmin,
-          CreatedOn: payload.rows[0].createdon,
+          isAdmin: payload.rows[0].isadmin,
+          createdOn: payload.rows[0].createdon,
         },
       });
     } catch (error) {
@@ -104,19 +102,21 @@ class AuthController {
           error: 'Incorrect password',
         });
       }
-      const options = { expiresIn: '2d' };
+      const options = { expiresIn: '30min' };
       const token = jwt.sign(rows[0], `${process.env.SECRET_KEY_CODE}`, options);
-      console.log(res.locals.user);
       return res.status(200).send({
         status: res.statusCode,
         data: {
           token,
           id: rows[0].id,
-          firstname: rows[0].firstname,
-          lastname: rows[0].lastname,
-          isadmin: rows[0].isadmin,
+          firstName: rows[0].firstname,
+          lastName: rows[0].lastname,
+          isAdmin: rows[0].isadmin,
           email: rows[0].email,
           address: rows[0].address,
+          status: rows[0].status,
+          createdOn: rows[0].createdon,
+          updatedOn: rows[0].updatedon,
         },
       });
     } catch (er) {

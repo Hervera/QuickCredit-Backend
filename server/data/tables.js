@@ -31,8 +31,8 @@ const createTables = () => new Promise(async (resolve, reject) => {
       'Kigali, Rwanda',
       'verified',
       'true',
-      '2019-04-03',
-      '2019-04-03',
+      new Date(),
+      new Date(),
     ];
     await pool.query(queries.insertAdmin, admin);
     resolve();

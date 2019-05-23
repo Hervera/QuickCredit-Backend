@@ -15,10 +15,15 @@ class UserController {
           error: 'No user found',
         });
       }
+      const newUsersArray = allUsers.rows.map((eachItem) => {
+        const item = eachItem;
+        delete item.password;
+        return item;
+      });
       return res.status(200).json({
         status: 200,
         successMessage: 'Users',
-        data: allUsers.rows,
+        data: newUsersArray,
       });
     } catch (er) {
       return res.status(500).json({

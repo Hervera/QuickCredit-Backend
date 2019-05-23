@@ -387,17 +387,17 @@
     "definitions": {
         "registerUser": {
             "required": [
-                "firstName",
-                "lastName",
+                "firstname",
+                "lastname",
                 "email",
                 "password",
                 "address"
             ],
             "properties": {
-                "firstName": {
+                "firstname": {
                     "type": "string"
                 },
-                "lastName": {
+                "lastname": {
                     "type": "string"
                 },
                 "email": {
@@ -429,12 +429,12 @@
         },
         "Loan": {
             "required": [
-                "userEmail",
+                "useremail",
                 "tenor",
                 "amount"
             ],
             "properties": {
-                "userEmail": {
+                "useremail": {
                     "type": "string"
                 },
                 "tenor": {
@@ -457,10 +457,10 @@
         },
         "Repayment": {
             "required": [
-                "paidAmount"
+                "paidamount"
             ],
             "properties": {
-                "paidAmount": {
+                "paidamount": {
                     "type": "string"
                 }
             }

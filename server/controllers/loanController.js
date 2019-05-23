@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import moment from 'moment';
 import Loan from '../models/Loan';
 import db from '../data/connection';
 import validate from '../helpers/validation';
@@ -94,14 +93,13 @@ class LoanController {
         useremail, tenor, amount,
       } = req.body;
 
-      const result = Joi.validate(req.body, validate.loanSchema, { abortEarly: false });
-
-      if (result.error) {
+      const { error } = Joi.validate(req.body, validate.loanSchema);
+      if (error) {
         const errors = [];
-        for (let index = 0; index < result.error.details.length; index++) {
-          errors.push(result.error.details[index].message.split('"').join(''));
+        for (let index = 0; index < error.details.length; index++) {
+          errors.push(error.details[index].message.split('"').join(''));
         }
-        return res.status(400).json({
+        return res.status(400).send({
           status: res.statusCode,
           error: errors,
         });
@@ -112,8 +110,8 @@ class LoanController {
       const interest = amount * 0.05;
       const paymentinstallment = (amount + interest) / tenor;
       const balance = 0;
-      const createdon = moment().format('YYYY-MM-DD HH:mm:ss');
-      const updatedon = moment().format('YYYY-MM-DD HH:mm:ss');
+      const createdon = new Date();
+      const updatedon = new Date();
       const loan = new Loan(
         useremail, createdon, status, repaid, tenor, amount, paymentinstallment, balance, interest, updatedon,
       );
@@ -121,9 +119,15 @@ class LoanController {
       if (!rows[0]) {
         return res.status(404).json({ status: res.statusCode, error: 'That user is not registered' });
       }
+      const userWithLoan = await db.query(queries.fetchUserInLoan, [rows[0].email]);
+      if (rows[0].status === 'verified' && userWithLoan.rows[0].status === 'pending') {
+        return res.status(404).json({ status: res.statusCode, error: 'You still have a loan pending' });
+      }
+      if (rows[0].status === 'verified' && userWithLoan.rows[0].repaid === false) {
+        return res.status(404).json({ status: res.statusCode, error: 'You still have an unrepaid loan' });
+      }
       const nameFirst = rows[0].firstname;
       const nameLast = rows[0].lastname;
-
       const values = [
         loan.useremail, loan.createdon, loan.status, loan.repaid, loan.tenor, loan.amount, loan.paymentinstallment,
         loan.balance, loan.interest, loan.updatedon,
@@ -174,7 +178,7 @@ class LoanController {
           error: 'Loan is not found',
         });
       }
-      const updateDate = moment().format('YYYY-MM-DD HH:mm:ss');
+      const updateDate = new Date();
       const updatedLoan = await db.query(queries.approveOrRejectLoan, [req.body.status, updateDate, findLoan.rows[0].id]);
       return res.status(200).json({
         status: 200,

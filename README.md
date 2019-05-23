@@ -49,19 +49,19 @@ When you need to test the application and view test coverage run:
 
 # API Endpoint
 
-* POST `/api/v1/auth/signup` Create user account.
-* POST `/api/v1/auth/signin` Login a user.
+* POST `/api/v2/auth/signup` Create user account.
+* POST `/api/v2/auth/signin` Login a user.
 
-* GET `/api/v1/users` Get all users.
-* GET `/api/v1/users/<:user-id>` Get a specific user.
-* PATCH `/api/v1/users/<:user-email>/verify` Mark a user as verified.
-* GET `/api/v1/loans/<:loan-id` Get a specific loan application. 
-* GET `/api/v1/loans?status=approved&repaid=false` Get all current loans that are not fully repaid. 
-* GET `/api/v1/loans?status=approved&repaid=true` Get all repaid loans. 
-* GET `/api/v1/loans` Get all loan applications 
-* GET `/api/v1/loans/<:loan-id>/repayments` View loan repayment history. 
-* POST `/api/v1/loans` Create a loan application.
-* PATCH `/api/v1/loans/<:loan-id>` Approve or reject a loan application. Specify the status in the request’s body.
-* POST `/api/v1/loans/<:loan-id>/repayment` Create a loan repayment record.
+* GET `/api/v2/users` Get all users.
+* GET `/api/v2/users/<:user-id>` Get a specific user.
+* PATCH `/api/v2/users/<:user-email>/verify` Mark a user as verified.
+* GET `/api/v2/loans/<:loan-id` Get a specific loan application. 
+* GET `/api/v2/loans?status=approved&repaid=false` Get all current loans that are not fully repaid. 
+* GET `/api/v2/loans?status=approved&repaid=true` Get all repaid loans. 
+* GET `/api/v2/loans` Get all loan applications 
+* GET `/api/v2/loans/<:loan-id>/repayments` View loan repayment history. 
+* POST `/api/v2/loans` Create a loan application.
+* PATCH `/api/v2/loans/<:loan-id>` Approve or reject a loan application. Specify the status in the request’s body.
+* POST `/api/v2/loans/<:loan-id>/repayment` Create a loan repayment record.
 
 

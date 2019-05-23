@@ -11,7 +11,7 @@ class AuthMiddleware {
     if (authorizationHeader) {
       const token = req.headers.authorization.split(' ')[1]; // Bearer <token>
       const options = {
-        expiresIn: '2d',
+        expiresIn: '30min',
       };
       try {
         const user = jwt.verify(token, `${process.env.SECRET_KEY_CODE}`, options);
@@ -23,7 +23,6 @@ class AuthMiddleware {
           });
         }
         req.decoded = user;
-        // console.log(res.locals.user);
         return next();
       } catch (error) {
         // Throw an error just in case anything goes wrong with verification
