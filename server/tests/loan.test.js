@@ -8,10 +8,10 @@ import queries from '../data/queries';
 import server from '../app';
 import { createTables, dropTables } from '../data/tables';
 
-dotenv.config();
-
 chai.should();
 chai.use(chaiHttp);
+
+dotenv.config();
 
 describe('Loan Endpoints', () => {
   let authToken;
@@ -47,7 +47,7 @@ describe('Loan Endpoints', () => {
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         // console.log(authToken);
-        // console.log(res.body);
+        console.log(res.body);
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(201);
         res.body.should.have.property('data');

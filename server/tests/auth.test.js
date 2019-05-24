@@ -1,14 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import server from '../app';
 import dummy from './dummy';
 import db from '../data/connection';
 import queries from '../data/queries';
 import { createTables, dropTables } from '../data/tables';
-
-dotenv.config();
 
 chai.should();
 chai.use(chaiHttp);
@@ -18,9 +15,9 @@ describe('User authentication Endpoints', () => {
     await dropTables();
     await createTables();
     const data = {
-      firstname: 'admin',
-      lastname: 'admin',
-      email: 'admin@gmail.com',
+      firstname: 'client',
+      lastname: 'client',
+      email: 'client@gmail.com',
       password: 'secret',
       address: 'Kigali',
       status: 'verified',
@@ -42,15 +39,15 @@ describe('User authentication Endpoints', () => {
     ]);
   });
 
-  after(async () => {
-    await dropTables();
-  });
+  // after(async () => {
+  //   await dropTables();
+  // });
 
   it('Should create an account', (done) => {
     const data2 = {
       firstname: 'client',
       lastname: 'client',
-      email: 'client@gmail.com',
+      email: 'client2@gmail.com',
       password: 'secret',
       address: 'Kigali',
       status: 'verified',

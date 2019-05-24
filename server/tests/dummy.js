@@ -23,7 +23,7 @@ const newUser = {
 };
 
 const authUser = {
-  email: 'client@gmail.com',
+  email: 'client2@gmail.com',
   password: 'secret',
 };
 
