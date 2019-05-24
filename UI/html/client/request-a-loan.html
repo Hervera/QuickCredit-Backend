@@ -55,22 +55,39 @@
                 <div class="back-card">
                     <form method="POST">
                         <div class="each-input">
-                            <label>First Name</label>
-                            <input type="text" name="name" class="input-form">
-                        </div>
-                        <div class="each-input">
-                            <label>Last Name</label>
-                            <input type="text" name="name" class="input-form">
+                            <label>Full Name</label>
+                            <input type="text" name="name" class="input-form readonly" value="Herve Nkurikiyimfura" readonly="true">
                         </div>
                         <div class="each-input">
                             <label>Amount in ($) for a loan </label>
                             <input type="number" name="number" class="input-form">
                         </div>
                         <div class="each-input">
-                            <label>Address</label>
-                            <input type="text" name="address" class="input-form">
+                            <label>Tenor</label>
+                            <select name="tenor" class="input-form">
+                                <option value="1" selected="true">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
                         </div>
-                       
+                        <div class="each-input">
+                            <label>Payment Installment</label>
+                            <input type="number" name="paymentInstallment" placeholder="Auto complete" readonly="true"
+                                class="input-form">
+                        </div>
+                        <div class="each-input">
+                            <label>Interest (5% of the amount)</label>
+                            <input type="number" name="interest" placeholder="Auto complete" readonly="true" class="input-form">
+                        </div>
                         <button class="btn blue-btn" type="submit">Request A Loan</button>
                     </form>
                 </div>
