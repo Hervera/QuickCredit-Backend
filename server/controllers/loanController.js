@@ -119,12 +119,17 @@ class LoanController {
       if (!rows[0]) {
         return res.status(404).json({ status: res.statusCode, error: 'That user is not registered' });
       }
-      const userWithLoan = await db.query(queries.fetchUserInLoan, [rows[0].email]);
-      if (rows[0].status === 'verified' && userWithLoan.rows[0].status === 'pending') {
-        return res.status(404).json({ status: res.statusCode, error: 'You still have a loan pending' });
+      if (rows.length !== 0 && rows[0].status !== 'verified') {
+        return res.status(404).json({ status: res.statusCode, error: `User with this email: "${useremail}" is not yet verified` });
       }
-      if (rows[0].status === 'verified' && userWithLoan.rows[0].repaid === false) {
-        return res.status(404).json({ status: res.statusCode, error: 'You still have an unrepaid loan' });
+      const userWithLoan = await db.query(queries.fetchUserInLoan, [useremail]);
+      if (userWithLoan.rows.length !== 0) {
+        if (userWithLoan.rows[0].status === 'pending') {
+          return res.status(404).json({ status: res.statusCode, error: 'You still have a loan pending' });
+        }
+        if (userWithLoan.rows[0].repaid === false) {
+          return res.status(404).json({ status: res.statusCode, error: 'You still have an unrepaid loan' });
+        }
       }
       const nameFirst = rows[0].firstname;
       const nameLast = rows[0].lastname;
