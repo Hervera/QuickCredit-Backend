@@ -9,12 +9,12 @@ import queries from '../data/queries';
 class RepaymentController {
   static async loanRepaymentHistory(req, res) {
     try {
-      const loanId = Number(req.params.id);
+      const loanid = Number(req.params.id);
       const { error } = Joi.validate(
         {
-          loanId,
+          loanid,
         },
-        validate.loanIdParams,
+        validate.loanidParams,
       );
       if (error) {
         return res.status(400).json({
@@ -22,7 +22,7 @@ class RepaymentController {
           error: error.details[0].message,
         });
       }
-      const repaymentHistory = await db.query(queries.repaymentHistory, [loanId]);
+      const repaymentHistory = await db.query(queries.repaymentHistory, [loanid]);
       if (repaymentHistory.rows.length === 0) {
         return res.status(404).json({
           status: res.statusCode,
@@ -43,9 +43,9 @@ class RepaymentController {
 
   static async createLoanRepayment(req, res) {
     try {
-      const loanId = parseInt(req.params.id, 10);
+      const loanid = parseInt(req.params.id, 10);
       const { paidamount } = req.body;
-      const { error } = Joi.validate({ loanId, paidamount }, validate.repaymentSchema);
+      const { error } = Joi.validate({ loanid, paidamount }, validate.repaymentSchema);
       if (error) {
         const errors = [];
         for (let index = 0; index < error.details.length; index++) {
@@ -87,10 +87,10 @@ class RepaymentController {
       const remain = amount - balance; // remain = amount - balance; (work on this later)
       const repaid = 'false'; // compare the loan amount and the balance of that specific loan, if they are equal change repaid to true ; (work on this later)
       const repayment = new Repayment(
-        loanId, monthlyInstallment, paidamount, repaid, balance, remain, createdon,
+        loanid, monthlyInstallment, paidamount, repaid, balance, remain, createdon,
       );
       const dataValues = [
-        repayment.loanId,
+        repayment.loanid,
         repayment.monthlyInstallment,
         repayment.paidamount,
         repayment.repaid,
@@ -105,13 +105,13 @@ class RepaymentController {
           id: repaidPart.rows[0].id,
           loanId: repaidPart.rows[0].loanid,
           monthlyInstallment: repaidPart.rows[0].monthlyinstallment,
-          paidamount: repaidPart.rows[0].paidamount,
+          paidAmount: repaidPart.rows[0].paidamount,
           amount,
           interest,
           repaid: repaidPart.rows[0].repaid,
           balance: repaidPart.rows[0].balance,
           remain: repaidPart.rows[0].remain,
-          createdon: repaidPart.rows[0].createdon,
+          createdOn: repaidPart.rows[0].createdon,
         },
       });
     } catch (error) {

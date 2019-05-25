@@ -141,7 +141,7 @@ class LoanController {
       return res.status(201).json({
         status: res.statusCode,
         data: {
-          loanId: newLoan.rows[0].id,
+          loanid: newLoan.rows[0].id,
           firstname: nameFirst,
           lastname: nameLast,
           email: newLoan.rows[0].useremail,

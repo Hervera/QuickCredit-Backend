@@ -73,7 +73,7 @@ describe('User Endpoints', () => {
 
   it('Should verify a user if email of the user is found', (done) => {
     chai.request(server)
-      .patch('/api/v2/users/client@gmail.com/verify')
+      .patch('/api/v2/users/admin@gmail.com/verify')
       .set('Accept', 'Application/JSON')
       .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {

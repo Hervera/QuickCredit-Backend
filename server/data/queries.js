@@ -67,7 +67,7 @@ const fetchUserInLoan = 'SELECT * FROM loans WHERE useremail = $1';
 // Repayment queries
 const insertRepayment = `INSERT INTO repayments(loanid, monthlyinstallment, paidamount, repaid, balance, remain, createdon)
      VALUES ($1, $2, $3, $4, $5, $6, $7) returning *`;
-const repaymentHistory = 'SELECT * FROM repayments where loanId = $1';
+const repaymentHistory = 'SELECT * FROM repayments where loanid = $1';
 
 export default {
   createTables,

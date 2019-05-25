@@ -37,12 +37,12 @@ const loanSchema = Joi.object().keys({
 });
 
 const repaymentSchema = Joi.object().keys({
-  loanId: Joi.number().positive().integer().required(),
+  loanid: Joi.number().positive().integer().required(),
   paidamount: Joi.number().positive().required(),
 });
 
-const loanIdParams = Joi.object().keys({
-  loanId: Joi.number().integer().positive().required(),
+const loanidParams = Joi.object().keys({
+  loanid: Joi.number().integer().positive().required(),
 });
 
 const loanStatusSchema = Joi.object().keys({
@@ -52,5 +52,5 @@ const loanStatusSchema = Joi.object().keys({
 
 
 export default {
-  userSchema, loginSchema, idParams, emailParams, loanSchema, repaymentSchema, loanIdParams, loanStatusSchema,
+  userSchema, loginSchema, idParams, emailParams, loanSchema, repaymentSchema, loanidParams, loanStatusSchema,
 };

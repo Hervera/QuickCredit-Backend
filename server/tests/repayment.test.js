@@ -1,12 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import server from '../app';
 import dummy from './dummy';
-import db from '../data/connection';
-import queries from '../data/queries';
-import { createTables, dropTables } from '../data/tables';
 
 chai.should();
 chai.use(chaiHttp);
@@ -14,43 +10,21 @@ chai.use(chaiHttp);
 dotenv.config();
 
 describe('Repayment Endpoints', () => {
-  let token;
-  before(async () => {
-    await dropTables();
-    await createTables();
-    const data = {
-      firstname: 'admin',
-      lastname: 'admin',
-      email: 'admin@gmail.com',
-      password: 'secret',
-      address: 'Kigali',
-      status: 'verified',
-      isadmin: 'true',
-      createdon: new Date(),
-      updatedon: new Date(),
-    };
-    token = jwt.sign(data, `${process.env.SECRET_KEY_CODE}`, { expiresIn: '24h' });
-    await db.query(queries.insertUser, [
-      data.firstname,
-      data.lastname,
-      data.email,
-      data.password,
-      data.address,
-      data.status,
-      data.isadmin,
-      data.createdon,
-      data.updatedon,
-    ]);
+  let authToken;
+  before((done) => {
+    chai.request(server).post('/api/v2/auth/signin')
+      .send(dummy.authUser)
+      .end((err, res) => {
+        authToken = res.body.data.token; // save the token
+        done();
+      });
   });
 
-  after(async () => {
-    await dropTables();
-  });
   it('Should retrieve repayment history if a loan exists', (done) => {
     chai.request(server)
-      .get('/api/v2/loans/2/repayments')
+      .get('/api/v2/loans/1/repayments')
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(200);
@@ -64,7 +38,7 @@ describe('Repayment Endpoints', () => {
     chai.request(server)
       .get('/api/v2/loans/500000/repayments')
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);
@@ -73,11 +47,11 @@ describe('Repayment Endpoints', () => {
       });
   });
 
-  it('Should not retrieve repayment history if a loanId is not specified', (done) => {
+  it('Should not retrieve repayment history if a loanid is not specified', (done) => {
     chai.request(server)
       .get('/api/v2/loans/dsss/repayments')
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);
@@ -88,10 +62,10 @@ describe('Repayment Endpoints', () => {
 
   it('Should create a loan repayment record.', (done) => {
     chai.request(server)
-      .post('/api/v2/loans/5/repayment')
+      .post('/api/v2/loans/1/repayment')
       .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(201);
@@ -106,7 +80,7 @@ describe('Repayment Endpoints', () => {
       .post('/api/v2/loans/1000000000/repayment')
       .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(404);
@@ -117,10 +91,10 @@ describe('Repayment Endpoints', () => {
 
   it('Should not create a loan repayment record if a loan is not approved', (done) => {
     chai.request(server)
-      .post('/api/v2/loans/54/repayment')
+      .post('/api/v2/loans/2/repayment')
       .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);
@@ -134,7 +108,7 @@ describe('Repayment Endpoints', () => {
       .post('/api/v2/loans/xxxxx/repayment')
       .send(dummy.paidamount)
       .set('Accept', 'Application/JSON')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${authToken}`)
       .end((err, res) => {
         res.body.should.be.an('Object');
         res.body.should.have.property('status').equal(400);

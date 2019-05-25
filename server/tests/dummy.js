@@ -1,12 +1,4 @@
 const user1 = {
-  firstname: '445',
-  lastname: '',
-  email: 'admin12@gmail.com',
-  password: 'secret',
-  address: 'Kigali, Gasabo',
-};
-
-const adminUser = {
   firstname: 'Admin',
   lastname: 'QuickCredit',
   email: 'admin@gmail.com',
@@ -14,16 +6,24 @@ const adminUser = {
   address: 'Kigali, Gasabo',
 };
 
-const newUser = {
+const user2 = {
   firstname: 'client',
   lastname: 'quickCredit',
-  email: 'client@gmail.com',
+  email: 'client2@gmail.com',
+  password: 'secret',
+  address: 'Kigali, Gasabo',
+};
+
+const user3 = {
+  firstname: '445',
+  lastname: '',
+  email: 'admin12@gmail.com',
   password: 'secret',
   address: 'Kigali, Gasabo',
 };
 
 const authUser = {
-  email: 'client2@gmail.com',
+  email: 'admin@gmail.com',
   password: 'secret',
 };
 
@@ -64,5 +64,5 @@ const paidamount = {
 };
 
 export default {
-  user1, adminUser, newUser, authUser, falseUserEmail, falseUserPassword, newLoan, fakeLoan1, fakeLoan2, LoanStatus, paidamount,
+  user1, user2, user3, authUser, falseUserEmail, falseUserPassword, newLoan, fakeLoan1, fakeLoan2, LoanStatus, paidamount,
 };

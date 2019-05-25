@@ -1,6 +1,6 @@
 class Repayment {
-  constructor(loanId, monthlyInstallment, paidamount, repaid, balance, remain, createdon) {
-    this.loanId = loanId;
+  constructor(loanid, monthlyInstallment, paidamount, repaid, balance, remain, createdon) {
+    this.loanid = loanid;
     this.monthlyInstallment = monthlyInstallment;
     this.paidamount = paidamount;
     this.repaid = repaid;
