@@ -8,7 +8,7 @@
   "main": "server/app.js",
   "scripts": {
     "test-dev": "cross-env NODE_ENV=test mocha --require babel-register ./server/tests --timeout 1200 --exit",
-    "test": "cross-env NODE_ENV=test mocha dist/tests",
+    "test": "cross-env NODE_ENV=test mocha dist/tests --timeout 1200 --exit",
     "start-dev": "nodemon --exec babel-node server/app.js",
     "start": "node dist/app.js",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
