@@ -1,23 +1,8 @@
 language: node_js
-
-node_js: 10.14.1
-
+node_js: 
+  - "stable"
 cache:
   directories:
     - "node_modules"
-    
 after_success:
-- npm run coverage
-
-services:
-  - postgresql
-  
-addons:
-  postgresql: "9.6"
-
-  before_script:
-- psql -c 'create database quickcredit_test;' -U postgres
-- npm run create
-
-script:
 - npm test
