@@ -1,7 +1,8 @@
 node_modules
-dist
 coverage
-.babelrc
 .eslintrc.json
 .nyc_output
 .env
+.vscode/
+.DS_Store
+UI/.DS_Store

@@ -106,7 +106,7 @@ class AuthController {
       const token = jwt.sign(rows[0], `${process.env.SECRET_KEY_CODE}`, options);
       return res.status(200).send({
         status: res.statusCode,
-        data: {
+        user: {
           token,
           id: rows[0].id,
           firstName: rows[0].firstname,

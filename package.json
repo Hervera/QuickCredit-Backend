@@ -7,7 +7,8 @@
   "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.",
   "main": "server/app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha --require babel-register ./server/tests --timeout 1200 --exit",
+    "test-dev": "cross-env NODE_ENV=test mocha --require babel-register ./server/tests --timeout 1200 --exit",
+    "test": "cross-env NODE_ENV=test mocha dist/tests --timeout 1200 --exit",
     "start-dev": "nodemon --exec babel-node server/app.js",
     "start": "node dist/app.js",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
@@ -30,6 +31,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
@@ -42,7 +44,7 @@
     "pg": "^7.11.0",
     "random-email": "^1.0.3",
     "save": "^2.4.0",
-    "swagger-ui": "^3.22.1",
+    "swagger-ui": "^3.22.2",
     "swagger-ui-express": "^4.0.2",
     "uuid": "^3.3.2"
   },

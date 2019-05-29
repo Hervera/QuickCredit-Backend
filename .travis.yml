@@ -1,21 +1,12 @@
 language: node_js
-
 node_js: 
   - "stable"
-
-cache:
-  directories:
-    - "node_modules"
-    
 after_success:
-- npm run coverage
-
+- npm test
 services:
   - postgresql
-  
 addons:
   postgresql: "9.6"
-
   before_script:
-- psql -c 'create database test;' -U postgres
-- npm run create
+    - psql -c 'create database quickcredit_test;' -U postgres
+    - npm run create
