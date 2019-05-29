@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 
 dotenv.config();
 
-createTables();
+// createTables();
 
 app.use(morgan('dev'));
 // Parse incoming requests data

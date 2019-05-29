@@ -50,7 +50,7 @@ var port = process.env.PORT || 3000;
 
 _dotenv2.default.config();
 
-(0, _tables.createTables)();
+// createTables();
 
 app.use((0, _morgan2.default)('dev'));
 // Parse incoming requests data
